@@ -41,4 +41,73 @@ public class UserRepository {
         return userList;
     }
 
+    public User getUserById (int id) {
+        User user = new User();
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user.setUserId(resultSet.getInt("user_id"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setFullName(resultSet.getString("full_name"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setProfilePicture(resultSet.getString("profile_picture"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+    public void deleteUserById (int id) {
+        String sql = "DELETE FROM users WHERE user_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveUser (User user) {
+        String sql = "INSERT INTO users (email, full_name, password, profile_picture) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getFullName());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getProfilePicture());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUser (User user) {
+        String sql = "UPDATE users SET email = ?, full_name = ?, password = ?, profile_picture = ? WHERE user_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getFullName());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getProfilePicture());
+            statement.setInt(5, user.getUserId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

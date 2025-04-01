@@ -1,45 +1,46 @@
-DROP DATABASE if exists wishify;
+DROP DATABASE IF EXISTS wishify;
 CREATE DATABASE wishify;
 USE wishify;
 
 CREATE TABLE users(
-                      user_id                 int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                      email                   varchar(50) NOT NULL,
-                      full_name               varchar(50) NOT NULL,
-                      password                varchar(50) NOT NULL
+    user_id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email           VARCHAR(50) NOT NULL,
+    full_name       VARCHAR(50) NOT NULL,
+    password        VARCHAR(50) NOT NULL,
+    profile_picture VARCHAR(50)
 );
 
-INSERT INTO users (email, full_name, password) VALUES
-                                                            ('frmo@dong', 'Frederik Morsing', 'blyat');
-
+INSERT INTO users (email, full_name, password, profile_picture) VALUES
+                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
 
 CREATE TABLE wishlist(
-                         list_id                 int AUTO_INCREMENT PRIMARY KEY,
-                         list_name               varchar(50) NOT NULL,
-                         created_at              int,
-                         user_id                 int NOT NULL,
-                         FOREIGN KEY (user_id)   REFERENCES users(user_id)
+    list_id                 INT AUTO_INCREMENT PRIMARY KEY,
+    list_name               VARCHAR(50) NOT NULL,
+    list_description        VARCHAR(200),
+    created_at              INT,
+    user_id                 INT NOT NULL,
+    FOREIGN KEY (user_id)   REFERENCES users(user_id)
 );
-INSERT INTO wishlist (list_name, created_at, user_id) VALUES
-                                                          ('fødselsdags', 301200,1);
 
+INSERT INTO wishlist (list_name, wishlist.list_description, created_at, user_id) VALUES
+                                                          ('fødselsdags', 'mine fødselsdags gaver', 301200, 1);
 
 CREATE TABLE wish(
-                     wish_id            int AUTO_INCREMENT PRIMARY KEY,
-                     wish_name          varchar(50) NOT NULL,
-                     wish_price              int DEFAULT NULL,
-                     wish_description        varchar(200),
-                     wish_quantity           int NOT NULL,
-                     wish_priority           int DEFAULT NULL,
-                     wish_booked_status      boolean DEFAULT FALSE,
-                     wish_booked_by          varchar(50) DEFAULT NULL,
-                     wish_picture            varchar(100) DEFAULT NULL,
-                     wish_link            varchar(200) DEFAULT NULL,
-                     list_id                 int NOT NULL,
-                     FOREIGN KEY (list_id)   REFERENCES wishlist(list_id)
+    wish_id                INT AUTO_INCREMENT PRIMARY KEY,
+    wish_name              VARCHAR(50) NOT NULL,
+    price                  INT DEFAULT NULL,
+    wish_description       VARCHAR(200),
+    quantity               INT NOT NULL,
+    priority               INT DEFAULT NULL,
+    booked_status          BOOLEAN DEFAULT FALSE,
+    booked_by              VARCHAR(50) DEFAULT NULL,
+    picture                VARCHAR(100) DEFAULT NULL,
+    link                   VARCHAR(200) DEFAULT NULL,
+    list_id                INT NOT NULL,
+    FOREIGN KEY (list_id)  REFERENCES wishlist(list_id)
 );
 
-INSERT INTO wish (wish_name, wish_price, wish_description, wish_quantity, wish_priority, wish_booked_status,wish_booked_by, wish_picture, wish_link, list_id) VALUES
+INSERT INTO wish (wish_name, price, wish_description, quantity, priority, booked_status,booked_by, picture, link, list_id) VALUES
         ('Lenovo', 1000, 'PC', 1, 1, true, 'lucas', 'pcImg', 'www.lenovo.com', 1),
         ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'creampng', 'www.Matas.dk', 1),
         ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'supremepng', 'www.supreme.com', 1),

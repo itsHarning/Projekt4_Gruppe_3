@@ -1,17 +1,27 @@
 package org.example.projekt4_gruppe_3.Model;
 
 public class WishList {
-    int list_id;
-    String name;
-    Long created_at;
-    User user_id;
-    String image;
+    private int list_id;
+    private String name;
+    private Long created_at;
+    private User user;
+    private String image;
 
-    public WishList(int list_id, String name, Long created_at, User user_id) {
+    public WishList(int list_id, String name, Long created_at, User user) {
         this.list_id = list_id;
         this.name = name;
         this.created_at = created_at;
-        this.user_id = user_id;
+        this.user = user;
+    }
+
+    public WishList(String name, Long created_at, User user, String image) {
+        this.name = name;
+        this.created_at = created_at;
+        this.user = user;
+        this.image = image;
+    }
+
+    public WishList() {
     }
 
     public int getList_id() {
@@ -38,11 +48,19 @@ public class WishList {
         this.created_at = created_at;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

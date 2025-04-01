@@ -1,26 +1,36 @@
 package org.example.projekt4_gruppe_3.Model;
 
 public class User {
-    int user_id;
-    String email;
-    String full_name;
-    String password;
-    String profilePicture;
+    private int userId;
+    private String email;
+    private String fullName;
+    private String password;
+    private String profilePicture;
 
-    public User(int user_id, String user_email, String user_full_name, String password, String profilePicture) {
-        this.user_id = user_id;
+    public User(int userId, String user_email, String user_full_name, String password, String profilePicture) {
+        this.userId = userId;
         this.email = user_email;
-        this.full_name = user_full_name;
+        this.fullName = user_full_name;
         this.password = password;
         this.profilePicture = profilePicture;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User(String email, String fullName, String password, String profilePicture) {
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.profilePicture = profilePicture;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public User() {
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
     public String getEmail() {
@@ -31,12 +41,12 @@ public class User {
         this.email = email;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {
@@ -45,5 +55,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }
