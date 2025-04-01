@@ -5,6 +5,7 @@ public class User {
     String email;
     String full_name;
     String password;
+    String profilePicture;
 
     public User(int user_id, String user_email, String user_full_name, String password) {
         this.user_id = user_id;

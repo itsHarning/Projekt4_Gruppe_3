@@ -5,6 +5,7 @@ public class WishList {
     String name;
     Long created_at;
     User user_id;
+    String image;
 
     public WishList(int list_id, String name, Long created_at, User user_id) {
         this.list_id = list_id;
