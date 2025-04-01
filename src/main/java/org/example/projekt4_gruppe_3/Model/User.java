@@ -7,11 +7,12 @@ public class User {
     String password;
     String profilePicture;
 
-    public User(int user_id, String user_email, String user_full_name, String password) {
+    public User(int user_id, String user_email, String user_full_name, String password, String profilePicture) {
         this.user_id = user_id;
         this.email = user_email;
         this.full_name = user_full_name;
         this.password = password;
+        this.profilePicture = profilePicture;
     }
 
     public int getUser_id() {

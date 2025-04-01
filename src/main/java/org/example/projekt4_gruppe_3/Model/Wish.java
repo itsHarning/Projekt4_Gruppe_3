@@ -3,54 +3,54 @@ package org.example.projekt4_gruppe_3.Model;
 public class Wish {
     private int wishId;
     private String wishName;
-    private String wishDescription;
-    private int wishPrice;
-    private int wishQuantity;
-    private String wishImg;
-    private String wishBookedBy;
-    private String wishBookedStatus;
-    private String wishPriority;
+    private String description;
+    private int price;
+    private int quantity;
+    private String image;
+    private String bookedBy;
+    private String bookedStatus;
+    private String priority;
     private WishList wishList;
 
     public Wish(int wishId,
                 String wishName,
-                String wishDescription,
-                int wishPrice,
-                int wishQuantity,
-                String wishImg,
-                String wishBookedBy,
-                String wishBookedStatus,
-                String wishPriority,
+                String description,
+                int price,
+                int quantity,
+                String image,
+                String bookedBy,
+                String bookedStatus,
+                String priority,
                 WishList wishList) {
         this.wishId = wishId;
         this.wishName = wishName;
-        this.wishDescription = wishDescription;
-        this.wishPrice = wishPrice;
-        this.wishQuantity = wishQuantity;
-        this.wishImg = wishImg;
-        this.wishBookedBy = wishBookedBy;
-        this.wishBookedStatus = wishBookedStatus;
-        this.wishPriority = wishPriority;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.bookedBy = bookedBy;
+        this.bookedStatus = bookedStatus;
+        this.priority = priority;
         this.wishList = wishList;
     }
 
     public Wish(String wishName,
-                String wishDescription,
-                int wishPrice,
-                int wishQuantity,
-                String wishImg,
-                String wishBookedBy,
-                String wishBookedStatus,
-                String wishPriority,
+                String description,
+                int price,
+                int quantity,
+                String image,
+                String bookedBy,
+                String bookedStatus,
+                String priority,
                 WishList wishList) {
         this.wishName = wishName;
-        this.wishDescription = wishDescription;
-        this.wishPrice = wishPrice;
-        this.wishQuantity = wishQuantity;
-        this.wishImg = wishImg;
-        this.wishBookedBy = wishBookedBy;
-        this.wishBookedStatus = wishBookedStatus;
-        this.wishPriority = wishPriority;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.bookedBy = bookedBy;
+        this.bookedStatus = bookedStatus;
+        this.priority = priority;
         this.wishList = wishList;
     }
 
@@ -73,60 +73,60 @@ public class Wish {
         this.wishName = wishName;
     }
 
-    public String getWishDescription() {
-        return wishDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWishDescription(String wishDescription) {
-        this.wishDescription = wishDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getWishPrice() {
-        return wishPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setWishPrice(int wishPrice) {
-        this.wishPrice = wishPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public int getWishQuantity() {
-        return wishQuantity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setWishQuantity(int wishQuantity) {
-        this.wishQuantity = wishQuantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getWishImg() {
-        return wishImg;
+    public String getImage() {
+        return image;
     }
 
-    public void setWishImg(String wishImg) {
-        this.wishImg = wishImg;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getWishBookedBy() {
-        return wishBookedBy;
+    public String getBookedBy() {
+        return bookedBy;
     }
 
-    public void setWishBookedBy(String wishBookedBy) {
-        this.wishBookedBy = wishBookedBy;
+    public void setBookedBy(String bookedBy) {
+        this.bookedBy = bookedBy;
     }
 
-    public String getWishBookedStatus() {
-        return wishBookedStatus;
+    public String getBookedStatus() {
+        return bookedStatus;
     }
 
-    public void setWishBookedStatus(String wishBookedStatus) {
-        this.wishBookedStatus = wishBookedStatus;
+    public void setBookedStatus(String bookedStatus) {
+        this.bookedStatus = bookedStatus;
     }
 
-    public String getWishPriority() {
-        return wishPriority;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setWishPriority(String wishPriority) {
-        this.wishPriority = wishPriority;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public WishList getWishList() {
