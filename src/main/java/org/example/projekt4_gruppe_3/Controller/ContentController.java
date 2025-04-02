@@ -31,7 +31,6 @@ public class ContentController {
 
     @GetMapping("/login")
     public String loginPage(){
-
         return "Login";
     }
 
@@ -86,8 +85,8 @@ public class ContentController {
     }
 
     @GetMapping("/")
-    public String placeholder(){
-        return "Placeholder";
+    public String homePage(){
+        return "HomePage";
     }
 
     @GetMapping("/MyWishesPage")
