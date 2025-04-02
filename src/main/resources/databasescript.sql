@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS wishify;
 CREATE DATABASE wishify;
 USE wishify;
 
-CREATE TABLE users(
+CREATE TABLE user(
     user_id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email           VARCHAR(50) NOT NULL,
     full_name       VARCHAR(50) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE users(
     profile_picture VARCHAR(50)
 );
 
-INSERT INTO users (email, full_name, password, profile_picture) VALUES
+INSERT INTO user (email, full_name, password, profile_picture) VALUES
                                                    ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
 
 CREATE TABLE wishlist(
@@ -20,7 +20,7 @@ CREATE TABLE wishlist(
     created_at              INT,
     user_id                 INT NOT NULL,
     list_image              VARCHAR(50),
-    FOREIGN KEY (user_id)   REFERENCES users(user_id)
+    FOREIGN KEY (user_id)   REFERENCES user(user_id)
 );
 
 INSERT INTO wishlist (list_name, wishlist.list_description, created_at, user_id, list_image) VALUES
