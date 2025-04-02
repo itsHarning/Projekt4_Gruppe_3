@@ -31,6 +31,8 @@ public class ContentController {
             org.springframework.ui.Model model) {
 
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        System.out.println(email);
+        System.out.println(password);
 
         try {
             List<Map<String, Object>> users = jdbcTemplate.queryForList(sql, email, password);
@@ -43,16 +45,21 @@ public class ContentController {
                 session.setAttribute("userId", user.get("id"));
                 session.setAttribute("userEmail", user.get("email"));
                 session.setAttribute("isLoggedIn", true);
+                System.out.println("login success");
 
                 // Redirect to homepage
                 return "redirect:/";
             } else {
                 // No matching user found
                 model.addAttribute("error", "Invalid email or password");
+                System.out.println("wrong login");
                 return "login";
             }
         } catch (Exception e) {
             model.addAttribute("error", "An error occurred during login");
+            System.out.println(e);
+            System.out.println("_____");
+            e.printStackTrace();
             return "login";
         }
     }
