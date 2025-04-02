@@ -30,7 +30,7 @@ public class WishlistRepository {
                         resultSet.getInt("list_id"),
                         resultSet.getString("list_name"),
                         resultSet.getString("list_description"),
-                        resultSet.getInt("created_at"),
+                        resultSet.getLong("created_at"),
                         resultSet.getString("list_image"));
                 wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 wishlistsList.add(wishlist);
@@ -56,7 +56,7 @@ public class WishlistRepository {
                     wishlist.setListId(resultSet.getInt("list_id"));
                     wishlist.setName(resultSet.getString("list_name"));
                     wishlist.setDescription(resultSet.getString("list_description"));
-                    wishlist.setLastUpdated(resultSet.getInt("created_at"));
+                    wishlist.setLastUpdated(resultSet.getLong("created_at"));
                     wishlist.setImage(resultSet.getString("list_image"));
                     wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 }
@@ -87,7 +87,7 @@ public class WishlistRepository {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, wishlist.getName());
             statement.setString(2, wishlist.getDescription());
-            statement.setInt(3, wishlist.getLastUpdated());
+            statement.setLong(3, wishlist.getLastUpdated());
             statement.setString(4, wishlist.getImage());
             statement.setInt(5, wishlist.getUser().getUserId());
 

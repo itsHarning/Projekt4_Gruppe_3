@@ -86,4 +86,12 @@ public class Wishlist {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public ArrayList<Wish> getWishes() {
+        return wishes;
+    }
+
+    public void setWishes(ArrayList<Wish> wishes) {
+        this.wishes = wishes;
+    }
 }
