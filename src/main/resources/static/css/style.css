@@ -71,7 +71,9 @@ h1, h2 {
     width: 100%;
     background-color: #5cae63;
 }
-
+.btnBox{
+    display: flex;
+}
 
 
 #extra-padding-left{

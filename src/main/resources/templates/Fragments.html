@@ -8,18 +8,21 @@
 
 <!-- Filen bruges til at implementere header og footer vha. Thymeleaf -->
 
-<!-- Header -->
-<div th:fragment="header">
+<!-- Header for when not logged in -->
+<div th:fragment="headerNotLoggedIn">
     <div class="navbar">
         <a id="HomePage" th:href="@{/}">Home</a>
-        <a id="Profile" th:href="@{/profile}">Profile</a>
         <a id="Login" th:href="@{/login}">Login</a>
         <a id="Create Account" th:href="@{/registration}">Create Account</a>
-
         <nav>
-
     </nav>
-
+    </div>
+</div>
+<!-- Header for when logged in -->
+<div th:fragment="headerLoggedIn">
+    <div class="navbar" th:id="">
+        <a id="Home Page" th:href="@{/}">Home</a>
+        <a id="Profile" th:href="@{/profile}">Profile</a>
     </div>
 </div>
 

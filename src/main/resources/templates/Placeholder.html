@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HomePage</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="~{Fragments :: header}"></div>
+<div th:replace="~{Fragments :: headerLoggedIn}"></div>
 
 <h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
 
@@ -27,8 +27,11 @@
 
 <div class="backGroundColor-div">
     <h2> Opret din ønskeliste nu!</h2>
+    <br>
     <p>
-
+       <button>
+        <a id="Create Account" style="white-space: nowrap" href="CreateAcc.html">Create Account</a>
+</button>
     </p>
 </div>
 
