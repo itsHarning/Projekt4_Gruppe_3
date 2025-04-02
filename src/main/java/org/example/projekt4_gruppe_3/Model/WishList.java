@@ -1,11 +1,14 @@
 package org.example.projekt4_gruppe_3.Model;
 
+import java.util.ArrayList;
+
 public class WishList {
     private int list_id;
     private String name;
     private Long created_at;
     private User user;
     private String image;
+    public ArrayList<Wish> wishes = new ArrayList<>();
 
     public WishList(int list_id, String name, Long created_at, User user) {
         this.list_id = list_id;
