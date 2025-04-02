@@ -2,20 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
 
 <!-- Header -->
 <div th:fragment="header">
     <div class="navbar">
-        <a id="HomePage" href="HomePage.html">Home</a>
-        <a id="Profile" href="Profile.html">Profile</a>
-        <a id="Login" href="Login.html">Login</a>
-        <a id="Create Account" href="CreateAcc.html">Create Account</a>
+        <a id="HomePage" th:href="@{/}">Home</a>
+        <a id="Profile" th:href="@{/profile}">Profile</a>
+        <a id="Login" th:href="@{/login}">Login</a>
+        <a id="Create Account" th:href="@{/registration}">Create Account</a>
 
+        <nav>
+
+    </nav>
 
     </div>
 </div>
+
+<div th:fragment="test">Test Fragment Works!</div>
 
 <!-- Footer  -->
 <div th:fragment="footer">
