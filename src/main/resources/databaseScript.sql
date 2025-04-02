@@ -7,7 +7,7 @@ CREATE TABLE user(
     email           VARCHAR(50) NOT NULL,
     full_name       VARCHAR(50) NOT NULL,
     password        VARCHAR(50) NOT NULL,
-    profile_picture VARCHAR(50)
+    profile_picture VARCHAR(50) DEFAULT NULL
 );
 
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
@@ -16,9 +16,9 @@ INSERT INTO user (email, full_name, password, profile_picture) VALUES
 CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
     list_name               VARCHAR(50) NOT NULL,
-    list_description        VARCHAR(200),
-    last_updated            INT,
-    list_image              VARCHAR(50),
+    list_description        VARCHAR(250),
+    last_updated            INT NOT NULL,
+    list_image              VARCHAR(50) DEFAULT NULL,
     user_id                 INT NOT NULL,
     FOREIGN KEY (user_id)   REFERENCES user(user_id)
 );
@@ -30,13 +30,13 @@ CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,
     wish_name              VARCHAR(50) NOT NULL,
     price                  INT DEFAULT NULL,
-    wish_description       VARCHAR(200),
+    wish_description       VARCHAR(250),
     quantity               INT NOT NULL,
     priority               INT DEFAULT NULL,
     booked_status          BOOLEAN DEFAULT FALSE,
     booked_by              VARCHAR(50) DEFAULT NULL,
-    wish_image             VARCHAR(100) DEFAULT NULL,
-    link                   VARCHAR(200) DEFAULT NULL,
+    wish_image             VARCHAR(50) DEFAULT NULL,
+    link                   VARCHAR(250) DEFAULT NULL,
     list_id                INT NOT NULL,
     FOREIGN KEY (list_id)  REFERENCES wishlist(list_id)
 );
