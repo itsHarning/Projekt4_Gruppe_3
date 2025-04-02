@@ -26,12 +26,13 @@ public class UserRepository {
              ResultSet resultSet = statement.executeQuery())  {
 
             while (resultSet.next()) {
-                User car = new User(resultSet.getInt("id"),
+                User user = new User(
+                        resultSet.getInt("id"),
                         resultSet.getString("email"),
                         resultSet.getString("full_name"),
                         resultSet.getString("password"),
                         resultSet.getString("profile_picture"));
-                userList.add(car);
+                userList.add(user);
             }
 
         } catch (SQLException e) {
