@@ -8,7 +8,6 @@ public class User {
     private String fullName;
     private String password;
     private String profilePicture;
-    public ArrayList<Wishlist> wishlists = new ArrayList<>();
 
     public User(int userId, String user_email, String user_full_name, String password, String profilePicture) {
         this.userId = userId;
