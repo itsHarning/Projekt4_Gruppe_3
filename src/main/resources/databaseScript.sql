@@ -42,10 +42,10 @@ CREATE TABLE wish(
 );
 
 INSERT INTO wish (wish_name, price, wish_description, quantity, priority, booked_status,booked_by, wish_image, link, list_id) VALUES
-        ('Lenovo', 1000, 'PC', 1, 1, true, 'lucas', 'pcImg', 'www.lenovo.com', 1),
-        ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'creampng', 'www.Matas.dk', 1),
-        ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'supremepng', 'www.supreme.com', 1),
-        ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'bukspng', 'www.bukser.com', 1),
-        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'kopjpeg', 'www.kerakop.com', 1)
+        ('Lenovo', 1000, 'PC', 1, 1, true, 'lucas', 'Placeholder.jpg', 'www.lenovo.com', 1),
+        ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'Placeholder.jpg', 'www.Matas.dk', 1),
+        ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'Placeholder.jpg', 'www.supreme.com', 1),
+        ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'Placeholder.jpg', 'www.bukser.com', 1),
+        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 1)
 
 

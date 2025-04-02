@@ -9,7 +9,7 @@ public class Wish {
     private String image;
     private String bookedBy;
     private String bookedStatus;
-    private String priority;
+    private int priority;
     private Wishlist wishList;
 
     public Wish(int wishId,
@@ -20,7 +20,7 @@ public class Wish {
                 String image,
                 String bookedBy,
                 String bookedStatus,
-                String priority,
+                int priority,
                 Wishlist wishList) {
         this.wishId = wishId;
         this.wishName = wishName;
@@ -41,7 +41,7 @@ public class Wish {
                 String image,
                 String bookedBy,
                 String bookedStatus,
-                String priority,
+                int priority,
                 Wishlist wishList) {
         this.wishName = wishName;
         this.description = description;
@@ -55,6 +55,18 @@ public class Wish {
     }
 
     public Wish() {
+    }
+
+    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, String bookedStatus, int priority) {
+        this.wishName = wishName;
+        this.description = wishDescription;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = img;
+        this.bookedBy = bookedBy;
+        this.bookedStatus = bookedStatus;
+        this.priority = priority;
+
     }
 
     public int getWishId() {
@@ -121,11 +133,11 @@ public class Wish {
         this.bookedStatus = bookedStatus;
     }
 
-    public String getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 

@@ -39,6 +39,13 @@ public class Wishlist {
     public Wishlist() {
     }
 
+    public Wishlist(String listName, String listDescription, int lastUpdated, String listImg) {
+        this.name = listName;
+        this.description = listDescription;
+        this.lastUpdated = lastUpdated;
+        this.image = listImg;
+    }
+
     public int getListId() {
         return listId;
     }
