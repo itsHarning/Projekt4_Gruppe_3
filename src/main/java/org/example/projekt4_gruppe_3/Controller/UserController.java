@@ -32,7 +32,7 @@ public class UserController {
                               @RequestParam String img,
                               Model model) {
 
-        User user = new User ( email,  fullName,  password,  img);
+        User user = new User (email,  fullName,  password,  img);
         userRepo.saveUser(user);
         model.addAttribute("user", user);
 
@@ -49,12 +49,12 @@ public class UserController {
 
 
     @PostMapping("/saveUpdateUser")
-    public String saveUpdateUser(@RequestParam String fullName,
-                                @RequestParam String email,
-                                @RequestParam String password,
-                                @RequestParam String img) {
+    public String saveUpdateUser(@RequestParam String email,
+                                 @RequestParam String fullName,
+                                 @RequestParam String password,
+                                 @RequestParam String img) {
 
-        User user = new User(fullName, email, password, img);
+        User user = new User(email, fullName, password, img);
         userRepo.updateUser(user);
         return "redirect:/";
     }
