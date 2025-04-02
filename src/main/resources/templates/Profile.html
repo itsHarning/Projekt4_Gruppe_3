@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div id="header"></div>
+<header th:replace="Fragments.html :: headerLoggedIn"> </header>
+
+<!--<div class="backGroundColor-div" th:each="">
 
 
 
-<div id="footer"></div>
+
+</div> -->
+
 </body>
+
 </html>

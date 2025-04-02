@@ -71,4 +71,9 @@ public class ContentController {
     public String MyWishesPage(){
         return "MyWishesPage";
     }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "Profile";
+    }
 }
