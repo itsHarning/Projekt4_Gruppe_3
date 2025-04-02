@@ -17,7 +17,7 @@ CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
     list_name               VARCHAR(50) NOT NULL,
     list_description        VARCHAR(250),
-    last_updated            INT NOT NULL,
+    last_updated            BIGINT NOT NULL,
     list_image              VARCHAR(50) DEFAULT NULL,
     user_id                 INT NOT NULL,
     FOREIGN KEY (user_id)   REFERENCES user(user_id)

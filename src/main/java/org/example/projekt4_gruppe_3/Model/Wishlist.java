@@ -6,12 +6,12 @@ public class Wishlist {
     private int listId;
     private String name;
     private String description;
-    private int lastUpdated;
+    private Long lastUpdated;
     private User user;
     private String image;
     private ArrayList<Wish> wishes = new ArrayList<>();
 
-    public Wishlist(int listId, String name, String description, int lastUpdated, String image, User user) {
+    public Wishlist(int listId, String name, String description, Long lastUpdated, String image, User user) {
         this.listId = listId;
         this.name = name;
         this.description = description;
@@ -20,7 +20,7 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Wishlist(String name, String description, int lastUpdated, String image, User user) {
+    public Wishlist(String name, String description, Long lastUpdated, String image, User user) {
         this.name = name;
         this.description = description;
         this.lastUpdated = lastUpdated;
@@ -28,7 +28,7 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Wishlist(int listId, String name, String description, int lastUpdated, String image) {
+    public Wishlist(int listId, String name, String description, Long lastUpdated, String image) {
         this.listId = listId;
         this.name = name;
         this.description = description;
@@ -63,11 +63,11 @@ public class Wishlist {
         this.description = description;
     }
 
-    public int getLastUpdated() {
+    public Long getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(int lastUpdated) {
+    public void setLastUpdated(Long lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

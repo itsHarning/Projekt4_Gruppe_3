@@ -49,7 +49,7 @@ public class WishlistController {
     @PostMapping("/saveUpdateWishList")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
-                                 @RequestParam("updatedAt") int updatedAt,
+                                 @RequestParam("updatedAt") Long updatedAt,
                                  @RequestParam("img") String img,
                                  @RequestParam("user") User user) {
         Wishlist wishlist = new Wishlist(name, description, updatedAt, img, user);
