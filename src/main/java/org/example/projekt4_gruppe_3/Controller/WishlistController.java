@@ -2,34 +2,31 @@ package org.example.projekt4_gruppe_3.Controller;
 
 import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
-import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
 @Controller
-public class WishListController {
+public class WishlistController {
 
     @Autowired
     WishlistRepository wishlistRepo;
 
-    @GetMapping("/getAllWishLists")
-    public String getAllwishLists(@RequestParam("id") int id, Model model) {
+    @GetMapping("/getAllWishlists")
+    public String getAllWishlists(@RequestParam("id") int id, Model model) {
         ArrayList<Wishlist> wishlists = wishlistRepo.getAllWishlists();
         model.addAttribute("wishlists", wishlists);
 
-        return "showAllWishLists";
+        return "showAllWishlists";
     }
 
-    @GetMapping("/getWishList")
+    @GetMapping("/getWishlist")
     public String getWishlist(@RequestParam("id") int id, Model model) {
         Wishlist wishlist = wishlistRepo.getWishlistById(id);
         model.addAttribute("wishlist", wishlist);
@@ -42,20 +39,20 @@ public class WishListController {
         return "redirect:/";
     }
 
-    @GetMapping("getUpdateWishList")
-    public String getUpdateWishList(@RequestParam("id") int id, Model model) {
+    @GetMapping("getUpdateWishlist")
+    public String getUpdateWishlist(@RequestParam("id") int id, Model model) {
         Wishlist wishlist = wishlistRepo.getWishlistById(id);
         model.addAttribute("wishlist", wishlist);
-        return "updateWishList";
+        return "updateWishlist";
     }
 
     @PostMapping("/saveUpdateWishList")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
-                                 @RequestParam("createdAt") int createdAt,
+                                 @RequestParam("updatedAt") int updatedAt,
                                  @RequestParam("img") String img,
                                  @RequestParam("user") User user) {
-        Wishlist wishlist = new Wishlist(name, description, createdAt, img, user);
+        Wishlist wishlist = new Wishlist(name, description, updatedAt, img, user);
         wishlistRepo.updateWishlist(wishlist);
         return "redirect:/";
     }
