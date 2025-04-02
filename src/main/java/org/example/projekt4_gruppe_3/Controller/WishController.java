@@ -42,5 +42,6 @@ public class WishController {
                            @RequestParam int priority) {
 
 
+        return "redirect:/";
     }
 }

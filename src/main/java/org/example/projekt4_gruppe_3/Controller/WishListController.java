@@ -1,6 +1,6 @@
 package org.example.projekt4_gruppe_3.Controller;
 
-import org.apache.catalina.User;
+import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
@@ -53,11 +53,11 @@ public class WishListController {
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
                                  @RequestParam("createdAt") int createdAt,
-                                 @RequestParam("user") User user,
-                                 @RequestParam("img") String img) {
-        Wishlist wishlist = new Wishlist(name, description, createdAt, user, img);
+                                 @RequestParam("img") String img,
+                                 @RequestParam("user") User user) {
+        Wishlist wishlist = new Wishlist(name, description, createdAt, img, user);
         wishlistRepo.updateWishlist(wishlist);
-
+        return "redirect:/";
     }
 
 
