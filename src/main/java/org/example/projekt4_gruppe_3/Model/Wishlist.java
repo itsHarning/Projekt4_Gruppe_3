@@ -3,47 +3,47 @@ package org.example.projekt4_gruppe_3.Model;
 import java.util.ArrayList;
 
 public class Wishlist {
-    private int list_id;
+    private int listId;
     private String name;
     private String description;
-    private int created_at;
+    private int createdAt;  
     private User user;
     private String image;
     public ArrayList<Wish> wishes = new ArrayList<>();
 
-    public Wishlist(int list_id, String name, String description, int created_at, User user) {
-        this.list_id = list_id;
+    public Wishlist(int listId, String name, String description, int createdAt, User user) {
+        this.listId = listId;
         this.name = name;
         this.description = description;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
         this.user = user;
     }
 
-    public Wishlist(String name, String description, int created_at, User user, String image) {
+    public Wishlist(String name, String description, int createdAt, User user, String image) {
         this.name = name;
         this.description = description;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
         this.user = user;
         this.image = image;
     }
 
-    public Wishlist(int list_id, String name, String description, int created_at, String image) {
-        this.list_id = list_id;
+    public Wishlist(int listId, String name, String description, int createdAt, String image) {
+        this.listId = listId;
         this.name = name;
         this.description = description;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
         this.image = image;
     }
 
     public Wishlist() {
     }
 
-    public int getList_id() {
-        return list_id;
+    public int getListId() {
+        return listId;
     }
 
-    public void setList_id(int list_id) {
-        this.list_id = list_id;
+    public void setListId(int listId) {
+        this.listId = listId;
     }
 
     public String getName() {
@@ -54,12 +54,20 @@ public class Wishlist {
         this.name = name;
     }
 
-    public int getCreated_at() {
-        return created_at;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCreated_at(int created_at) {
-        this.created_at = created_at;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(int createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUser() {

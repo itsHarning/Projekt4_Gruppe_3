@@ -19,7 +19,7 @@ public class UserRepository {
 
     public ArrayList<User> getAllUsers() {
         ArrayList<User> userList = new ArrayList<>();
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM user";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class UserRepository {
 
     public User getUserById (int id) {
         User user = new User();
-        String sql = "SELECT * FROM users WHERE user_id = ?";
+        String sql = "SELECT * FROM user WHERE user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -67,7 +67,7 @@ public class UserRepository {
     }
 
     public void deleteUserById (int id) {
-        String sql = "DELETE FROM users WHERE user_id = ?";
+        String sql = "DELETE FROM user WHERE user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -79,7 +79,7 @@ public class UserRepository {
     }
 
     public void saveUser (User user) {
-        String sql = "INSERT INTO users (email, full_name, password, profile_picture) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO user (email, full_name, password, profile_picture) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -95,7 +95,7 @@ public class UserRepository {
     }
 
     public void updateUser (User user) {
-        String sql = "UPDATE users SET email = ?, full_name = ?, password = ?, profile_picture = ? WHERE user_id = ?";
+        String sql = "UPDATE user SET email = ?, full_name = ?, password = ?, profile_picture = ? WHERE user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

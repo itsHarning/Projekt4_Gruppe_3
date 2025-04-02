@@ -18,13 +18,13 @@ CREATE TABLE wishlist(
     list_name               VARCHAR(50) NOT NULL,
     list_description        VARCHAR(200),
     created_at              INT,
-    user_id                 INT NOT NULL,
     list_image              VARCHAR(50),
+    user_id                 INT NOT NULL,
     FOREIGN KEY (user_id)   REFERENCES user(user_id)
 );
 
-INSERT INTO wishlist (list_name, wishlist.list_description, created_at, user_id, list_image) VALUES
-                                                          ('fødselsdags', 'mine fødselsdags gaver', 301200, 1,'Placeholder.jpg');
+INSERT INTO wishlist (list_name, wishlist.list_description, created_at, list_image, user_id) VALUES
+                                                          ('fødselsdags', 'mine fødselsdags gaver', 301200,'Placeholder.jpg', 1);
 
 CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,
