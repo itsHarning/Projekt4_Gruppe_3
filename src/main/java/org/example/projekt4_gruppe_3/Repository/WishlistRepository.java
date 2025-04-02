@@ -31,8 +31,8 @@ public class WishlistRepository {
                         resultSet.getString("list_name"),
                         resultSet.getString("list_description"),
                         resultSet.getInt("created_at"),
-                        resultSet.getString("list_image"));
-                wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
+                        resultSet.getString("list_image"),
+                        resultSet.getInt("user_id"));
                 wishlistsList.add(wishlist);
             }
 
@@ -58,7 +58,7 @@ public class WishlistRepository {
                     wishlist.setDescription(resultSet.getString("list_description"));
                     wishlist.setCreatedAt(resultSet.getInt("created_at"));
                     wishlist.setImage(resultSet.getString("list_image"));
-                    wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
+                    wishlist.setUserId(resultSet.getInt("user_id"));
                 }
             }
         } catch (SQLException e) {
@@ -89,7 +89,7 @@ public class WishlistRepository {
             statement.setString(2, wishlist.getDescription());
             statement.setInt(3, wishlist.getCreatedAt());
             statement.setString(4, wishlist.getImage());
-            statement.setInt(5, wishlist.getUser().getUserId());
+            statement.setInt(5, wishlist.getUserId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

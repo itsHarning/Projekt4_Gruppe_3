@@ -6,33 +6,26 @@ public class Wishlist {
     private int listId;
     private String name;
     private String description;
-    private int createdAt;  
-    private User user;
+    private int createdAt;
+    private int userId;
     private String image;
-    public ArrayList<Wish> wishes = new ArrayList<>();
+    private ArrayList<Wish> wishes = new ArrayList<>();
 
-    public Wishlist(int listId, String name, String description, int createdAt, User user) {
-        this.listId = listId;
-        this.name = name;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.user = user;
-    }
-
-    public Wishlist(String name, String description, int createdAt, User user, String image) {
-        this.name = name;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.user = user;
-        this.image = image;
-    }
-
-    public Wishlist(int listId, String name, String description, int createdAt, String image) {
+    public Wishlist(int listId, String name, String description, int createdAt, String image, int userId) {
         this.listId = listId;
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
         this.image = image;
+        this.userId = userId;
+    }
+
+    public Wishlist(String name, String description, int createdAt, String image, int userId) {
+        this.name = name;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.image = image;
+        this.userId = userId;
     }
 
     public Wishlist() {
@@ -70,12 +63,12 @@ public class Wishlist {
         this.createdAt = createdAt;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getImage() {
