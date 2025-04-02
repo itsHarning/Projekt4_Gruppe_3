@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Wishes</title>
+</head>
+
+<!-- Mangler styling og oprettelse af div klasser!-->
+
+<body>
+<div class="container">
+  <div class="wishlist-description-container">
+    <div>
+      <label></label>
+      <span th:text="${wishList.getName}">Navn på ønskeliste</span>
+    </div>
+  </div>
+
+  <div class="wish-container">
+  <div class="square" th:each="wish :${wishList}">
+    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image" />
+    <div>
+      <label>Produktnavn:</label>
+      <span th:text="${wish.wishName}">Produktnavn</span>
+    </div>
+
+    <div>
+      <label>Beskrivelse:</label>
+      <span th:text="${wish.description}">Beskrivelse</span>
+    </div>
+
+    <div>
+      <label>Pris:</label>
+      <span th:text="${wish.price}">Pris</span>
+    </div>
+
+    <div>
+      <label>Antal:</label>
+      <span th:text="${wish.quantity}">Antal</span>
+    </div>
+
+  </div>
+
+</div>
+  <a th:href="@{/}">Tilbage</a>
+</div>
+</body>
+</html>
