@@ -1,5 +1,6 @@
 package org.example.projekt4_gruppe_3.Repository;
 
+import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,8 +32,8 @@ public class WishlistRepository {
                         resultSet.getString("list_name"),
                         resultSet.getString("list_description"),
                         resultSet.getInt("created_at"),
-                        resultSet.getString("list_image"),
-                        resultSet.getInt("user_id"));
+                        resultSet.getString("list_image"));
+                wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 wishlistsList.add(wishlist);
             }
 
@@ -56,9 +57,9 @@ public class WishlistRepository {
                     wishlist.setListId(resultSet.getInt("list_id"));
                     wishlist.setName(resultSet.getString("list_name"));
                     wishlist.setDescription(resultSet.getString("list_description"));
-                    wishlist.setCreatedAt(resultSet.getInt("created_at"));
+                    wishlist.setLastUpdated(resultSet.getInt("created_at"));
                     wishlist.setImage(resultSet.getString("list_image"));
-                    wishlist.setUserId(resultSet.getInt("user_id"));
+                    wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 }
             }
         } catch (SQLException e) {
@@ -81,15 +82,15 @@ public class WishlistRepository {
     }
 
     public void updateWishlist (Wishlist wishlist) {
-        String sql = "UPDATE user SET email = ?, full_name = ?, password = ?, profile_picture = ? WHERE user_id = ?";
+        String sql = "UPDATE user SET list_name = ?, list_description = ?, last_updated = ?, list_image = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, wishlist.getName());
             statement.setString(2, wishlist.getDescription());
-            statement.setInt(3, wishlist.getCreatedAt());
+            statement.setInt(3, wishlist.getLastUpdated());
             statement.setString(4, wishlist.getImage());
-            statement.setInt(5, wishlist.getUserId());
+            statement.setInt(5, wishlist.getUser().getUserId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

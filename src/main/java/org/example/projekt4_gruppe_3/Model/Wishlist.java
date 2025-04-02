@@ -6,26 +6,34 @@ public class Wishlist {
     private int listId;
     private String name;
     private String description;
-    private int createdAt;
-    private int userId;
+    private int lastUpdated;
+    private User user;
     private String image;
     private ArrayList<Wish> wishes = new ArrayList<>();
 
-    public Wishlist(int listId, String name, String description, int createdAt, String image, int userId) {
+    public Wishlist(int listId, String name, String description, int lastUpdated, String image, User user) {
         this.listId = listId;
         this.name = name;
         this.description = description;
-        this.createdAt = createdAt;
+        this.lastUpdated = lastUpdated;
         this.image = image;
-        this.userId = userId;
+        this.user = user;
     }
 
-    public Wishlist(String name, String description, int createdAt, String image, int userId) {
+    public Wishlist(String name, String description, int lastUpdated, String image, User user) {
         this.name = name;
         this.description = description;
-        this.createdAt = createdAt;
+        this.lastUpdated = lastUpdated;
         this.image = image;
-        this.userId = userId;
+        this.user = user;
+    }
+
+    public Wishlist(int listId, String name, String description, int lastUpdated, String image) {
+        this.listId = listId;
+        this.name = name;
+        this.description = description;
+        this.lastUpdated = lastUpdated;
+        this.image = image;
     }
 
     public Wishlist() {
@@ -55,20 +63,20 @@ public class Wishlist {
         this.description = description;
     }
 
-    public int getCreatedAt() {
-        return createdAt;
+    public int getLastUpdated() {
+        return lastUpdated;
     }
 
-    public void setCreatedAt(int createdAt) {
-        this.createdAt = createdAt;
+    public void setLastUpdated(int lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getImage() {
