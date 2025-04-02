@@ -3,11 +3,14 @@
     <link href="https://fonts.bunny.net/css?family=poppins:900|roboto:300,700|roboto-condensed:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<div class="navbar">
-    <a id="HomePage" href="HomePage.html">Home</a>
+<div th:fragment="header">
+<div class="navbar" >
+    <a id="Home" href="HomePage.html"> Wishify </a>
+    <a id="HomePage" style="margin-left: auto" href="HomePage.html">Home</a>
     <a id="Profile" href="Profile.html">Profile</a>
     <a id="Login" href="Login.html">Login</a>
-    <a id="Create Account" href="CreateAcc.html">Create Account</a>
+    <a id="Create Account" style="white-space: nowrap" href="CreateAcc.html">Create Account</a>
 
 
+</div>
 </div>

@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <title>Main Page</title>
   <link rel="stylesheet" href="/css/style.css">
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous">
-    </script>
-    <script>
-        $(function(){
-            $("#header").load("Header.html");
-            $("#footer").load("Footer.html");
-        });
-    </script>
+
 </head>
 <body>
-<div id="header"></div>
+<header th:replace="Fragments.html :: header"> </header>
+<h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
+
+<p>
+
+    Med Wishify kan du nemt samle, organisere og dele dine ønsker til enhver anledning – uanset om det er fødselsdag, jul, bryllup eller en anden særlig begivenhed.
+
+    Sådan fungerer det: <br>
+    <br>
+    ✅ Opret din ønskeliste – Tilføj dine ønsker fra enhver butik, både online og fysisk. <br>
+    ✅ Personliggør din liste – Tilføj beskrivelser, billeder og links, så dine ønsker er nemme at finde. <br>
+    ✅ Del med familie og venner – Send din liste via e-mail, sociale medier eller en direkte link.<br>
+    ✅ Undgå dubletter – Gæster kan reservere gaver, så du ikke får det samme to gange. <br>
+    ✅ Opdater når som helst – Tilføj, fjern eller rediger dine ønsker, når du vil. <br> <br>
 
 
+    Vores platform gør det nemt og sjovt at holde styr på dine ønsker, så du altid får gaver, du virkelig ønsker dig! Opret din ønskeliste i dag og gør gavegivning enklere for alle.</p>
 
+<div class="backGroundColor-div">
+    <p>
+    dadsdadasdasdasd
+</p>
+</div>
 <div id="footer"></div>
 </body>
 </html>
