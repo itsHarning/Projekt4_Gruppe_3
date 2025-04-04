@@ -23,30 +23,25 @@
             <h1>Mine ønskelister</h1>
         </div>
         <div class="wishlist-container">
-            <div class th:each="Wishlist :${Wishlists}">
-                <img th:src="@{'/img/' + ${Wishlist.image}}" alt="Car image">
+            <div class th:each="wishlist :${wishlists}">
+                <img th:src="@{'/img/' + ${wishlist.image}}" alt="Wish image">
 
-                <label>Wishlist name:</label>
-                <span th:text="${Wishlist.listId}">Navn:</span>
+                <label>Wishlist id:</label>
+                <span th:text="${wishlist.listId}">ID</span>
 
                 <div>
                     <label>Wishlist name:</label>
-                    <span th:text="${Wishlist.name}">Navn:</span>
+                    <span th:text="${wishlist.name}">Navn:</span>
                 </div>
 
                 <div>
                     <label>Description:</label>
-                    <span th:text="${Wishlist.description}">Description</span>
-                </div>
-
-                <div>
-                    <label>Price:</label>
-                    <span th:text="${Wishlist.lastUpdated}">last updated</span>
+                    <span th:text="${wishlist.description}">Description</span>
                 </div>
 
                 <div>
                     <label>Last updated:</label>
-                    <span th:text="${Wishlist.user}">User</span>
+                    <span th:text="${wishlist.lastUpdated}">last updated</span>
                 </div>
 
             </div>

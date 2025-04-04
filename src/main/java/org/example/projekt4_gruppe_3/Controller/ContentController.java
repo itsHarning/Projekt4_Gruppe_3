@@ -67,7 +67,7 @@ public class ContentController {
 
                          session.setAttribute("loggedInUser", user);
 
-                         return "redirect:/profile";
+                         return "redirect:/getAllWishlists";
                      } else {
                         model.addAttribute("error", "Ugyldig email eller kode");
                         return "Login";
@@ -154,16 +154,6 @@ public class ContentController {
 
     @GetMapping("wishlists")
     public String WishlistsPage(){return "WishlistsPage";}
-
-    @GetMapping("/profile")
-    public String profile(HttpSession session, Model model){
-
-        if (!isUserLoggedIn(session)){
-            return "redirect:/login";
-        }
-
-        return "Profile";
-    }
 
     boolean isUserLoggedIn(HttpSession session) {
         return session.getAttribute("loggedInUser") != null;

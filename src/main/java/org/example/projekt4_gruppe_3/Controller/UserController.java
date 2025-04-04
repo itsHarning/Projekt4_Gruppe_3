@@ -58,4 +58,14 @@ public class UserController {
         return "redirect:/";
     }
 
+
+    @GetMapping("/getfullName")
+    public String getfullName(Model model) {
+        User user = new User();
+
+        user.getFullName();
+        model.addAttribute("user", user);
+
+        return "Profile";
+    }
 }

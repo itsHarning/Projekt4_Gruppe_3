@@ -24,21 +24,28 @@ public class WishlistRepository {
 
     public ArrayList<Wishlist> getAllWishlists() {
         ArrayList<Wishlist> wishlistsList = new ArrayList<>();
-        String sql = "SELECT * FROM wishlist";
+        String sql = "SELECT w.list_id, w.list_name, w.list_description, w.last_updated, w.list_image, w.user_id AS u_user_id, u.email, u.full_name, u.password, u.profile_picture FROM wishlist w JOIN user u ON w.user_id=u.user_id";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery())  {
 
             while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getInt("u_user_id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setPassword(resultSet.getString("password"));
+                user.setProfilePicture(resultSet.getString("profile_picture"));
+
                 Wishlist wishlist = new Wishlist(
                         resultSet.getInt("list_id"),
                         resultSet.getString("list_name"),
                         resultSet.getString("list_description"),
-                        resultSet.getLong("created_at"),
+                        resultSet.getLong("last_updated"),
                         resultSet.getString("list_image"));
-                wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 wishlistsList.add(wishlist);
+
             }
 
         } catch (SQLException e) {
