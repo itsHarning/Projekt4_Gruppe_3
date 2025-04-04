@@ -14,6 +14,7 @@
       <label></label>
       <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
     </div>
+    <img th:src="@{'/img/' + ${wishList.getImage()}}" alt="Wishlist Image" />
   </div>
 
   <div class="wish-container">
