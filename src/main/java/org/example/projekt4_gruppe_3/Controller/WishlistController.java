@@ -26,7 +26,7 @@ public class WishlistController {
         ArrayList<Wishlist> wishlists = wishlistRepo.getAllWishlists();
         model.addAttribute("wishlists", wishlists);
 
-        return "showAllWishlists";
+        return "Wishlists";
     }
 
     @GetMapping("/getWishlist")

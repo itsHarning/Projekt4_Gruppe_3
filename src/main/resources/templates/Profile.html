@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/style.css">
+
 </head>
-<body>
-<header th:replace="Fragments.html :: headerLoggedIn"> </header>
-<!--
-<div class="backGroundColor-div" th:each="Wishlist:${user}">
-    <span th:text="${Wishlist}"></span>
+<body class="profile">
+    <header th:replace="Fragments.html :: headerLoggedIn"> </header>
 
--->
+    <h1>Velkommen til din ønskeliste</h1>
+
+    <div>
+        <img class="image-container" src="/images/Placeholder.jpg" alt="Placeholder.jpg">
+        <div class="username">Username</div>
+    </div>
+
+    <br>
+    <div class="backGroundColor-div">
+        <div class="profile_body">
+            <h1>Mine ønskelister</h1>
+        </div>
+
+    </div>
+    <!--
+    <div class="backGroundColor-div" th:each="Wishlist:${user}">
+        <span th:text="${Wishlist}"></span>
 
 
-</div>
+
+    </div>
+    -->
 
 </body>
 

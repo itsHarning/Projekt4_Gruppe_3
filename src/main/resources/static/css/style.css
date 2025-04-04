@@ -94,4 +94,13 @@ h1, h2 {
     justify-content: space-between;
     background-color: rgba(100, 0, 0, 0.05); /* Lys grå baggrund */
 }
+.image-container{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
