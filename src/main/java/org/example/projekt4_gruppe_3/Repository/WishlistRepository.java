@@ -59,7 +59,6 @@ public class WishlistRepository {
                     wishlist.setDescription(resultSet.getString("list_description"));
                     wishlist.setLastUpdated(resultSet.getLong("created_at"));
                     wishlist.setImage(resultSet.getString("list_image"));
-                    wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
                 }
             }
         } catch (SQLException e) {
@@ -96,5 +95,34 @@ public class WishlistRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Wishlist> getWhishlistsByUserId (int userId) throws SQLException {
+        ArrayList<Wishlist> wishlists =new ArrayList<>();
+
+        String sql = "SELECT * FROM wishlist WHERE user_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, userId);
+
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Wishlist wishlist = new Wishlist();
+                    wishlist.setListId(resultSet.getInt("list_id"));
+                    wishlist.setName(resultSet.getString("list_name"));
+                    wishlist.setDescription(resultSet.getString("list_description"));
+                    wishlist.setLastUpdated(resultSet.getLong("created_at"));
+                    wishlist.setImage(resultSet.getString("list_image"));
+                    wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
+
+                    wishlists.add(wishlist);
+
+                }
+            }
+    }catch (SQLException e) {
+        e.printStackTrace();}
+    return wishlists;
     }
 }
