@@ -1,14 +1,13 @@
 package org.example.projekt4_gruppe_3.Model;
 
 public class Wish {
-    public static int noOfWishes = 5; //Vi initierer 5 ønsker i databasescript
+    private int wishID;
     private String wishName;
     private String description;
     private int price;
     private int quantity;
     private String image;
     private String bookedBy;
-    private int wishID;
 
 
 
@@ -28,7 +27,6 @@ public class Wish {
                 int priority,
                 String link,
                 int listID) {
-        wishID = noOfWishes++;
         this.wishName = wishName;
         this.description = description;
         this.price = price;
@@ -41,7 +39,8 @@ public class Wish {
         this.listID = listID;
     }
 
-    public Wish(String wishName,
+    public Wish(int wishID,
+                String wishName,
                 String description,
                 int price,
                 int quantity,
