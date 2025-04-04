@@ -44,7 +44,7 @@
 
                     Wish wish = new Wish(
                             wishName, description, price, quantity, image,
-                            bookedBy, bookedStatus, priority, link, wishlist);
+                            bookedBy, bookedStatus, priority, link, wishlistId);
 
                     wishes.add(wish);
                 }

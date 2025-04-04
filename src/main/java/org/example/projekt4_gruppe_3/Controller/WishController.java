@@ -48,11 +48,10 @@ public class WishController {
                            @RequestParam int booked_status,
                            @RequestParam int priority,
                            @RequestParam String link,
-                           @RequestParam Wishlist wishlist,
                            Model model) throws SQLException {
 
 
-        Wish wish = new Wish(wish_name,wish_description, price, quantity, image, booked_by, booked_status, priority, link, wishlist);
+        Wish wish = new Wish(wish_name,wish_description, price, quantity, image, booked_by, booked_status, priority, link);
         wishRepo.saveWish(wish);
         model.addAttribute("wish", wish);
 
