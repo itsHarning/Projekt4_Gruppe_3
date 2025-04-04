@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../Static/CSS/style.css" th:href="@{style.css}">
 </head>
 <body>
 
 <div class="container">
     <div class="form-container">
         <h2> Opret en ny bruger </h2>
-        <form th:action="@{/saveUpdateUser}" method="post">
+        <form class="form2" th:action="@{/getCreateUser}" method="post">
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" placeholder="Indtast email" required>
 
@@ -19,6 +19,9 @@
 
             <label for="password">Indtast kodeord:</label>
             <input type="password" id="password" name="password" placeholder="Indtast kodeord" required>
+
+            <label for="img">Billede URL:</label>
+            <input type="text" id="img" name="img" placeholder="Indtast billede URL">
 
             <button type="submit"> Opret bruger </button>
         </form>

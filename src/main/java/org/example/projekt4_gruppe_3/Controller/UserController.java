@@ -25,16 +25,14 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("getSaveUser")
-    public String getSaveUser(@RequestParam String email,
+    @PostMapping("/getCreateUser")
+    public String getCreateUser(@RequestParam String email,
                               @RequestParam String fullName,
                               @RequestParam String password,
-                              @RequestParam String img,
-                              Model model) {
+                              @RequestParam String img) {
 
         User user = new User (email,  fullName,  password,  img);
         userRepo.saveUser(user);
-        model.addAttribute("user", user);
 
     return "redirect:/";
     }

@@ -75,7 +75,7 @@ public class UserRepository{
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+               }
     }
 
     public void saveUser (User user) {
@@ -83,6 +83,7 @@ public class UserRepository{
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getFullName());
             statement.setString(3, user.getPassword());

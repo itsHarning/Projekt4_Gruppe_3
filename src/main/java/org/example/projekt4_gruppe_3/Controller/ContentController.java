@@ -81,7 +81,7 @@ public class ContentController {
 
     @GetMapping("/register")
     public String register(){
-        return "Register";
+        return "Registration";
     }
 
     @GetMapping("/")
