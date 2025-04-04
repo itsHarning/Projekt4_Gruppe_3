@@ -1,33 +1,34 @@
 package org.example.projekt4_gruppe_3.Model;
 
 public class Wish {
-    private int wishId;
+    public static int noOfWishes = 5; //Vi initierer 5 ønsker i databasescript
     private String wishName;
     private String description;
     private int price;
     private int quantity;
     private String image;
     private String bookedBy;
+    private int wishID;
 
 
 
-    private String bookedStatus;
+    private int bookedStatus;
     private int priority;
     private String link;
     private Wishlist wishList;
+    private int listID;
 
-    public Wish(int wishId,
-                String wishName,
+    public Wish(String wishName,
                 String description,
                 int price,
                 int quantity,
                 String image,
                 String bookedBy,
-                String bookedStatus,
+                int bookedStatus,
                 int priority,
                 String link,
-                Wishlist wishList) {
-        this.wishId = wishId;
+                int listID) {
+        wishID = noOfWishes++;
         this.wishName = wishName;
         this.description = description;
         this.price = price;
@@ -37,7 +38,7 @@ public class Wish {
         this.bookedStatus = bookedStatus;
         this.priority = priority;
         this.link=link;
-        this.wishList = wishList;
+        this.listID = listID;
     }
 
     public Wish(String wishName,
@@ -46,7 +47,7 @@ public class Wish {
                 int quantity,
                 String image,
                 String bookedBy,
-                String bookedStatus,
+                int bookedStatus,
                 int priority,
                 String link,
                 Wishlist wishList) {
@@ -65,7 +66,7 @@ public class Wish {
     public Wish() {
     }
 
-    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, String bookedStatus, int priority) {
+    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, int bookedStatus, int priority) {
         this.wishName = wishName;
         this.description = wishDescription;
         this.price = price;
@@ -77,7 +78,7 @@ public class Wish {
 
     }
 
-    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, String bookedStatus, int priority, String link) {
+    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, int bookedStatus, int priority, String link) {
         this.wishName = wishName;
         this.description = wishDescription;
         this.price = price;
@@ -90,6 +91,17 @@ public class Wish {
 
 
     }
+
+    public Wish(String wishName, int price, String description, int quantity, int priority, String image, String link) {
+        this.wishName = wishName;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.priority = priority;
+        this.link = link;
+    }
+
     public String getLink() {
         return link;
     }
@@ -99,11 +111,11 @@ public class Wish {
     }
 
     public int getWishId() {
-        return wishId;
+        return wishID;
     }
 
     public void setWishId(int wishId) {
-        this.wishId = wishId;
+        this.wishID = wishId;
     }
 
     public String getWishName() {
@@ -154,11 +166,11 @@ public class Wish {
         this.bookedBy = bookedBy;
     }
 
-    public String getBookedStatus() {
+    public int getBookedStatus() {
         return bookedStatus;
     }
 
-    public void setBookedStatus(String bookedStatus) {
+    public void setBookedStatus(int bookedStatus) {
         this.bookedStatus = bookedStatus;
     }
 
@@ -168,6 +180,10 @@ public class Wish {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getListID(){
+        return listID;
     }
 
     public Wishlist getWishList() {

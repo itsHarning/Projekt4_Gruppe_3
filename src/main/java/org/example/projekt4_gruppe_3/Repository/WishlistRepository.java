@@ -1,5 +1,6 @@
 package org.example.projekt4_gruppe_3.Repository;
 
+import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class WishlistRepository {
 
     @Autowired
     DataSource dataSource;
+
+    @Autowired
+    UserRepository userRepo;
 
     public ArrayList<Wishlist> getAllWishlists() {
         ArrayList<Wishlist> wishlistsList = new ArrayList<>();
@@ -57,8 +61,9 @@ public class WishlistRepository {
                     wishlist.setListId(resultSet.getInt("list_id"));
                     wishlist.setName(resultSet.getString("list_name"));
                     wishlist.setDescription(resultSet.getString("list_description"));
-                    wishlist.setLastUpdated(resultSet.getLong("created_at"));
+                    wishlist.setLastUpdated(resultSet.getLong("last_updated"));
                     wishlist.setImage(resultSet.getString("list_image"));
+                    wishlist.setUser(userRepo.getUserById(resultSet.getInt("user_id")));
                 }
             }
         } catch (SQLException e) {

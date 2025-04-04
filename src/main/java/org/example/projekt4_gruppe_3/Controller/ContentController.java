@@ -8,7 +8,6 @@ import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ContentController {
@@ -100,10 +96,23 @@ public class ContentController {
         return "HomePage";
     }
 
-    @GetMapping("/MyWishesPage")
-    public String MyWishesPage(@RequestParam("list_id") int list_id,
-                                HttpSession session,
+    @GetMapping("/ShowMyWishesPage")
+    public String showMyWishesPage(@RequestParam("list_id") int list_id,
                                 Model model){
+
+        Wishlist wishList = wishListRepo.getWishlistById(list_id);
+        ArrayList<Wish> wishes = wishRepo.getWishesByWishListID(list_id);
+
+        model.addAttribute("wishList", wishList);
+        model.addAttribute("wishes", wishes);
+
+        return "ShowMyWishesPage";
+    }
+
+    @GetMapping("/UpdateMyWishesPage")
+    public String updateMyWishesPage(@RequestParam("list_id") int list_id,
+                                   HttpSession session,
+                                   Model model){
 
         if (!isUserLoggedIn(session)){
             return "redirect:/login";
@@ -112,12 +121,35 @@ public class ContentController {
         Wishlist wishList = wishListRepo.getWishlistById(list_id);
         ArrayList<Wish> wishes = wishRepo.getWishesByWishListID(list_id);
 
-        System.out.println("Number of wishes"+wishes.size());
-
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
 
-        return "MyWishesPage";
+        return "UpdateMyWishesPage";
+    }
+
+    @PostMapping("/saveUpdateMyWishes")
+    public String postUpdateMyWishes(
+            @RequestParam("list_id") int listID,
+            @RequestParam("wish_name") String wishName,
+            @RequestParam("price") int price,
+            @RequestParam("wish_description") String description,
+            @RequestParam("quantity") int quantity,
+            @RequestParam("priority") int priority,
+            @RequestParam("wish_image") String image,
+            @RequestParam("link") String link) {
+
+
+        Wish wish = new Wish(wishName, description, price,
+         quantity,
+         image,
+         "null",
+         0,
+         priority,
+         link,
+         listID);
+        wishRepo.saveWish(wish);
+
+        return "redirect:/";
     }
 
     @GetMapping("wishlists")

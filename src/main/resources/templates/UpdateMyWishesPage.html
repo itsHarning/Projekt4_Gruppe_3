@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Wishes</title>
+</head>
+
+<!-- Mangler styling og oprettelse af div klasser!-->
+
+<body>
+<div class="container">
+  <div class="wishlist-description-container">
+    <div>
+      <label></label>
+      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
+    </div>
+    <img th:src="@{'/img/' + ${wishList.getImage()}}" alt="Wishlist Image" />
+  </div>
+
+  <div class="create-wish-container">
+    <form th:action="@{/saveUpdateMyWishes}" method="post">
+      <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
+
+      <label for="wish_name">Navn:</label>
+      <input type="text" id="wish_name" name="wish_name" placeholder="Indtast produktnavn" required>
+
+      <label for="price">Pris:</label>
+      <input type="text" id="price" name="price" placeholder="Indtast pris" required>
+
+      <label for="wish_description">Beskrivelse:</label>
+      <input type="text" id="wish_description" name="wish_description" placeholder="Indtast beskrivelse:">
+
+      <label for="quantity">Mængde:</label>
+      <input type="text" id="quantity" name="quantity" placeholder="Indtast mængde:" th:value="1" required>
+
+      <label for="priority">Prioritet:</label>
+      <input type="text" id="priority" name="priority" placeholder="Indtast prioritet">
+
+      <label for="wish_image">Billede:</label>
+      <input type="text" id="wish_image" name="wish_image" placeholder="Indsæt billede">
+
+      <label for="link">Indsæt link:</label>
+      <input type="text" id="link" name="link" placeholder="Indtast link">
+
+      <button type="submit">Gem ønske</button>
+    </form>
+  </div>
+
+  <div class="wish-container">
+  <div class="square" th:each="wish :${wishes}">
+    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image" />
+    <div>
+      <label>Produktnavn:</label>
+      <span th:text="${wish.wishName}">Produktnavn</span>
+    </div>
+
+    <div>
+      <label>Beskrivelse:</label>
+      <span th:text="${wish.description}">Beskrivelse</span>
+    </div>
+
+    <div>
+      <label>Pris:</label>
+      <span th:text="${wish.price}">Pris</span>
+    </div>
+
+    <div>
+      <label>Antal:</label>
+      <span th:text="${wish.quantity}">Antal</span>
+    </div>
+
+  </div>
+
+</div>
+  <a th:href="@{/}">Tilbage</a>
+</div>
+</body>
+</html>
