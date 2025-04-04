@@ -12,12 +12,12 @@
   <div class="wishlist-description-container">
     <div>
       <label></label>
-      <span th:text="${wishList.getName}">Navn på ønskeliste</span>
+      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
     </div>
   </div>
 
   <div class="wish-container">
-  <div class="square" th:each="wish :${wishList}">
+  <div class="square" th:each="wish :${wishes}">
     <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image" />
     <div>
       <label>Produktnavn:</label>

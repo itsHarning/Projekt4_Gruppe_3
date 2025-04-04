@@ -1,5 +1,6 @@
 package org.example.projekt4_gruppe_3.Repository;
 
+import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,7 +46,7 @@ public class WishlistRepository {
 
     public Wishlist getWishlistById (int id) {
         Wishlist wishlist = new Wishlist();
-        String sql = "SELECT * FROM wishlist WHERE wishlist_id = ?";
+        String sql = "SELECT * FROM wishlist WHERE list_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

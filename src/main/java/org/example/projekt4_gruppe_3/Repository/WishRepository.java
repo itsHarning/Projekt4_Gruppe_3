@@ -53,6 +53,38 @@
             return wishes;
         }
 
+        public ArrayList<Wish> getWishesByWishListID(int id){
+            Wish wish;
+            ArrayList<Wish> wishList = new ArrayList<>();
+
+            String sql = "SELECT * FROM wish WHERE list_id = ?";
+
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)){
+                statement.setInt(1, id);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        wish = new Wish();
+                        wish.setWishId(resultSet.getInt("wish_id"));
+                        wish.setWishName(resultSet.getString("wish_name"));
+                        wish.setDescription(resultSet.getString("wish_description"));
+                        wish.setPrice(resultSet.getInt("price"));
+                        wish.setQuantity(resultSet.getInt("quantity"));
+                        wish.setImage(resultSet.getString("wish_image"));
+                        wish.setBookedBy(resultSet.getString("booked_by"));
+                        wish.setBookedStatus(resultSet.getString("booked_status"));
+                        wish.setPriority(resultSet.getInt("priority"));
+                        wishList.add(wish);
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return wishList;
+        }
+
 
         public Wish getWishById(int id) {
             Wish wish = null;
