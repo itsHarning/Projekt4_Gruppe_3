@@ -14,16 +14,46 @@
         <a id="HomePage" th:href="@{/}">Home</a>
         <a id="Login" th:href="@{/login}">Login</a>
         <a id="Create Account" th:href="@{/register}">Create Account</a>
-        <nav>
-    </nav>
     </div>
 </div>
+
 <!-- Header for when logged in -->
 <div th:fragment="headerLoggedIn">
     <div class="navbar">
         <a id="Home Page" th:href="@{/}">Home</a>
         <a id="Profile" th:href="@{/profile}">Profile</a>
         <a id="Wishlists" th:href="@{/wishlist}">Wishlists</a>
+    </div>
+</div>
+
+<!-- Login popup -->
+<div class="blur-bg-overlay"></div>
+<div th:fragment="login-popup">
+    <div class="login-container">
+    <span class="close-btn material-symbols-rounded">close</span>
+        <div class="login-box">
+            <div class="login-details">
+                <h2>Velkommen Tilbage</h2>
+                <p>Log venligst ind med din data</p>
+            </div>
+            <div class="login-content">
+                <h2>Log ind</h2>
+                <form class="form-popup" th:action="@{/login}" method="post">
+                    <div class="input-field">
+                        <input class="input" type="text" id="email" required>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="input" type="password" id="password" required>
+                        <label for="password">Kodeord</label>
+                    </div>
+                    <button class="button" type="submit">Login</button>
+                </form>
+                <div class="login-footer">
+                    <p>Har du ikke en bruger? <a th:href="@{/register}">Registrer dig her</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -34,7 +64,6 @@
     <div class="footerMainDiv">
         <div>hello world</div>
     </div>
-
 </div>
 </body>
 </html>

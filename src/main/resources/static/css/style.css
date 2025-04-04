@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 body p {
     margin-left: 5%;
     margin-right: 5%;
@@ -60,6 +61,17 @@ h1, h2 {
     transition: background-color 0.3s ease; /* Add transition for hover effects */
 }
 
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 720px;
+    width: 100%;
+    background: #233249;
+    border: 2px solid #ff0000;
+    transform: translate(-50%, -50%)
+}
+
 #banner {
     width: 100%;
     object-fit: fill;
@@ -85,6 +97,7 @@ h1, h2 {
     padding-bottom: 1%;
     padding-left: 5%;
 }
+
 .backGroundColor-div{
     padding: 3.33% 0;
     width: 100%;
@@ -94,6 +107,7 @@ h1, h2 {
     justify-content: space-between;
     background-color: rgba(100, 0, 0, 0.05); /* Lys grå baggrund */
 }
+
 .image-container{
     width: 150px;
     height: 150px;
@@ -102,5 +116,4 @@ h1, h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }

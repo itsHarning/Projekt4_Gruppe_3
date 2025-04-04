@@ -4,7 +4,7 @@ USE wishify;
 
 CREATE TABLE user(
     user_id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    email           VARCHAR(50) NOT NULL,
+    email           VARCHAR(50) UNIQUE NOT NULL,
     full_name       VARCHAR(50) NOT NULL,
     password        VARCHAR(50) NOT NULL,
     profile_picture VARCHAR(50) DEFAULT NULL

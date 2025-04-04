@@ -2,33 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <title>Velkommen til Wishify</title>
+    <link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
 
 </head>
 <body>
-<header th:replace="Fragments.html :: headerNotLoggedIn"> </header>
+<header th:replace="~{Fragments.html :: headerNotLoggedIn}"> </header>
+
+<!-- popup form -->
+<div th:replace="~{Fragments.html :: login-popup}"></div>
+
 <h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
 
-<p>
-
-    Med Wishify kan du nemt samle, organisere og dele dine ønsker til enhver anledning – uanset om det er fødselsdag, jul, bryllup eller en anden særlig begivenhed.
-
-    Sådan fungerer det: <br>
-    <br>
-    ✅ Opret din ønskeliste – Tilføj dine ønsker fra enhver butik, både online og fysisk. <br>
-    ✅ Personliggør din liste – Tilføj beskrivelser, billeder og links, så dine ønsker er nemme at finde. <br>
-    ✅ Del med familie og venner – Send din liste via e-mail, sociale medier eller en direkte link.<br>
-    ✅ Undgå dubletter – Gæster kan reservere gaver, så du ikke får det samme to gange. <br>
-    ✅ Opdater når som helst – Tilføj, fjern eller rediger dine ønsker, når du vil. <br> <br>
-
-
-    Vores platform gør det nemt og sjovt at holde styr på dine ønsker, så du altid får gaver, du virkelig ønsker dig! Opret din ønskeliste i dag og gør gavegivning enklere for alle.</p>
-
-<div class="backGroundColor-div">
+<div class="body-text">
     <p>
-    dadsdadasdasdasd
-</p>
+        Med Wishify kan du nemt samle, organisere og dele dine ønsker til enhver anledning – uanset om det er fødselsdag, jul, bryllup eller en anden særlig begivenhed.
+
+        Sådan fungerer det: <br>
+        <br>
+        ✅ Opret din ønskeliste – Tilføj dine ønsker fra enhver butik, både online og fysisk. <br>
+        ✅ Personliggør din liste – Tilføj beskrivelser, billeder og links, så dine ønsker er nemme at finde. <br>
+        ✅ Del med familie og venner – Send din liste via e-mail, sociale medier eller en direkte link.<br>
+        ✅ Undgå dubletter – Gæster kan reservere gaver, så du ikke får det samme to gange. <br>
+        ✅ Opdater når som helst – Tilføj, fjern eller rediger dine ønsker, når du vil. <br> <br>
+
+
+        Vores platform gør det nemt og sjovt at holde styr på dine ønsker, så du altid får gaver, du virkelig ønsker dig! Opret din ønskeliste i dag og gør gavegivning enklere for alle.
+    </p>
+</div>
+
+<div class="body-text">
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore<br>
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br>
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+    </p>
 </div>
 <div id="footer"></div>
 </body>
