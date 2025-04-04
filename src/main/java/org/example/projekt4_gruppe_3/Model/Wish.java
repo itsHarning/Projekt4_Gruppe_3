@@ -8,8 +8,12 @@ public class Wish {
     private int quantity;
     private String image;
     private String bookedBy;
+
+
+
     private String bookedStatus;
     private int priority;
+    private String link;
     private Wishlist wishList;
 
     public Wish(int wishId,
@@ -21,6 +25,7 @@ public class Wish {
                 String bookedBy,
                 String bookedStatus,
                 int priority,
+                String link,
                 Wishlist wishList) {
         this.wishId = wishId;
         this.wishName = wishName;
@@ -31,6 +36,7 @@ public class Wish {
         this.bookedBy = bookedBy;
         this.bookedStatus = bookedStatus;
         this.priority = priority;
+        this.link=link;
         this.wishList = wishList;
     }
 
@@ -42,6 +48,7 @@ public class Wish {
                 String bookedBy,
                 String bookedStatus,
                 int priority,
+                String link,
                 Wishlist wishList) {
         this.wishName = wishName;
         this.description = description;
@@ -52,6 +59,7 @@ public class Wish {
         this.bookedStatus = bookedStatus;
         this.priority = priority;
         this.wishList = wishList;
+        this.link=link;
     }
 
     public Wish() {
@@ -67,6 +75,27 @@ public class Wish {
         this.bookedStatus = bookedStatus;
         this.priority = priority;
 
+    }
+
+    public Wish(String wishName, String wishDescription, int price, int quantity, String img, String bookedBy, String bookedStatus, int priority, String link) {
+        this.wishName = wishName;
+        this.description = wishDescription;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = img;
+        this.bookedBy = bookedBy;
+        this.bookedStatus = bookedStatus;
+        this.priority = priority;
+        this.link=link;
+
+
+    }
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public int getWishId() {

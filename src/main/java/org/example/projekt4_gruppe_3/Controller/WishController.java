@@ -47,11 +47,12 @@ public class WishController {
                            @RequestParam String booked_by,
                            @RequestParam String booked_status,
                            @RequestParam int priority,
+                           @RequestParam String link,
                            @RequestParam Wishlist wishlist,
                            Model model) throws SQLException {
 
 
-        Wish wish = new Wish(wish_name,wish_description, price, quantity, image, booked_by, booked_status, priority, wishlist);
+        Wish wish = new Wish(wish_name,wish_description, price, quantity, image, booked_by, booked_status, priority, link, wishlist);
         wishRepo.saveWish(wish);
         model.addAttribute("wish", wish);
 
@@ -86,8 +87,9 @@ public class WishController {
                                  @RequestParam("wish_img") String img,
                                  @RequestParam("booked_by") String booked_by,
                                  @RequestParam("booked_status") String booked_status,
-                                 @RequestParam("priority") int priority) throws SQLException {
-        Wish wish = new Wish(wish_name, wish_description, price, quantity, img, booked_by, booked_status, priority);
+                                 @RequestParam("priority") int priority,
+                                 @RequestParam("link") String link) throws SQLException {
+        Wish wish = new Wish(wish_name, wish_description, price, quantity, img, booked_by, booked_status, priority, link);
         wishRepo.saveWish(wish);
 
         return "redirect:/";

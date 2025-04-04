@@ -25,6 +25,7 @@ public class UserController {
         return "redirect:/";
     }
 
+
     @PostMapping("/getCreateUser")
     public String getCreateUser(@RequestParam String email,
                               @RequestParam String fullName,

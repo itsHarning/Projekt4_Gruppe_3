@@ -34,13 +34,14 @@
                     String bookedBy = resultSet.getString("booked_by");
                     String bookedStatus = resultSet.getString("booked_status");
                     int priority = resultSet.getInt("priority");
+                    String link = resultSet.getString("link");
                     int wishlistId = resultSet.getInt("wishlist_id");
 
                     Wishlist wishlist = new WishlistRepository().getWishlistById(wishlistId);
 
                     Wish wish = new Wish(
                             wishId, wishName, description, price, quantity, image,
-                            bookedBy, bookedStatus, priority, wishlist);
+                            bookedBy, bookedStatus, priority, link, wishlist);
 
                     wishes.add(wish);
                 }
@@ -75,6 +76,7 @@
                         wish.setBookedBy(resultSet.getString("booked_by"));
                         wish.setBookedStatus(resultSet.getString("booked_status"));
                         wish.setPriority(resultSet.getInt("priority"));
+                        wish.setLink(resultSet.getString("link"));
                     }
                 }
             } catch (SQLException e) {
@@ -84,7 +86,7 @@
         }
 
         public void saveWish(Wish wish) throws SQLException {
-            String sql = "INSERT INTO wish (wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO wish (wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
@@ -96,6 +98,7 @@
                 statement.setString(6, wish.getBookedBy());
                 statement.setString(7, wish.getBookedStatus());
                 statement.setInt(8, wish.getPriority());
+                statement.setString(9, wish.getLink());
                 statement.executeUpdate();
 
             } catch (SQLException e) {
@@ -129,7 +132,7 @@
         }
 
         public void updateWish(Wish wish) throws SQLException {
-            String sql ="UPDATE wish SET wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql ="UPDATE wish SET wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority, link VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             try(Connection connection = dataSource.getConnection();
                 PreparedStatement statement =connection.prepareStatement(sql)){
@@ -141,6 +144,7 @@
                 statement.setString(6, wish.getBookedBy());
                 statement.setString(7, wish.getBookedStatus());
                 statement.setInt(8, wish.getPriority());
+                statement.setString(9, wish.getLink());
 
                 statement.executeUpdate();
             }catch (SQLException e){
