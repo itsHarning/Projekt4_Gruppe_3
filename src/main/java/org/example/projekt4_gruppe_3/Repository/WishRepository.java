@@ -15,6 +15,9 @@
         @Autowired
         DataSource dataSource;
 
+        @Autowired
+        WishlistRepository wishListRepo;
+
 
         public ArrayList<Wish> getAllWishes() {
             ArrayList<Wish> wishes = new ArrayList<>();
@@ -32,7 +35,7 @@
                     int quantity = resultSet.getInt("quantity");
                     String image = resultSet.getString("wish_image");
                     String bookedBy = resultSet.getString("booked_by");
-                    String bookedStatus = resultSet.getString("booked_status");
+                    int bookedStatus = resultSet.getInt("booked_status");
                     int priority = resultSet.getInt("priority");
                     String link = resultSet.getString("link");
                     int wishlistId = resultSet.getInt("wishlist_id");
@@ -40,7 +43,7 @@
                     Wishlist wishlist = new WishlistRepository().getWishlistById(wishlistId);
 
                     Wish wish = new Wish(
-                            wishId, wishName, description, price, quantity, image,
+                            wishName, description, price, quantity, image,
                             bookedBy, bookedStatus, priority, link, wishlist);
 
                     wishes.add(wish);
@@ -73,7 +76,7 @@
                         wish.setQuantity(resultSet.getInt("quantity"));
                         wish.setImage(resultSet.getString("wish_image"));
                         wish.setBookedBy(resultSet.getString("booked_by"));
-                        wish.setBookedStatus(resultSet.getString("booked_status"));
+                        wish.setBookedStatus(resultSet.getInt("booked_status"));
                         wish.setPriority(resultSet.getInt("priority"));
                         wishList.add(wish);
                     }
@@ -106,7 +109,7 @@
                         wish.setQuantity(resultSet.getInt("quantity"));
                         wish.setImage(resultSet.getString("wish_image"));
                         wish.setBookedBy(resultSet.getString("booked_by"));
-                        wish.setBookedStatus(resultSet.getString("booked_status"));
+                        wish.setBookedStatus(resultSet.getInt("booked_status"));
                         wish.setPriority(resultSet.getInt("priority"));
                         wish.setLink(resultSet.getString("link"));
                     }
@@ -117,8 +120,8 @@
             return wish;
         }
 
-        public void saveWish(Wish wish) throws SQLException {
-            String sql = "INSERT INTO wish (wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority, link) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        public void saveWish(Wish wish) {
+            String sql = "INSERT INTO wish (wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority, link, list_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
@@ -128,9 +131,10 @@
                 statement.setInt(4, wish.getQuantity());
                 statement.setString(5, wish.getImage());
                 statement.setString(6, wish.getBookedBy());
-                statement.setString(7, wish.getBookedStatus());
+                statement.setInt(7, wish.getBookedStatus());
                 statement.setInt(8, wish.getPriority());
                 statement.setString(9, wish.getLink());
+                statement.setInt(10, wish.getListID());
                 statement.executeUpdate();
 
             } catch (SQLException e) {
@@ -174,7 +178,7 @@
                 statement.setInt(4, wish.getQuantity());
                 statement.setString(5, wish.getImage());
                 statement.setString(6, wish.getBookedBy());
-                statement.setString(7, wish.getBookedStatus());
+                statement.setInt(7, wish.getBookedStatus());
                 statement.setInt(8, wish.getPriority());
                 statement.setString(9, wish.getLink());
 
