@@ -71,7 +71,7 @@ public class ContentController {
 
                          session.setAttribute("loggedInUser", user);
 
-                         return "redirect:/";
+                         return "redirect:/profile";
                      } else {
                         model.addAttribute("error", "Ugyldig email eller kode");
                         return "Login";
