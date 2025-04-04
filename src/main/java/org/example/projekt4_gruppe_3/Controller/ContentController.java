@@ -86,7 +86,7 @@ public class ContentController {
         catch (SQLException e){
             e.printStackTrace();
             model.addAttribute("error", "Database fejl:" +e.getMessage());
-            return "Login";
+            return "redirect:/";
         }
     }
 
@@ -119,6 +119,9 @@ public class ContentController {
 
         return "MyWishesPage";
     }
+
+    @GetMapping("wishlists")
+    public String WishlistsPage(){return "WishlistsPage";}
 
     @GetMapping("/profile")
     public String profile(HttpSession session){

@@ -19,7 +19,7 @@
 
   <div class="wish-container">
   <div class="square" th:each="wish :${wishes}">
-    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image" />
+    <img th:src="@{'/img/' + ${wish.image}}" alt="Placeholder.jpg" />
     <div>
       <label>Produktnavn:</label>
       <span th:text="${wish.wishName}">Produktnavn</span>

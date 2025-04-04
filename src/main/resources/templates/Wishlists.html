@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlists</title>
+  <link rel="stylesheet" href="../Static/CSS/Wishliststyle.css" th:href="@{Wishliststyle.css}">
+</head>
+<body>
+<h2>Dine ønskelister</h2>
+<div class="container">
+  <div class="square"th:each="Wishlist :${Wishlists}">
+    <img th:src="@{'/img/' + ${Wishlist.image}}" alt="Car image">'
+
+    <div>
+      <label>Wishlist name:</label>
+      <span th:text="${Wishlist.}">Navn:</span>
+    </div>
+
+    <div>
+      <label>Wishlist name:</label>
+      <span th:text="${Wishlist.name}">Navn:</span>
+    </div>
+
+    <div>
+      <label>Description:</label>
+      <span th:text="${Wishlist.description}">Description</span>
+    </div>
+
+    <div>
+      <label>Price:</label>
+      <span th:text="${Wishlist.lastUpdated}">Price</span>
+    </div>
+
+    <div>
+      <label>Last updated:</label>
+      <span th:text="${Wishlist.user}">Last updated</span>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

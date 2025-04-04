@@ -22,11 +22,11 @@ public class WishlistController {
     WishlistRepository wishlistRepo;
 
     @GetMapping("/getAllWishlists")
-    public String getAllWishlists(@RequestParam("id") int id, Model model) {
+    public String getAllWishlists(Model model) {
         ArrayList<Wishlist> wishlists = wishlistRepo.getAllWishlists();
-        model.addAttribute("wishlists", wishlists);
+        model.addAttribute("Wishlists", wishlists);
 
-        return "Wishlists";
+        return "Profile";
     }
 
     @GetMapping("/getWishlist")
