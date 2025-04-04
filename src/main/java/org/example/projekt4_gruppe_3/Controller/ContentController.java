@@ -102,7 +102,12 @@ public class ContentController {
 
     @GetMapping("/MyWishesPage")
     public String MyWishesPage(@RequestParam("list_id") int list_id,
+                                HttpSession session,
                                 Model model){
+
+        if (!isUserLoggedIn(session)){
+            return "redirect:/login";
+        }
 
         Wishlist wishList = wishListRepo.getWishlistById(list_id);
         ArrayList<Wish> wishes = wishRepo.getWishesByWishListID(list_id);
@@ -116,7 +121,16 @@ public class ContentController {
     }
 
     @GetMapping("/profile")
-    public String profile(){
+    public String profile(HttpSession session){
+
+        if (!isUserLoggedIn(session)){
+            return "redirect:/login";
+        }
+
         return "Profile";
+    }
+
+    boolean isUserLoggedIn(HttpSession session) {
+        return session.getAttribute("loggedInUser") != null;
     }
 }
