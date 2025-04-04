@@ -40,7 +40,11 @@ h1{
     white-space: nowrap;
 }
 
-
+.wishlist-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-items: center;
+}
 
 #header {
     position: sticky;

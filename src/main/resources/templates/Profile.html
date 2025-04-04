@@ -22,7 +22,32 @@
         <div class="profile_body">
             <h1>Mine ønskelister</h1>
         </div>
+        <div class="wishlist-container">
+            <div th:each="wishlist :${wishlists}">
+                <img th:src="@{'/img/' + ${wishlist.image}}" alt="Car image">
 
+                <div>
+                    <label>Wishlist name:</label>
+                    <span th:text="${wishlist.name}">Navn:</span>
+                </div>
+
+                <div>
+                    <label>Description:</label>
+                    <span th:text="${wishlist.description}">Description</span>
+                </div>
+
+                <div>
+                    <label>Price:</label>
+                    <span th:text="${wishlist.price}">Price</span>
+                </div>
+
+                <div>
+                    <label>Last updated:</label>
+                    <span th:text="${wishlist.lastUpdated}">Last updated</span>
+                </div>
+
+            </div>
+        </div>
     </div>
     <!--
     <div class="backGroundColor-div" th:each="Wishlist:${user}">
