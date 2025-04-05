@@ -67,7 +67,7 @@ public class ContentController {
 
                          session.setAttribute("loggedInUser", user);
 
-                         return "redirect:/getAllWishlists";
+                         return "redirect:/Profile";
                      } else {
                         model.addAttribute("error", "Ugyldig email eller kode");
                         return "Login";

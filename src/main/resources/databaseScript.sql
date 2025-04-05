@@ -17,14 +17,14 @@ CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
     list_name               VARCHAR(50) NOT NULL,
     list_description        VARCHAR(250),
-    last_updated            BIGINT NOT NULL,
+    last_updated            DATE NOT NULL,
     list_image              VARCHAR(50) DEFAULT NULL,
     user_id                 INT NOT NULL,
     FOREIGN KEY (user_id)   REFERENCES user(user_id)
 );
 
 INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, list_image, user_id) VALUES
-                                                          ('fødselsdags', 'mine fødselsdags gaver', 301200,'Placeholder.jpg', 1);
+                                                          ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1);
 
 CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,

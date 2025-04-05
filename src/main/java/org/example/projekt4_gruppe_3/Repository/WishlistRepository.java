@@ -42,7 +42,7 @@ public class WishlistRepository {
                         resultSet.getInt("list_id"),
                         resultSet.getString("list_name"),
                         resultSet.getString("list_description"),
-                        resultSet.getLong("last_updated"),
+                        resultSet.getDate("last_updated"),
                         resultSet.getString("list_image"));
                 wishlistsList.add(wishlist);
 
@@ -68,7 +68,7 @@ public class WishlistRepository {
                     wishlist.setListId(resultSet.getInt("list_id"));
                     wishlist.setName(resultSet.getString("list_name"));
                     wishlist.setDescription(resultSet.getString("list_description"));
-                    wishlist.setLastUpdated(resultSet.getLong("last_updated"));
+                    wishlist.setLastUpdated(resultSet.getDate("last_updated"));
                     wishlist.setImage(resultSet.getString("list_image"));
                     wishlist.setUser(userRepo.getUserById(resultSet.getInt("user_id")));
                 }
@@ -93,13 +93,30 @@ public class WishlistRepository {
     }
 
     public void updateWishlist (Wishlist wishlist) {
-        String sql = "UPDATE user SET list_name = ?, list_description = ?, last_updated = ?, list_image = ?";
+        String sql = "UPDATE wishlist SET list_name = ?, list_description = ?, last_updated = ?, list_image = ? WHERE list_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, wishlist.getName());
             statement.setString(2, wishlist.getDescription());
-            statement.setLong(3, wishlist.getLastUpdated());
+            statement.setDate(3, wishlist.getLastUpdated());
+            statement.setString(4, wishlist.getImage());
+            statement.setInt(5, wishlist.getListId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createWishlist (Wishlist wishlist) {
+        String sql = "INSERT INTO wishlist (list_name, list_description, last_updated, list_image, user_id) VALUES (?,?,?,?,?)";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, wishlist.getName());
+            statement.setString(2, wishlist.getDescription());
+            statement.setDate(3, wishlist.getLastUpdated());
             statement.setString(4, wishlist.getImage());
             statement.setInt(5, wishlist.getUser().getUserId());
 
@@ -109,10 +126,10 @@ public class WishlistRepository {
         }
     }
 
+
     public ArrayList<Wishlist> getWhishlistsByUserId (int userId) throws SQLException {
         ArrayList<Wishlist> wishlists =new ArrayList<>();
-
-        String sql = "SELECT * FROM wishlist WHERE user_id = ?";
+        String sql = "SELECT w.list_id, w.list_name, w.list_description, w.last_updated, w.list_image, w.user_id AS u_user_id, u.email, u.full_name, u.password, u.profile_picture FROM wishlist w JOIN user u ON w.user_id = u.user_id WHERE w.user_id = ?";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -121,15 +138,20 @@ public class WishlistRepository {
 
             try(ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Wishlist wishlist = new Wishlist();
-                    wishlist.setListId(resultSet.getInt("list_id"));
-                    wishlist.setName(resultSet.getString("list_name"));
-                    wishlist.setDescription(resultSet.getString("list_description"));
-                    wishlist.setLastUpdated(resultSet.getLong("created_at"));
-                    wishlist.setImage(resultSet.getString("list_image"));
-                    wishlist.setUser(new UserRepository().getUserById(resultSet.getInt("user_id")));
+                    User user = new User();
+                    user.setUserId(resultSet.getInt("u_user_id"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setFullName(resultSet.getString("full_name"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setProfilePicture(resultSet.getString("profile_picture"));
 
-                    wishlists.add(wishlist);
+                    Wishlist wishlist = new Wishlist(
+                            resultSet.getInt("list_id"),
+                            resultSet.getString("list_name"),
+                            resultSet.getString("list_description"),
+                            resultSet.getDate("last_updated"),
+                            resultSet.getString("list_image"));
+                            wishlists.add(wishlist);
 
                 }
             }

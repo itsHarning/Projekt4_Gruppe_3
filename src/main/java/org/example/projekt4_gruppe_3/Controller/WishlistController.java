@@ -5,7 +5,9 @@ import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
+import org.example.projekt4_gruppe_3.Service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -14,7 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 public class WishlistController {
@@ -25,8 +32,14 @@ public class WishlistController {
     @Autowired
     UserRepository userRepo;
 
-    @GetMapping("/getAllWishlists")
-    public String getAllWishlists(Model model, HttpSession session) {
+    @Autowired
+    ContentController contentControl;
+
+    @Autowired
+    WishlistService wishlistService;
+
+    @GetMapping("/Profile")
+    public String getAllWishlists(Model model, HttpSession session) throws SQLException {
 
         if (!isUserLoggedIn(session)){
             return "redirect:/login";
@@ -34,12 +47,13 @@ public class WishlistController {
 
         ArrayList<Wishlist> wishlists = new ArrayList<>();
 
-        wishlists = wishlistRepo.getAllWishlists();
+        Object user = session.getAttribute("loggedInUser");
 
+        User userObj = (User) user;
+        wishlists = wishlistRepo.getWhishlistsByUserId(userObj.getUserId());
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("username", loggedInUser.getFullName());
-
         model.addAttribute("wishlists", wishlists);
 
         return "Profile";
@@ -87,12 +101,18 @@ public class WishlistController {
     @PostMapping("/saveUpdateWishList")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
-                                 @RequestParam("updatedAt") Long updatedAt,
+                                 @RequestParam("updatedAt") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) java.util.Date updatedAt,
                                  @RequestParam("img") String img,
-                                 @RequestParam("user") User user) {
-        Wishlist wishlist = new Wishlist(name, description, updatedAt, img, user);
-        wishlistRepo.updateWishlist(wishlist);
-        return "redirect:/";
+                                 HttpSession session) {
+
+        java.util.Date convert=wishlistService.dateFormatter(updatedAt);
+        java.sql.Date sqlDate=new java.sql.Date(convert.getTime());
+
+        Object user = session.getAttribute("loggedInUser");
+
+        Wishlist wishlist = new Wishlist(name, description, sqlDate, img, (User) user);
+        wishlistRepo.createWishlist(wishlist);
+        return "redirect:/Profile";
     }
 
 

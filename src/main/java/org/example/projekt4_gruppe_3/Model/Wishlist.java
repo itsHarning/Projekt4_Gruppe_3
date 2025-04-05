@@ -1,17 +1,19 @@
 package org.example.projekt4_gruppe_3.Model;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Wishlist {
     private int listId;
     private String name;
     private String description;
-    private Long lastUpdated;
+    private Date lastUpdated;
     private User user;
     private String image;
     private ArrayList<Wish> wishes = new ArrayList<>();
 
-    public Wishlist(int listId, String name, String description, Long lastUpdated, String image, User user) {
+    public Wishlist(int listId, String name, String description, Date lastUpdated, String image, User user) {
         this.listId = listId;
         this.name = name;
         this.description = description;
@@ -20,7 +22,7 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Wishlist(String name, String description, Long lastUpdated, String image, User user) {
+    public Wishlist(String name, String description, Date lastUpdated, String image, User user) {
         this.name = name;
         this.description = description;
         this.lastUpdated = lastUpdated;
@@ -28,7 +30,7 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Wishlist(int listId, String name, String description, Long lastUpdated, String image) {
+    public Wishlist(int listId, String name, String description, Date lastUpdated, String image) {
         this.listId = listId;
         this.name = name;
         this.description = description;
@@ -39,7 +41,7 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public Wishlist(String listName, String listDescription, Long lastUpdated, String listImg) {
+    public Wishlist(String listName, String listDescription, Date lastUpdated, String listImg) {
         this.name = listName;
         this.description = listDescription;
         this.lastUpdated = lastUpdated;
@@ -70,11 +72,11 @@ public class Wishlist {
         this.description = description;
     }
 
-    public Long getLastUpdated() {
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Long lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
