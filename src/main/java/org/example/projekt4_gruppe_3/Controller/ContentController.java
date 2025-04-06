@@ -38,7 +38,7 @@ public class ContentController {
 
     @GetMapping("/login")
     public String loginPage(){
-        return "Login";
+        return "login";
     }
 
     @PostMapping("/login")
@@ -70,11 +70,11 @@ public class ContentController {
                          return "redirect:/Profile";
                      } else {
                         model.addAttribute("error", "Ugyldig email eller kode");
-                        return "Login";
+                        return "login";
                      }
                  } else {
                      model.addAttribute("error", "Ugyldig email eller kode");
-                     return "Login";
+                     return "login";
                  }
                  }
              }
@@ -82,18 +82,18 @@ public class ContentController {
             catch (SQLException e){
                 e.printStackTrace();
                 model.addAttribute("error", "Database fejl:" +e.getMessage());
-                return "Login";
+                return "login";
             }
         }
 
     @GetMapping("/register")
     public String register(){
-        return "Registration";
+        return "registration";
     }
 
     @GetMapping("/")
     public String homePage(){
-        return "HomePage";
+        return "home-page";
     }
 
     @GetMapping("/ShowMyWishesPage")
@@ -106,7 +106,7 @@ public class ContentController {
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
 
-        return "ShowMyWishesPage";
+        return "show-my-wishes-page";
     }
 
     @GetMapping("/UpdateMyWishesPage")
@@ -124,7 +124,7 @@ public class ContentController {
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
 
-        return "UpdateMyWishesPage";
+        return "update-my-wishes-page";
     }
 
     @PostMapping("/saveUpdateMyWishes")

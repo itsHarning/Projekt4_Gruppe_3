@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.sql.DataSource;
-import java.util.ArrayList;
-
 @Controller
 public class UserController {
 
@@ -66,6 +63,6 @@ public class UserController {
         user.getFullName();
         model.addAttribute("user", user);
 
-        return "Profile";
+        return "profile";
     }
 }

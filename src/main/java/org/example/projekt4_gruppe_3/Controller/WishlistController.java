@@ -9,19 +9,13 @@ import org.example.projekt4_gruppe_3.Service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Controller
 public class WishlistController {
@@ -56,7 +50,7 @@ public class WishlistController {
         model.addAttribute("username", loggedInUser.getFullName());
         model.addAttribute("wishlists", wishlists);
 
-        return "Profile";
+        return "profile";
     }
 
     boolean isUserLoggedIn(HttpSession session) {
