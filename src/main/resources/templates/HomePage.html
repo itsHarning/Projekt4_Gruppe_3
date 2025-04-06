@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Velkommen til Wishify</title>
-    <link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
-
+    <link href="../static/css/layout.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/script.js}" defer></script>
 </head>
 <body>
 <header th:replace="~{Fragments.html :: headerNotLoggedIn}"> </header>
 
 <!-- popup form -->
-<div th:replace="~{Fragments.html :: login-popup}"></div>
+<div th:replace="~{Fragments.html :: form-popup}"></div>
 
 <h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
 

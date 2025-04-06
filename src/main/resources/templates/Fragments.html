@@ -15,6 +15,7 @@
         <a id="Login" th:href="@{/login}">Login</a>
         <a id="Create Account" th:href="@{/register}">Create Account</a>
     </div>
+    <button class="login-btn">LOG IND</button>
 </div>
 
 <!-- Header for when logged in -->
@@ -27,16 +28,16 @@
 </div>
 
 <!-- Login popup -->
-<div class="blur-bg-overlay"></div>
-<div th:fragment="login-popup">
-    <div class="login-container">
+<div th:fragment="form-popup">
+    <div class="blur-bg-overlay"></div>
+    <div class="form-container">
     <span class="close-btn material-symbols-rounded">close</span>
-        <div class="login-box">
-            <div class="login-details">
+        <div class="form-box login">
+            <div class="form-details">
                 <h2>Velkommen Tilbage</h2>
                 <p>Log venligst ind med din data</p>
             </div>
-            <div class="login-content">
+            <div class="form-content">
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/login}" method="post">
                     <div class="input-field">
@@ -47,10 +48,43 @@
                         <input class="input" type="password" id="password" required>
                         <label for="password">Kodeord</label>
                     </div>
-                    <button class="button" type="submit">Login</button>
+                    <a href="#" class="forgot-password">Glemt kodeord?</a>
+                    <button class="button" type="submit">Log ind</button>
                 </form>
-                <div class="login-footer">
-                    <p>Har du ikke en bruger? <a th:href="@{/register}">Registrer dig her</a></p>
+                <div class="bottom-link">
+                    Har du ikke en bruger?
+                    <a th:href="@{/#}" id="signup-link">Registrer dig her</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-box signup">
+            <div class="form-details">
+                <h2>Opret en bruger</h2>
+                <p>Lav venligt en ny bruger</p>
+            </div>
+            <div class="form-content">
+                <h2>Log ind</h2>
+                <form class="form-popup" th:action="@{/getCreateUser}" method="post">
+                    <div class="input-field">
+                        <input class="input" type="text" id="create-email" required>
+                        <label for="create-email">Skriv din email</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="input" type="password" id="create-password" required>
+                        <label for="create-password">Opret kodeord</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy">
+                        <label for="policy">
+                            Jeg er enig med
+                            <a href="#">betingelsesvilkårene</a>
+                        </label>
+                    </div>
+                    <button class="button" type="submit">Registrer bruger</button>
+                </form>
+                <div class="bottom-link">
+                    Har du allerede en bruger?
+                    <a th:href="@{/register}" id="login-link">Log ind her</a>
                 </div>
             </div>
         </div>
