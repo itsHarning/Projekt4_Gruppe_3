@@ -29,10 +29,8 @@ INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, user_i
                                                           ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30', 1);
 
 INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, user_id) VALUES
-                                                          ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30', 1),
                                                     ('juleønsker', 'mine juleaftens ønsker', '2000-12-30', 2);
 INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, list_image, user_id) VALUES
-                                                    ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1),
                                                     ('juleønsker', 'mine juleaftens ønsker', '2000-12-30','Placeholder.jpg', 2);
 
 CREATE TABLE wish(

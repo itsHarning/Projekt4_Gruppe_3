@@ -1,110 +1,119 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/wishlistStyle.css">
-
 </head>
-
 <body class="profile">
 
+<header th:replace="fragments.html :: headerLoggedIn"> </header>
 
-    <header th:replace="fragments.html :: headerLoggedIn"> </header>
+<h1>Velkommen til din ønskeliste</h1>
 
-    <h1>Velkommen til din ønskeliste</h1>
+<div>
+    <img class="image-container" th:src="@{'/images/' + ${profilePicture}}" alt="Profile Picture">
+    <div class="username" th:text="${username}"></div>
+</div>
 
-    <div>
-        <img class="image-container"  th:src="@{'/images/' + ${profilePicture}}" alt="Profile Picture">
-        <div class="username" th:text="${username}"></div>
+<br>
+<div class="backGroundColor-div">
+    <div class="profile_body">
+        <h1>Mine ønskelister</h1>
+        <br><br><br>
+    </div>
+</div>
+
+<div class="all-wishes">
+    <div class="wishlistForm" id="wishlistForm">
+        <h2>Create wishlist</h2>
+        <img src="/images/plus.jpg" alt="Add Wishlist">
     </div>
 
-    <br>
-    <div class="backGroundColor-div">
-        <div class="profile_body">
-            <h1>Mine ønskelister</h1>
-            <br><br><br>
-            </div>
-        </div>
-
-            <form class="wishlistForm" th:action="@{/saveUpdateWishList}" method="post">
-                <h2>Create wishlist</h2>
-
+    <div id="wishlistModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Wishlist</h2>
+            <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishList}" method="post">
                 <label for="name">Wishlist name</label>
-                <input type="text" id="name" name="name" placeholder="Enter wishlisht name" required>
+                <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
 
                 <label for="description">Description</label>
                 <input type="text" id="description" name="description" placeholder="Enter description" required>
 
-                <label for="updatedAt">updatedAt</label>
-                <input type="date" id="updatedAt" name="updatedAt" placeholder="Enter date" required>
+                <label for="updatedAt">End Date</label>
+                <input type="date" id="updatedAt" name="updatedAt" required>
 
                 <label for="img">Image</label>
-                <input type="text" id="img" name="img" placeholder="choose image" required>
+                <input type="text" id="img" name="img" placeholder="Choose image" required>
 
                 <button type="submit">Create wishlist</button>
-
-
             </form>
+        </div>
+    </div>
 
-        <div class="wishlist-container">
-            <div th:each="wishlist :${wishlists}" class="wishlist-item">
-                <form th:action="@{/getWishlist}" method="get">
+    <div class="wishlist-container">
+        <div th:each="wishlist :${wishlists}" class="wishlist-item">
+            <form th:action="@{/getWishlist}" method="get">
+                <input type="hidden" name="list_id" th:value="${wishlist.listId}">
+                <button type="submit" th:href="@{/show-my-wishes-page.html}">
+                    <div class="template-img">
+                        <img src="/images/gave.jpg" alt="Wishlist Image">
+                    </div>
+                    <label>Wishlist id:</label>
+                    <span th:text="${wishlist.listId}" id="list_id">ID</span>
                     <input type="hidden" name="list_id" th:value="${wishlist.listId}">
-                    <button type="submit" th:href="@{/show-my-wishes-page.html}">
+                    <div>
+                        <label>Wishlist name:</label>
+                        <span th:text="${wishlist.name}">Name</span>
+                    </div>
+                    <div>
+                        <label>Description:</label>
+                        <span th:text="${wishlist.description}">Description</span>
+                    </div>
+                    <div>
+                        <label>Last updated:</label>
+                        <span th:text="${wishlist.lastUpdated}">Last updated</span>
+                    </div>
+                </button>
+                <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
+                    Del ønskeliste
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
-                        <div class="template-img">
-                            <label>Picture</label>
-                            <img src="/images/gave.jpg">
-                        </div>
+<script th:inline="javascript">
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert('Link kopieret til udklipsholder!');
+                });
+        }
+    }
 
-                        <label>Wishlist id:</label>
-                        <span th:text="${wishlist.listId}" id="list_id" >ID</span>
-                        <input type="hidden" name="list_id" th:value="${wishlist.listId}">
+    document.addEventListener('DOMContentLoaded', function() {
+        const wishlistForm = document.getElementById('wishlistForm');
+        const wishlistModal = document.getElementById('wishlistModal');
+        const closeModal = document.getElementsByClassName('close')[0];
 
-                        <div>
-                            <label>Wishlist name:</label>
-                            <span th:text="${wishlist.name}">Navn:</span>
-                        </div>
+        wishlistForm.addEventListener('click', function() {
+            wishlistModal.style.display = 'block';
+            console.log('Wishlist form clicked');
+        });
 
-                        <div>
-                            <label>Description:</label>
-                            <span th:text="${wishlist.description}">Description</span>
-                        </div>
+        closeModal.addEventListener('click', function() {
+            wishlistModal.style.display = 'none';
+        });
 
-                        <div>
-                            <label>Last updated:</label>
-                            <span th:text="${wishlist.lastUpdated}">last updated</span>
-
-                        </div>
-                    </button>
-                    <button
-                            type="button"
-                            class="share-button"
-                            th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
-                        Del ønskeliste
-                    </button>
-
-                </form>
-            </div>
-
-
-
-            </div>
-
-
-    <script th:inline="javascript">
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text)
-                    .then(() => {
-                        alert('Link kopieret til udklipsholder!');
-                    })}}
-    </script>
-
+        window.addEventListener('click', function(event) {
+            if (event.target === wishlistModal) {
+                wishlistModal.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
-
 </html>
