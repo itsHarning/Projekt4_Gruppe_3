@@ -45,7 +45,7 @@ public class UserController {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (!resultSet.next()) { //Hvis denne ikke kører, er brugeren ikke fundet.
-                    User user = new User (email,  fullName,  password,  img);
+                    User user = new User (email,  name,  password,  "default-profile-picture.png");
                     userRepo.saveUser(user);
 
                     return "redirect:/";
