@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
+
 <body class="profile">
 
 
@@ -16,7 +17,7 @@
     <h1>Velkommen til din ønskeliste</h1>
 
     <div>
-        <img class="image-container" src="/images/Placeholder.jpg" alt="Placeholder.jpg">
+        <img th:src="${user.getProfilePicture()}" alt="img">
         <div class="username" th:text="${username}"></div>
     </div>
 
@@ -27,25 +28,33 @@
         </div>
         <div class="wishlist-container">
             <div class th:each="wishlist :${wishlists}">
-                <img th:src="@{'/img/' + ${wishlist.image}}" alt="Wish image">
+                <form th:action="@{/getWishlist}" method="get">
+                    <button type="submit">
+                        <img th:src="@{'/img/' + ${wishlist.image}}" alt="Wish image">
 
-                <label>Wishlist id:</label>
-                <span th:text="${wishlist.listId}">ID</span>
+                        <label>Wishlist id:</label>
+                        <span th:text="${wishlist.listId}">ID</span>
 
-                <div>
-                    <label>Wishlist name:</label>
-                    <span th:text="${wishlist.name}">Navn:</span>
-                </div>
+                        <div>
+                            <label>Wishlist name:</label>
+                            <span th:text="${wishlist.name}">Navn:</span>
+                        </div>
 
-                <div>
-                    <label>Description:</label>
-                    <span th:text="${wishlist.description}">Description</span>
-                </div>
+                        <div>
+                            <label>Description:</label>
+                            <span th:text="${wishlist.description}">Description</span>
+                        </div>
 
-                <div>
-                    <label>Last updated:</label>
-                    <span th:text="${wishlist.lastUpdated}">last updated</span>
-                </div>
+                        <div>
+                            <label>Last updated:</label>
+                            <span th:text="${wishlist.lastUpdated}">last updated</span>
+                        </div>
+
+
+                    </button>
+
+                </form>
+
 
             </div>
 
