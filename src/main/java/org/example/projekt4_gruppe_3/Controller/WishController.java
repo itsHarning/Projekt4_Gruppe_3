@@ -4,6 +4,7 @@ import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.example.projekt4_gruppe_3.Repository.WishRepository;
+import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,9 @@ public class WishController {
 
     @Autowired
     WishRepository wishRepo;
+
+    @Autowired
+    WishlistRepository wishListRepo;
 
     @GetMapping("/getAllWishes")
     public String getAllWishes(Model model) {
@@ -93,5 +97,25 @@ public class WishController {
 
         return "redirect:/";
     }
+
+    @PostMapping("/reserveWish")
+    public String reserveWish(@RequestParam("wish_id") int wishId,
+                              @RequestParam("list_id") int listID,
+                              @RequestParam("booked_by") String bookedBy,
+                              Model model) throws SQLException {
+
+        Wish wish = wishRepo.getWishById(wishId);
+        Wishlist wishList = wishListRepo.getWishlistById(listID);
+
+        wish.setBookedStatus(1);
+        wish.setBookedBy(bookedBy);
+
+        wishRepo.updateWish(wish);
+
+        model.addAttribute("wishList", wishList);
+
+        return "redirect:/show-my-wishes-page?list_id="+listID;
+    }
+
 
 }

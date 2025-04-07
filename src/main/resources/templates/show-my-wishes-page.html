@@ -12,7 +12,7 @@
   <div class="wishlist-description-container">
     <div>
       <label></label>
-      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
+      <span th:text="${wishList.name}">Navn på ønskeliste</span>
     </div>
     <img th:src="@{'/images/' + ${wishList.getImage()}}" alt="Wishlist Image" />
   </div>
@@ -40,6 +40,20 @@
     <div>
       <label>Antal:</label>
       <span th:text="${wish.quantity}">Antal</span>
+    </div>
+
+    <div>
+      <label>Status:</label>
+      <span th:text="${wish.bookedStatus == 1 ? 'Reserveret af: ' + wish.bookedBy : 'Ikke reserveret'}">Status</span>
+    </div>
+
+    <div th:if="${wish.bookedStatus != 1}">
+      <form th:action="@{/reserveWish}" method="post">
+        <input type="hidden" name="wish_id" th:value="${wish.wishId}" />
+        <input type="hidden" name="list_id" th:value="${wishList.listId}" />
+        <input type="text" name="booked_by" placeholder="Dit navn" required />
+        <button type="submit">Reserver ønske!</button>
+      </form>
     </div>
 
   </div>
