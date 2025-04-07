@@ -6,10 +6,12 @@ const loginSignupLink = document.querySelectorAll(".form-box .bottom-link a")
 
 // show form popup
 showPopupBtn.addEventListener("click", () => {
+    formPopup.classList.remove("show-signup")
     document.body.classList.toggle("show-popup")
 });
 
 showSignupBtn.addEventListener("click", () => {
+    formPopup.classList.add("show-signup")
     document.body.classList.toggle("show-popup")
 });
 
