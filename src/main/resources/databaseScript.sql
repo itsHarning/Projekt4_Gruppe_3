@@ -11,7 +11,8 @@ CREATE TABLE user(
 );
 
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
-                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
+                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg'),
+                                                   ('julius@test.dk', 'Julius Test', '1234', 'Placeholder.jpg');
 
 
 CREATE TABLE wishlist(
