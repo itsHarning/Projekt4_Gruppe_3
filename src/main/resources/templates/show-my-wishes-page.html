@@ -43,8 +43,7 @@
     </div>
 
     <div>
-      <label>Status:</label>
-      <span th:text="${wish.bookedStatus == 1 ? 'Reserveret af: ' + wish.bookedBy : 'Ikke reserveret'}">Status</span>
+      <span th:text="${wish.bookedStatus == 1 ? 'Reserveret af: ' + wish.bookedBy : 'Ikke reserveret'}"></span>
     </div>
 
     <div th:if="${wish.bookedStatus != 1}">
