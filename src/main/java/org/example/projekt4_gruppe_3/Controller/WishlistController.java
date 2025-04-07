@@ -3,7 +3,6 @@ package org.example.projekt4_gruppe_3.Controller;
 import jakarta.servlet.http.HttpSession;
 import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
-import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.example.projekt4_gruppe_3.Service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class WishlistController {
         Object user = session.getAttribute("loggedInUser");
 
         User userObj = (User) user;
-        wishlists = wishlistRepo.getWhishlistsByUserId(userObj.getUserId());
+        wishlists = wishlistRepo.getWishlistsByUserId(userObj.getUserId());
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         model.addAttribute("profilePicture",loggedInUser.getProfilePicture());
@@ -53,15 +52,17 @@ public class WishlistController {
     }
 
     @GetMapping("/getWishlist")
-    public String getWishlist(@RequestParam("id") int id, Model model, HttpSession session) {
+    public String getWishlist(@RequestParam("list_id") int id, Model model, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
             return "redirect:/login";
+
+
         }
 
         Wishlist wishlist = wishlistRepo.getWishlistById(id);
         model.addAttribute("wishlist", wishlist);
-        return "showWishlist";
+        return "update-my-wishes-page";
     }
 
     @PostMapping("/deleteWishlist")
@@ -92,7 +93,6 @@ public class WishlistController {
                                  @RequestParam("description") String description,
                                  //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)
                                  @RequestParam("updatedAt") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) java.util.Date updatedAt,
-                                 @RequestParam("img") String img,
                                  HttpSession session) {
 
         java.util.Date convert=wishlistService.dateFormatter(updatedAt);
@@ -103,7 +103,7 @@ public class WishlistController {
 
         Object user = session.getAttribute("loggedInUser");
 
-        Wishlist wishlist = new Wishlist(name, description, sqlDate, img, (User) user);
+        Wishlist wishlist = new Wishlist(name, description, sqlDate, (User) user);
         wishlistRepo.createWishlist(wishlist);
         return "redirect:/Profile";
     }

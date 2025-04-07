@@ -27,13 +27,19 @@
             <h1>Mine ønskelister</h1>
         </div>
         <div class="wishlist-container">
-            <div class th:each="wishlist :${wishlists}">
+            <div th:each="wishlist :${wishlists}" class="wishlist-item">
                 <form th:action="@{/getWishlist}" method="get">
-                    <button type="submit">
-                        <img th:src="@{'/img/' + ${wishlist.image}}" alt="Wish image">
+                    <input type="hidden" name="list_id" th:value="${wishlist.listId}">
+                    <button type="submit" th:href="@{/show-my-wishes-page.html}">
+
+                        <div class="template-img">
+                            <label>Picture</label>
+                            <img src="/images/gave.jpg">
+                        </div>
 
                         <label>Wishlist id:</label>
-                        <span th:text="${wishlist.listId}">ID</span>
+                        <span th:text="${wishlist.listId}" id="list_id" >ID</span>
+                        <input type="hidden" name="list_id" th:value="${wishlist.listId}">
 
                         <div>
                             <label>Wishlist name:</label>
@@ -58,29 +64,31 @@
 
             </div>
 
-            <div class="popup-content">
-                <span id="closeBtn" class="close-btn"></span>
-                <h2>Create wishlist</h2>
-                <form class="wishlistForm" th:action="@{/saveUpdateWishList}" method="post">
 
-                    <label for="name">Wishlist name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter wishlisht name" required>
-
-                    <label for="description">Description</label>
-                    <input type="text" id="description" name="description" placeholder="Enter description" required>
-
-                    <label for="updatedAt">updatedAt</label>
-                    <input type="date" id="updatedAt" name="updatedAt" placeholder="Enter date" required>
-
-                    <label for="img">Image</label>
-                    <input type="text" id="img" name="img" placeholder="choose image" required>
-
-                    <button type="submit">Create wishlist</button>
-
-                </form>
-            </div>
 
             </div>
+
+        <div class="popup-content">
+            <span id="closeBtn" class="close-btn"></span>
+            <h2>Create wishlist</h2>
+            <form class="wishlistForm" th:action="@{/saveUpdateWishList}" method="post">
+
+                <label for="name">Wishlist name</label>
+                <input type="text" id="name" name="name" placeholder="Enter wishlisht name" required>
+
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" placeholder="Enter description" required>
+
+                <label for="updatedAt">updatedAt</label>
+                <input type="date" id="updatedAt" name="updatedAt" placeholder="Enter date" required>
+
+                <label for="img">Image</label>
+                <input type="text" id="img" name="img" placeholder="choose image" required>
+
+                <button type="submit">Create wishlist</button>
+
+            </form>
+        </div>
         </div>
     <!--
     <div class="backGroundColor-div" th:each="Wishlist:${user}">

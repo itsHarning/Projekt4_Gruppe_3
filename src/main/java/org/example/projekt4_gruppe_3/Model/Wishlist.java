@@ -48,6 +48,20 @@ public class Wishlist {
         this.image = listImg;
     }
 
+    public Wishlist(String name, String description, Date sqlDate, User user) {
+        this.name = name;
+        this.description = description;
+        this.lastUpdated = new java.sql.Date(sqlDate.getTime());
+        this.user = user;
+    }
+
+    public Wishlist(int listId, String name, String listDescription, Date lastUpdated) {
+        this.listId = listId;
+        this.name = name;
+        this.description = listDescription;
+        this.lastUpdated = lastUpdated;
+    }
+
     public int getListId() {
         return listId;
     }
