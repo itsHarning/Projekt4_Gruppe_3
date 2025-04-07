@@ -11,18 +11,34 @@
 <!-- Header for when not logged in -->
 <div th:fragment="headerNotLoggedIn">
     <div class="navbar">
-        <a id="HomePage" th:href="@{/}">Home</a>
-        <button class="login-btn">LOG IND</button>
-        <button class="signup-btn">OPRET</button>
+        <div class="logo">
+        </div>
+        <div class="clickable">
+            <div class="link-container">
+                <a id="HomePage" th:href="@{/}">FORSIDE</a>
+            </div>
+            <div class="button-container">
+                <button class="login-btn">LOG IND</button>
+                <button class="signup-btn">OPRET</button>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- Header for when logged in -->
 <div th:fragment="headerLoggedIn">
     <div class="navbar">
-        <a id="Home Page" th:href="@{/}">Home</a>
-        <a id="Profile" th:href="@{/Profile}">Profile</a>
-        <a id="Wishlists" th:href="@{/wishlist}">Wishlists</a>
+        <div class="logo">
+        </div>
+        <div class="clickable">
+            <div class="link-container">
+                <a id="Home Page" th:href="@{/}">FORSIDE</a>
+                <a id="Wishlists" th:href="@{/wishlist}">ØNSKELISTER</a>
+            </div>
+            <div class="button-container">
+                <button class="profile-btn" th:href="@{/Profile}">PROFIL</button>
+            </div>
+        </div>
     </div>
 </div>
 

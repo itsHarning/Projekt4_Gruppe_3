@@ -1,0 +1,10 @@
+.banner-container {
+    background: url("../images/banner.png") center;
+    background-size: cover;
+    height: 576px;
+    margin-top: -27px;
+}
+
+.banner-container h1 {
+    color: white;
+}

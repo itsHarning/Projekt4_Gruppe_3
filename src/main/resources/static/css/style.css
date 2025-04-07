@@ -29,7 +29,7 @@ body a {
 }
 
 body a:hover {
-    color: rgb(072, 121, 057);
+    color: #0097a7;
     transition: 0.2s ease;
 }
 
@@ -52,17 +52,55 @@ h1, h2 {
     font-weight: bolder;
     font-size: 23px;
     display: flex;
-    background-color: #5cae63;
+    background-color: white;
 }
 
 .navbar a {
     font-size: inherit;
     font-weight: bolder;
-    color: white;
+    color: #233249;
     text-align: center;
     padding: 1% 1%;
     text-decoration: none;
     transition: background-color 0.3s ease; /* Add transition for hover effects */
+}
+
+.clickable {
+    display: flex;
+    margin: 0 24px 0 auto;
+}
+
+.clickable a {
+    padding: 0 10px;
+}
+
+.link-container {
+    display: flex;
+    margin: auto;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.button-container {
+    display: flex;
+    margin: 10px 33px 10px 0;
+}
+
+.clickable button{
+    height: 40px;
+    padding: 0 15px;
+    margin: 5px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: #fff;
+    background: #00bcd4;
+    border-radius: 3px;
+    transition: 0.2s ease;
+}
+
+.clickable button:hover {
+    background: #0097a7;
 }
 
 .blur-bg-overlay {
@@ -91,7 +129,7 @@ h1, h2 {
     opacity: 0;
     pointer-events: none;
     background: #FFF;
-    border: 2px solid #FFF;
+    /*border: 2px solid #FFF;*/
     transform: translate(-50%, -100%);
 }
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Velkommen til Wishify</title>
-    <link href="../static/css/layout.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="../static/css/indexStyle.css" th:href="@{/css/indexStyle.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{/script.js}" defer></script>
 </head>
 <body>
@@ -12,7 +13,9 @@
 <!-- popup form -->
 <div th:replace="~{fragments.html :: form-popup}"></div>
 
-<h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
+<div class="banner-container">
+    <h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
+</div>
 
 <div class="body-text">
     <p>
