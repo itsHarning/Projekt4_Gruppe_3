@@ -9,11 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Controller
 public class UserController {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    DataSource dataSource;
 
     @GetMapping("/getDeleteUser")
     public String getDeleteUser(Model model, int id) {
@@ -29,10 +38,31 @@ public class UserController {
                               @RequestParam String password,
                               @RequestParam String img) {
 
-        User user = new User (email,  fullName,  password,  img);
-        userRepo.saveUser(user);
+        String sql = "SELECT * FROM `user` WHERE email = ?";
 
-    return "redirect:/";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (!resultSet.next()) { //Hvis denne ikke kører, er brugeren ikke fundet.
+                    User user = new User (email,  fullName,  password,  img);
+                    userRepo.saveUser(user);
+
+                    return "redirect:/";
+                }
+                else {
+
+                    System.out.println("Brugeren findes allerede.");
+                    return "redirect:/register";
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }  catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/getUpdateUser")
