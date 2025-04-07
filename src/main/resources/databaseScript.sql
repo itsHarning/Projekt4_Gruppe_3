@@ -13,6 +13,7 @@ CREATE TABLE user(
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
                                                    ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
 
+
 CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
     list_name               VARCHAR(50) NOT NULL,
