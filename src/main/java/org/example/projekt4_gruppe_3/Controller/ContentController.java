@@ -149,7 +149,7 @@ public class ContentController {
          listID);
         wishRepo.saveWish(wish);
 
-        return "redirect:/";
+        return "redirect:/UpdateMyWishesPage?list_id="+listID;
     }
 
     @GetMapping("wishlists")
