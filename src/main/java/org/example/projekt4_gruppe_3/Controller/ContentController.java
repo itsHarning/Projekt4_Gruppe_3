@@ -63,8 +63,7 @@ public class ContentController {
                          user.setUserId(resultSet.getInt("user_id"));
                          user.setEmail(resultSet.getString("email"));
                          user.setFullName(resultSet.getString("full_name"));
-                         user.setProfilePicture("profile_picture");
-
+                         user.setProfilePicture(resultSet.getString("profile_picture"));
                          session.setAttribute("loggedInUser", user);
 
                          return "redirect:/Profile";

@@ -145,6 +145,9 @@ public class WishlistRepository {
                     user.setFullName(resultSet.getString("full_name"));
                     user.setPassword(resultSet.getString("password"));
                     user.setProfilePicture(resultSet.getString("profile_picture"));
+                    if (user.getProfilePicture() == null || user.getProfilePicture().isEmpty()) {
+                        user.setProfilePicture("default-profile-picture.png");
+                    }
 
                     Wishlist wishlist = new Wishlist(
                             resultSet.getInt("list_id"),
