@@ -40,12 +40,6 @@ h1{
     white-space: nowrap;
 }
 
-.wishlist-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    justify-items: center;
-}
-
 #header {
     position: sticky;
     z-index: 100;
@@ -89,4 +83,61 @@ h1{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.wishlist-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Space between items */
+    gap: 20px; /* Space between wishlist items */
+    margin: 20px;
+}
+
+.wishlist-item {
+    width: calc(25% - 20px); /* 4 items per row (adjust the width to account for gaps) */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+}
+
+.wishlist-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.wishlist-item:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.wishlist-item label {
+    font-weight: bold;
+}
+
+.wishlist-item span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .wishlist-item {
+        width: calc(33.33% - 20px); /* 3 items per row for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .wishlist-item {
+        width: calc(50% - 20px); /* 2 items per row for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .wishlist-item {
+        width: 100%; /* 1 item per row for very small screens */
+    }
 }

@@ -70,6 +70,7 @@ public class WishlistRepository {
                     wishlist.setDescription(resultSet.getString("list_description"));
                     wishlist.setLastUpdated(resultSet.getDate("last_updated"));
                     wishlist.setImage(resultSet.getString("list_image"));
+                    //Line 74
                     wishlist.setUser(userRepo.getUserById(resultSet.getInt("user_id")));
                 }
             }

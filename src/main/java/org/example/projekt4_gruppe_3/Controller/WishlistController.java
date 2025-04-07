@@ -24,12 +24,6 @@ public class WishlistController {
     WishlistRepository wishlistRepo;
 
     @Autowired
-    UserRepository userRepo;
-
-    @Autowired
-    ContentController contentControl;
-
-    @Autowired
     WishlistService wishlistService;
 
     @GetMapping("/Profile")
@@ -39,7 +33,7 @@ public class WishlistController {
             return "redirect:/login";
         }
 
-        ArrayList<Wishlist> wishlists = new ArrayList<>();
+        ArrayList<Wishlist> wishlists;
 
         Object user = session.getAttribute("loggedInUser");
 
@@ -95,12 +89,16 @@ public class WishlistController {
     @PostMapping("/saveUpdateWishList")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
+                                 //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)
                                  @RequestParam("updatedAt") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) java.util.Date updatedAt,
                                  @RequestParam("img") String img,
                                  HttpSession session) {
 
         java.util.Date convert=wishlistService.dateFormatter(updatedAt);
+
+        //Same with this line. We need to convert from java.util.date to java.sql.date
         java.sql.Date sqlDate=new java.sql.Date(convert.getTime());
+
 
         Object user = session.getAttribute("loggedInUser");
 
