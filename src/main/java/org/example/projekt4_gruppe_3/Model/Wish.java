@@ -17,6 +17,20 @@ public class Wish {
     private Wishlist wishList;
     private int listID;
 
+    public Wish(int wishID, String wishName, String description, int price, int quantity, String image, String bookedBy, int bookedStatus, int priority, String link, int listID) {
+        this.wishID = wishID;
+        this.wishName = wishName;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+        this.bookedBy = bookedBy;
+        this.bookedStatus = bookedStatus;
+        this.priority = priority;
+        this.link = link;
+        this.listID = listID;
+    }
+
     public Wish(String wishName,
                 String description,
                 int price,

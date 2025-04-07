@@ -152,11 +152,50 @@ public class ContentController {
     }
 
     @PostMapping("/deleteWish")
-    public String deleteWish(@RequestParam("wish_id") int wish_id,
+    public String deleteWish(@RequestParam("wish_id") int wishID,
                              @RequestParam("list_id") int listID) throws SQLException {
 
-        wishRepo.deleteWishById(wish_id);
+        wishRepo.deleteWishById(wishID);
 
+        return "redirect:/UpdateMyWishesPage?list_id="+listID;
+    }
+
+    @GetMapping("/edit-wish")
+    public String editWish(@RequestParam("wish_id") int wishID,
+                           @RequestParam("list_id") int listID,
+                           Model model){
+
+        Wishlist wishList = wishListRepo.getWishlistById(listID);
+        Wish wish = wishRepo.getWishById(wishID);
+
+        model.addAttribute("wish", wish);
+        model.addAttribute("wishList", wishList);
+
+
+        return "edit-wish";
+    }
+
+    @PostMapping("/saveEditWish")
+    public String postEditWish(
+            @RequestParam("list_id") int listID,
+            @RequestParam("wish_id") int wishID,
+            @RequestParam("wish_name") String wishName,
+            @RequestParam("price") int price,
+            @RequestParam("wish_description") String description,
+            @RequestParam("quantity") int quantity,
+            @RequestParam("priority") int priority,
+            @RequestParam("booked_by") String bookedBy,
+            @RequestParam("booked_status") int bookedStatus,
+            @RequestParam("wish_image") String image,
+            @RequestParam("link") String link) throws SQLException {
+
+        Wish wish = new Wish( wishID,
+         wishName,  description,
+         price,  quantity,
+         image,  bookedBy,
+         bookedStatus,  priority,
+         link, listID);
+        wishRepo.updateWish(wish);
         return "redirect:/UpdateMyWishesPage?list_id="+listID;
     }
 
