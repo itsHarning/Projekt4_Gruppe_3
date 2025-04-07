@@ -11,7 +11,8 @@ CREATE TABLE user(
 );
 
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
-                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
+                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg'),
+                                                   ('julius@test.dk', 'Julius test', '1234', 'Placeholder.jpg');
 
 CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,8 +25,8 @@ CREATE TABLE wishlist(
 );
 
 INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, list_image, user_id) VALUES
-                                                          ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1);
-
+                                                          ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1),
+                                                    ('juleønsker', 'mine juleaftens ønsker', '2000-12-30','Placeholder.jpg', 2);
 CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,
     wish_name              VARCHAR(50) NOT NULL,
@@ -46,6 +47,8 @@ INSERT INTO wish (wish_name, price, wish_description, quantity, priority, booked
         ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'Placeholder.jpg', 'www.Matas.dk', 1),
         ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'Placeholder.jpg', 'www.supreme.com', 1),
         ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'Placeholder.jpg', 'www.bukser.com', 1),
-        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 1)
+        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 1),
+        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 2)
+;
 
 

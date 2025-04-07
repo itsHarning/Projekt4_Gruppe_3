@@ -152,6 +152,15 @@ public class ContentController {
         return "redirect:/UpdateMyWishesPage?list_id="+listID;
     }
 
+    @PostMapping("/deleteWish")
+    public String deleteWish(@RequestParam("wish_id") int wish_id,
+                             @RequestParam("list_id") int listID) throws SQLException {
+
+        wishRepo.deleteWishById(wish_id);
+
+        return "redirect:/UpdateMyWishesPage?list_id="+listID;
+    }
+
     @GetMapping("wishlists")
     public String WishlistsPage(){return "WishlistsPage";}
 
