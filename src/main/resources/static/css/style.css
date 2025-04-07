@@ -82,7 +82,7 @@ h1, h2 {
     pointer-events: auto;
 }
 
-.form-container {
+.form-container  {
     position: fixed;
     top: 50%;
     left: 50%;
