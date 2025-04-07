@@ -62,7 +62,7 @@ public class WishlistController {
 
         Wishlist wishList = wishlistRepo.getWishlistById(id);
         model.addAttribute("wishList", wishList);
-        return "redirect:/UpdateMyWishesPage?list_id="+id;
+        return "redirect:/update-my-wishes-page?list_id="+id;
     }
 
     @PostMapping("/deleteWishlist")
