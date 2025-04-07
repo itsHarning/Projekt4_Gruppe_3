@@ -114,7 +114,7 @@ public class ContentController {
                                    Model model){
 
         if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+            return "redirect:/";
         }
 
         Wishlist wishList = wishListRepo.getWishlistById(list_id);

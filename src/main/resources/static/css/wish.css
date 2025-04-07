@@ -1,0 +1,35 @@
+.wish-container {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Space between items */
+    gap: 20px; /* Space between wishlist items */
+    margin: 20px;
+}
+
+.wish-image-container{
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5%;
+        float: left;
+        padding: 2%;
+}
+.wishlist-image-container{
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5%;
+    float: left;
+    padding: 2%;
+}
+
+.wish-description-container{
+
+}

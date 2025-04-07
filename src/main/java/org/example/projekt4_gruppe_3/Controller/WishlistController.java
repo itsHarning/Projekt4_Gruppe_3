@@ -29,7 +29,7 @@ public class WishlistController {
     public String getAllWishlists(Model model, HttpSession session) throws SQLException {
 
         if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+            return "redirect:/";
         }
 
         ArrayList<Wishlist> wishlists;
@@ -55,7 +55,7 @@ public class WishlistController {
     public String getWishlist(@RequestParam("list_id") int id, Model model, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+            return "redirect:/";
 
 
         }
@@ -69,7 +69,7 @@ public class WishlistController {
     public String deleteWishlist(@RequestParam("id") int id, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+            return "redirect:/";
         }
 
         wishlistRepo.deleteWishlistById(id);
@@ -80,7 +80,7 @@ public class WishlistController {
     public String getUpdateWishlist(@RequestParam("id") int id, Model model, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+            return "redirect:/";
         }
 
         Wishlist wishlist = wishlistRepo.getWishlistById(id);

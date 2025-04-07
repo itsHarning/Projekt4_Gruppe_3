@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>My Wishes</title>
+    <link rel="stylesheet" href="/css/wish.css">
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 
 <!-- Mangler styling og oprettelse af div klasser!-->
@@ -14,7 +17,7 @@
       <label></label>
       <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
     </div>
-    <img th:src="@{'/img/' + ${wishList.getImage()}}" alt="Wishlist Image" />
+    <img class="wishlist-image-container"  th:src="@{'/images/' + ${wishList.getImage()}}" alt="Wishlist Image" />
   </div>
 
   <div class="create-wish-container">
@@ -48,7 +51,7 @@
 
   <div class="wish-container">
   <div class="square" th:each="wish :${wishes}">
-    <img th:src="@{'/img/' + ${wish.image}}" alt="Wish Image" />
+    <img class="wish-image-container"  th:src="@{'/images/' + ${wish.image}}" alt="Wish Image" />
     <div>
       <label>Produktnavn:</label>
       <span th:text="${wish.wishName}">Produktnavn</span>
