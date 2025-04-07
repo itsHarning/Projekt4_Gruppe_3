@@ -168,7 +168,8 @@
         }
 
         public void updateWish(Wish wish) throws SQLException {
-            String sql ="UPDATE wish SET wish_name, wish_description, price, quantity, wish_image, booked_by, booked_status, priority, link VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql ="UPDATE wish SET wish_name = ?, wish_description = ?, price = ?, quantity = ?, " +
+                    "wish_image = ?, booked_by = ?, booked_status = ?, priority = ?, link = ? WHERE wish_id = ?";
 
             try(Connection connection = dataSource.getConnection();
                 PreparedStatement statement =connection.prepareStatement(sql)){
@@ -181,6 +182,7 @@
                 statement.setInt(7, wish.getBookedStatus());
                 statement.setInt(8, wish.getPriority());
                 statement.setString(9, wish.getLink());
+                statement.setInt(10, wish.getWishId());
 
                 statement.executeUpdate();
             }catch (SQLException e){

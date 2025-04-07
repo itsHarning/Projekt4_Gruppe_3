@@ -153,7 +153,8 @@ public class ContentController {
 
     @PostMapping("/deleteWish")
     public String deleteWish(@RequestParam("wish_id") int wishID,
-                             @RequestParam("list_id") int listID) throws SQLException {
+                             @RequestParam("list_id") int listID,
+                             HttpSession session) throws SQLException {
 
         wishRepo.deleteWishById(wishID);
 
@@ -163,7 +164,12 @@ public class ContentController {
     @GetMapping("/edit-wish")
     public String editWish(@RequestParam("wish_id") int wishID,
                            @RequestParam("list_id") int listID,
+                           HttpSession session,
                            Model model){
+
+        if (!isUserLoggedIn(session)){
+            return "redirect:/login";
+        }
 
         Wishlist wishList = wishListRepo.getWishlistById(listID);
         Wish wish = wishRepo.getWishById(wishID);

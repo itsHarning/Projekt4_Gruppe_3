@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Rediger ønske</title>
 
-  <link rel="stylesheet" href="/css/profile.css">
-  <link rel="stylesheet" href="/css/style.css">
-
 </head>
 
+
+
 <body>
+
 <div class="container">
+
   <div class="form-container">
     <h2>Opdater ønske</h2>
     <form th:action="@{/saveEditWish}" method="post">
-      <input type="hidden" name="wish_id" th:value="${wish.getWishId()}" />
-      <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
+      <input type="hidden" name="wish_id" th:value="${wish.wishId}" />
+      <input type="hidden" name="list_id" th:value="${wishList.listId}" />
 
-      <label for="wish-name">Brand:</label>
-      <input type="text" id="wish-name" name="wish-name" placeholder="Produktnavn:" th:value="${wish.wishName}" required>
+      <label for="wish_name">Navn:</label>
+      <input type="text" id="wish_name" name="wish_name" placeholder="Produktnavn:" th:value="${wish.wishName}" required>
 
       <label for="price">Pris:</label>
-      <input type="number" id="price" name="price" placeholder="Pris:" th:value="${wish.getPrice()}" required>
+      <input type="number" id="price" name="price" placeholder="Pris:" th:value="${wish.price}" required>
 
       <label for="wish_description">Beskrivelse:</label>
-      <input type="text" id="wish_description" name="wish_description" placeholder="Beskrivelse:" th:value="${wish.getDescription()}" required>
+      <input type="text" id="wish_description" name="wish_description" placeholder="Beskrivelse:" th:value="${wish.description}" required>
 
       <label for="quantity">Mængde:</label>
-      <input type="number" id="quantity" name="quantity" placeholder="Indtast mængde" th:value="${wish.getQuantity()}" required>
+      <input type="number" id="quantity" name="quantity" placeholder="Indtast mængde" th:value="${wish.quantity}" required>
 
       <label for="priority">Prioritet:</label>
-      <input type="number" id="priority" name="priority" placeholder="Indtast prioritet" th:value="${wish.getPriority()}" required>
+      <input type="number" id="priority" name="priority" placeholder="Indtast prioritet" th:value="${wish.priority}" required>
 
-      <input type="hidden" name="booked_by" th:value="${wish.getBookedBy()}" />
-      <input type="hidden" name="booked_status" th:value="${wish.getBookedStatus()}" />
+      <input type="hidden" name="booked_by" th:value="${wish.bookedBy}" />
+      <input type="hidden" name="booked_status" th:value="${wish.bookedStatus}" />
 
       <label for="wish_image">Billede:</label>
-      <input type="text" id="wish_image" name="wish_image" placeholder="Indtast URL" th:value="${wish.getImage()}" required>
+      <input type="text" id="wish_image" name="wish_image" placeholder="Indtast URL" th:value="${wish.image}" required>
 
       <label for="link">Link:</label>
-      <input type="text" id="link" name="link" placeholder="Indtast link" th:value="${wish.getLink()}" required>
+      <input type="text" id="link" name="link" placeholder="Indtast link" th:value="${wish.link}" required>
 
 
       <button type="submit">Opdater ønske</button>
