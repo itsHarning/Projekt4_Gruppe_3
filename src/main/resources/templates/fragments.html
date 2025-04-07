@@ -41,12 +41,12 @@
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/login}" method="post">
                     <div class="input-field">
-                        <input class="input" type="text" id="email" required>
-                        <label for="email">E-mail</label>
+                        <input class="input" type="text" id="login-email" name="login-email" required>
+                        <label for="login-email">E-mail</label>
                     </div>
                     <div class="input-field">
-                        <input class="input" type="password" id="password" required>
-                        <label for="password">Kodeord</label>
+                        <input class="input" type="password" id="login-password" name="login-password" required>
+                        <label for="login-password">Kodeord</label>
                     </div>
                     <a href="#" class="forgot-password">Glemt kodeord?</a>
                     <button class="button" type="submit">Log ind</button>
@@ -66,11 +66,15 @@
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/getCreateUser}" method="post">
                     <div class="input-field">
-                        <input class="input" type="text" id="create-email" required>
-                        <label for="create-email">Skriv din email</label>
+                        <input class="input" type="text" id="create-email" name="create-email" required>
+                        <label for="create-email">Indtast e-mail</label>
                     </div>
                     <div class="input-field">
-                        <input class="input" type="password" id="create-password" required>
+                        <input class="input" type="text" id="create-name" name="create-name" required>
+                        <label for="create-name">Indtast navn</label>
+                    </div>
+                    <div class="input-field">
+                        <input class="input" type="password" id="create-password" name="create-password" required>
                         <label for="create-password">Opret kodeord</label>
                     </div>
                     <div class="policy-text">

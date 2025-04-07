@@ -33,10 +33,9 @@ public class UserController {
 
 
     @PostMapping("/getCreateUser")
-    public String getCreateUser(@RequestParam String email,
-                              @RequestParam String fullName,
-                              @RequestParam String password,
-                              @RequestParam String img) {
+    public String getCreateUser(@RequestParam("create-email") String email,
+                              @RequestParam("create-name") String name,
+                              @RequestParam("create-password") String password) {
 
         String sql = "SELECT * FROM `user` WHERE email = ?";
 
@@ -67,7 +66,7 @@ public class UserController {
 
     @GetMapping("/getUpdateUser")
     public String getUpdateUser(@RequestParam ("id") int id, Model model) {
-        User user = (User) userRepo.getUserById(id);
+        User user = userRepo.getUserById(id);
         model.addAttribute("user", user);
 
         return "updateUser";
@@ -86,8 +85,8 @@ public class UserController {
     }
 
 
-    @GetMapping("/getfullName")
-    public String getfullName(Model model) {
+    @GetMapping("/getFullName")
+    public String getFullName(Model model) {
         User user = new User();
 
         user.getFullName();

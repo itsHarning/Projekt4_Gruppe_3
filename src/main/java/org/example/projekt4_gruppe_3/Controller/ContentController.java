@@ -43,8 +43,8 @@ public class ContentController {
 
     @PostMapping("/login")
     public String processLogin(
-            @RequestParam("email") String email,
-            @RequestParam("password") String password,
+            @RequestParam("login-email") String email,
+            @RequestParam("login-password") String password,
             HttpSession session,
             org.springframework.ui.Model model) {
 
