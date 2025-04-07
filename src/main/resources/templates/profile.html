@@ -90,42 +90,11 @@
 
                 </form>
             </div>
-    </body>
 
 
 
             </div>
 
-        <div class="popup-content">
-            <span id="closeBtn" class="close-btn"></span>
-            <h2>Create wishlist</h2>
-            <form class="wishlistForm" th:action="@{/saveUpdateWishList}" method="post">
-
-                <label for="name">Wishlist name</label>
-                <input type="text" id="name" name="name" placeholder="Enter wishlisht name" required>
-
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" placeholder="Enter description" required>
-
-                <label for="updatedAt">updatedAt</label>
-                <input type="date" id="updatedAt" name="updatedAt" placeholder="Enter date" required>
-
-                <label for="img">Image</label>
-                <input type="text" id="img" name="img" placeholder="choose image" required>
-
-                <button type="submit">Create wishlist</button>
-
-            </form>
-        </div>
-        </div>
-    <!--
-    <div class="backGroundColor-div" th:each="Wishlist:${user}">
-        <span th:text="${Wishlist}"></span>
-
-
-
-    </div>
-    -->
 
     <script th:inline="javascript">
         function copyToClipboard(text) {
