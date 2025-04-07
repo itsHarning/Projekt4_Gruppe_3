@@ -127,15 +127,13 @@ h1, h2 {
 }
 
 .login .form-details {
-    background: url("../images/Placeholder.jpg") center;
+    background: url("../images/signup.png") center;
     background-size: cover;
-    background-position: center;
 }
 
 .signup .form-details {
-    background: url("../images/Placeholder.jpg") center;
+    background: url("../images/login.png") center;
     background-size: cover;
-    background-position: center;
 }
 
 .form-box h2 {

@@ -26,8 +26,9 @@ CREATE TABLE wishlist(
 );
 
 INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, list_image, user_id) VALUES
-                                                          ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1),
+                                                    ('fødselsdags', 'mine fødselsdags gaver', '2000-12-30','Placeholder.jpg', 1),
                                                     ('juleønsker', 'mine juleaftens ønsker', '2000-12-30','Placeholder.jpg', 2);
+
 CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,
     wish_name              VARCHAR(50) NOT NULL,

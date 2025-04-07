@@ -93,7 +93,7 @@ public class ContentController {
 
     @GetMapping("/")
     public String homePage(){
-        return "home-page";
+        return "index";
     }
 
     @GetMapping("/ShowMyWishesPage")
