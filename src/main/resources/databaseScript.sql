@@ -11,8 +11,7 @@ CREATE TABLE user(
 );
 
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
-                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg'),
-                                                   ('julius@test.dk', 'Julius test', '1234', 'Placeholder.jpg');
+                                                   ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'Placeholder.jpg');
 
 CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,

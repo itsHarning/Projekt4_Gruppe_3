@@ -41,6 +41,7 @@ public class WishlistController {
         wishlists = wishlistRepo.getWhishlistsByUserId(userObj.getUserId());
 
         User loggedInUser = (User) session.getAttribute("loggedInUser");
+        model.addAttribute("profilePicture",loggedInUser.getProfilePicture());
         model.addAttribute("username", loggedInUser.getFullName());
         model.addAttribute("wishlists", wishlists);
 

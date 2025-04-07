@@ -17,7 +17,7 @@
     <h1>Velkommen til din ønskeliste</h1>
 
     <div>
-        <img th:src="${user.getProfilePicture()}" alt="img">
+        <img th:src="@{'/static/images/' + ${profilePicture}}" alt="Profile Picture">
         <div class="username" th:text="${username}"></div>
     </div>
 
