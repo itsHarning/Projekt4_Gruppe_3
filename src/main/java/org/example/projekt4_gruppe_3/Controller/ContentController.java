@@ -95,7 +95,7 @@ public class ContentController {
         return "index";
     }
 
-    @GetMapping("/ShowMyWishesPage")
+    @GetMapping("/show-my-wishes-page")
     public String showMyWishesPage(@RequestParam("list_id") int list_id,
                                 Model model){
 
@@ -108,7 +108,7 @@ public class ContentController {
         return "show-my-wishes-page";
     }
 
-    @GetMapping("/UpdateMyWishesPage")
+    @GetMapping("/update-my-wishes-page")
     public String updateMyWishesPage(@RequestParam("list_id") int list_id,
                                    HttpSession session,
                                    Model model){
@@ -148,7 +148,7 @@ public class ContentController {
          listID);
         wishRepo.saveWish(wish);
 
-        return "redirect:/UpdateMyWishesPage?list_id="+listID;
+        return "redirect:/update-my-wishes-page?list_id="+listID;
     }
 
     @PostMapping("/deleteWish")
@@ -158,7 +158,7 @@ public class ContentController {
 
         wishRepo.deleteWishById(wishID);
 
-        return "redirect:/UpdateMyWishesPage?list_id="+listID;
+        return "redirect:/update-my-wishes-page?list_id="+listID;
     }
 
     @GetMapping("/edit-wish")
@@ -202,7 +202,7 @@ public class ContentController {
          bookedStatus,  priority,
          link, listID);
         wishRepo.updateWish(wish);
-        return "redirect:/UpdateMyWishesPage?list_id="+listID;
+        return "redirect:/update-my-wishes-page?list_id="+listID;
     }
 
     @GetMapping("wishlists")
