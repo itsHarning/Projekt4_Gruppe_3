@@ -51,6 +51,7 @@
     width: 200px;
     text-align: left;
     float: left;
+    padding-top: 10px;
 }
 input{
     display: inline-block;
@@ -59,7 +60,16 @@ input{
     border-radius: 3px;
     border: 1px solid #717171;
     font-size: 0.95rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
 }
 .form-box{
     padding: 10%;
+}
+input .input-field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
 }
