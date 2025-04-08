@@ -1,10 +1,19 @@
 .banner-container {
+    display: flex;
+    flex-direction: column;
     background: url("../images/banner.png") center;
     background-size: cover;
     height: 576px;
-    margin-top: -27px;
+    color: white;
+    margin-top: 70px;
 }
 
 .banner-container h1 {
     color: white;
+    background-color: black;
+    margin-bottom: 0;
+}
+
+.banner-container p {
+    margin-top: 0;
 }

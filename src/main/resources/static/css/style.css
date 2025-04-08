@@ -41,10 +41,12 @@ h1, h2 {
     padding-right: 5%;
 }
 
-#header {
-    position: sticky;
+#header-default, #header-logged-in {
+    position: fixed;
     z-index: 100;
     top: 0;
+    left: 0;
+    right: 0;
 }
 
 .navbar {

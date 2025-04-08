@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Velkommen til Wishify</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="../static/css/indexStyle.css" th:href="@{/css/indexStyle.css}" rel="stylesheet">
+    <link th:href="@{/css/indexStyle.css}" rel="stylesheet">
     <script type="text/javascript" th:src="@{/script.js}" defer></script>
 </head>
 <body>
@@ -14,7 +14,10 @@
 <div th:replace="~{fragments.html :: form-popup}"></div>
 
 <div class="banner-container">
-    <h1> Velkommen til Wishify – Din personlige ønskeliste! </h1>
+    <h1>Velkommen til Wishify – Din personlige ønskeliste!</h1>
+    <p>
+        Wishify er dit all-in-one værktøj til at gemme og dele ønsker med familie og venner
+    </p>
 </div>
 
 <div class="body-text">

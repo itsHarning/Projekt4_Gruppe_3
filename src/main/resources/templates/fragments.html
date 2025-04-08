@@ -9,7 +9,7 @@
 <!-- Filen bruges til at implementere header og footer vha. Thymeleaf -->
 
 <!-- Header for when not logged in -->
-<div th:fragment="headerNotLoggedIn">
+<div id="header-default" th:fragment="headerNotLoggedIn">
     <div class="navbar">
         <div class="logo">
         </div>
@@ -26,7 +26,7 @@
 </div>
 
 <!-- Header for when logged in -->
-<div th:fragment="headerLoggedIn">
+<div id="header-logged-in" th:fragment="headerLoggedIn">
     <div class="navbar">
         <div class="logo">
         </div>
