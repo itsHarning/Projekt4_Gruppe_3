@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -36,7 +37,7 @@ public class UserController {
     public String getCreateUser(@RequestParam("create-email") String email,
                               @RequestParam("create-name") String name,
                               @RequestParam("create-password") String password,
-                                Model model) {
+                                RedirectAttributes redirectAttributes) {
 
         String sql = "SELECT * FROM `user` WHERE email = ?";
 
@@ -52,7 +53,7 @@ public class UserController {
                     return "redirect:/";
                 }
                 else { //Viser registrationError hvis mailen eksisterer. Se linje 96 i fragments
-                    model.addAttribute("registrationError", "Denne email er allerede tilknyttet en bruger");
+                    redirectAttributes.addFlashAttribute("registrationError", "Denne email er allerede tilknyttet en bruger");
                     return "redirect:/";
                 }
             } catch (SQLException e){

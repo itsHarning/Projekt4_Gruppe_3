@@ -37,7 +37,14 @@
       <input type="hidden" name="booked_status" th:value="${wish.bookedStatus}" />
 
       <label for="wish_image">Billede:</label>
-      <input type="text" id="wish_image" name="wish_image" placeholder="Indtast URL" th:value="${wish.image}" required>
+      <select id="wish_image" name="wish_image" required>
+        <option value="">Vælg et billede</option>
+        <option value="gave.jpg">Gave1</option>
+        <option value="Blågave.jpg">Gave2</option>
+        <option value="hund.webp">Gave3</option>
+        <option value="pony.jpg">Gave4</option>
+        <option value="stich lego.png">Gave5</option>
+      </select> <br> <br>
 
       <label for="link">Link:</label>
       <input type="text" id="link" name="link" placeholder="Indtast link" th:value="${wish.link}" required>

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -43,7 +44,7 @@ public class ContentController {
             @RequestParam("login-email") String email,
             @RequestParam("login-password") String password,
             HttpSession session,
-            org.springframework.ui.Model model) {
+            RedirectAttributes redirectAttributes) {
 
         String sql = "SELECT * FROM `user` WHERE email = ?";
 
@@ -65,11 +66,11 @@ public class ContentController {
 
                          return "redirect:/Profile";
                      } else { // Hvis ikke den kan validere loginet, bliver "error"-model displayet
-                        model.addAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
+                        redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
                         return "redirect:/";
                      }
                  } else {
-                     model.addAttribute("error", "Ugyldig email eller kode");
+                     redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode");
                      return "redirect:/";
                  }
                  }
@@ -77,7 +78,7 @@ public class ContentController {
 
             catch (SQLException e){
                 e.printStackTrace();
-                model.addAttribute("error", "Database fejl:" +e.getMessage());
+                redirectAttributes.addFlashAttribute("error", "Database fejl:" +e.getMessage());
             }
             return "redirect:/Profile";
         }
