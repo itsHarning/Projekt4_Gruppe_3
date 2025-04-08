@@ -45,6 +45,16 @@ h1, h2 {
     padding-bottom: 70px;
 }
 
+.logo {
+    display: flex;
+    margin: auto;
+    margin-left: 50px;
+}
+
+.logo img {
+    height: 50px;
+}
+
 #header-default, #header-logged-in {
     position: fixed;
     z-index: 100;
@@ -103,6 +113,7 @@ h1, h2 {
     color: #fff;
     background: #00bcd4;
     border-radius: 3px;
+    cursor: pointer;
     transition: 0.2s ease;
 }
 
@@ -122,6 +133,10 @@ h1, h2 {
     line-height: 40px;
     margin: auto;
     margin-right: 5px;
+}
+
+.navbar a.profile-btn:hover {
+    background-color: #0097a7;
 }
 
 .blur-bg-overlay {
@@ -272,6 +287,7 @@ form button {
     margin: 25px 0;
     color: #fff;
     background: #00bcd4;
+    cursor: pointer;
     transition: 0.2s ease;
 }
 

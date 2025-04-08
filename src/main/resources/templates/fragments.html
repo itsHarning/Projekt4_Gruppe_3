@@ -14,6 +14,7 @@
     <div th:if="${session.loggedInUser}==null" id="header-default" th:fragment="headerNotLoggedIn">
         <div class="navbar">
             <div class="logo">
+                <img src="/images/wishify-text-logo.png" alt="wishify logo">
             </div>
             <div class="clickable">
                 <div class="link-container">
@@ -31,6 +32,7 @@
     <div th:if="${session.loggedInUser}!=null" id="header-logged-in" th:fragment="headerLoggedIn">
         <div class="navbar">
             <div class="logo">
+                <img src="/images/wishify-text-logo.png" alt="wishify logo">
             </div>
             <div class="clickable">
                 <div class="link-container">
@@ -50,7 +52,7 @@
 <div th:fragment="form-popup">
     <div class="blur-bg-overlay"></div>
     <div class="form-container">
-    <span class="close-btn material-symbols-rounded">close</span>
+    <span class="close-btn material-symbols-rounded">x</span>
         <div class="form-box login">
             <div class="form-details">
                 <h2>Velkommen Tilbage</h2>
