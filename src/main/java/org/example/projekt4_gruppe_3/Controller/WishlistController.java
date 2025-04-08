@@ -26,7 +26,7 @@ public class WishlistController {
     WishlistService wishlistService;
 
     @GetMapping("/Profile")
-    public String getWishlistById(Model model, HttpSession session) throws SQLException {
+    public String getAllWishlists(Model model, HttpSession session) throws SQLException {
 
         if (!isUserLoggedIn(session)){
             return "redirect:/";

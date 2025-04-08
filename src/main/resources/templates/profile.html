@@ -52,7 +52,7 @@
 
         <div class="wishlist-container">
             <div th:each="wishlist :${wishlists}" class="wishlist-item">
-                <form th:action="@{/getWishlistById}" method="get">
+                <form th:action="@{/getWishlist}" method="get">
                     <input type="hidden" name="list_id" th:value="${wishlist.listId}">
                     <button type="submit" th:href="@{/show-my-wishes-page.html}">
                         <div class="template-img">
