@@ -26,7 +26,7 @@ public class WishlistController {
     WishlistService wishlistService;
 
     @GetMapping("/Profile")
-    public String getAllWishlists(Model model, HttpSession session) throws SQLException {
+    public String getWishlistById(Model model, HttpSession session) throws SQLException {
 
         if (!isUserLoggedIn(session)){
             return "redirect:/";
@@ -76,17 +76,6 @@ public class WishlistController {
         return "redirect:/Profile";
     }
 
-    @GetMapping("getUpdateWishlist")
-    public String getUpdateWishlist(@RequestParam("id") int id, Model model, HttpSession session) {
-
-        if (!isUserLoggedIn(session)){
-            return "redirect:/";
-        }
-
-        Wishlist wishlist = wishlistRepo.getWishlistById(id);
-        model.addAttribute("wishlist", wishlist);
-        return "updateWishlist";
-    }
 
     @PostMapping("/saveUpdateWishlist")
     public String updateWishlist(@RequestParam("name") String name,
