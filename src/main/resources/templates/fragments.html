@@ -41,6 +41,7 @@
                 </div>
                 <div class="button-container">
                     <a class="profile-btn" th:href="@{/Profile}">PROFIL</a>
+                    <a class="signup-btn" th:href="@{/logout}">LOG UD</a>
                 </div>
             </div>
         </div>
@@ -61,6 +62,11 @@
             <div class="form-content">
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/login}" method="post">
+
+                    <div th:if="${error}">
+                        <p th:text="${error}"></p>
+                    </div>
+
                     <div class="input-field">
                         <input class="input" type="text" id="login-email" name="login-email" required>
                         <label for="login-email">E-mail</label>
@@ -86,6 +92,11 @@
             <div class="form-content">
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/getCreateUser}" method="post">
+
+                    <div th:if="${registrationError}">
+                        <p th:text="${registrationError}"></p>
+                    </div>
+
                     <div class="input-field">
                         <input class="input" type="text" id="create-email" name="create-email" required>
                         <label for="create-email">Indtast e-mail</label>

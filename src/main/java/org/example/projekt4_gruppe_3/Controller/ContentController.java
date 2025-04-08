@@ -64,13 +64,13 @@ public class ContentController {
                          session.setAttribute("loggedInUser", user);
 
                          return "redirect:/Profile";
-                     } else {
-                        model.addAttribute("error", "Ugyldig email eller kode");
-                        return "login";
+                     } else { // Hvis ikke den kan validere loginet, bliver "error"-model displayet
+                        model.addAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
+                        return "redirect:/";
                      }
                  } else {
                      model.addAttribute("error", "Ugyldig email eller kode");
-                     return "login";
+                     return "redirect:/";
                  }
                  }
              }
@@ -78,9 +78,17 @@ public class ContentController {
             catch (SQLException e){
                 e.printStackTrace();
                 model.addAttribute("error", "Database fejl:" +e.getMessage());
-                return "login";
             }
+            return "redirect:/Profile";
         }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+
+        return "redirect:/";
+    }
+
 
     @GetMapping("/register")
     public String register(){

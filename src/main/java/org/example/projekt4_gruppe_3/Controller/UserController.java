@@ -35,7 +35,8 @@ public class UserController {
     @PostMapping("/getCreateUser")
     public String getCreateUser(@RequestParam("create-email") String email,
                               @RequestParam("create-name") String name,
-                              @RequestParam("create-password") String password) {
+                              @RequestParam("create-password") String password,
+                                Model model) {
 
         String sql = "SELECT * FROM `user` WHERE email = ?";
 
@@ -50,13 +51,13 @@ public class UserController {
 
                     return "redirect:/";
                 }
-                else {
-
-                    System.out.println("Brugeren findes allerede.");
-                    return "redirect:/register";
+                else { //Viser registrationError hvis mailen eksisterer. Se linje 96 i fragments
+                    model.addAttribute("registrationError", "Denne email er allerede tilknyttet en bruger");
+                    return "redirect:/";
                 }
             } catch (SQLException e){
                 e.printStackTrace();
+                return "redirect:/";
             }
         }  catch (SQLException e){
             e.printStackTrace();
