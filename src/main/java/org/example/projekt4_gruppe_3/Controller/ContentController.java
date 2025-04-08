@@ -107,6 +107,7 @@ public class ContentController {
 
         Wishlist wishList = wishListRepo.getWishlistById(list_id);
         ArrayList<Wish> wishes = wishRepo.getWishesByWishListID(list_id);
+        wishes.sort((wish1, wish2) -> Integer.compare(wish2.getPriority(), wish1.getPriority()));
 
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
@@ -125,6 +126,7 @@ public class ContentController {
 
         Wishlist wishList = wishListRepo.getWishlistById(list_id);
         ArrayList<Wish> wishes = wishRepo.getWishesByWishListID(list_id);
+        wishes.sort((wish1, wish2) -> Integer.compare(wish2.getPriority(), wish1.getPriority()));
 
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
