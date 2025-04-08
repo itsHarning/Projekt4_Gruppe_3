@@ -20,65 +20,67 @@
     <div class="profile_body">
         <h1>Mine ønskelister</h1>
         <br><br><br>
-    </div>
-</div>
 
-<div class="all-wishes">
-    <div class="wishlistForm" id="wishlistForm">
-        <h2>Create wishlist</h2>
-        <img src="/images/plus.jpg" alt="Add Wishlist">
-    </div>
+        <form th:action="@{/deleteWishlist}" method="post" class="modify-forms">
+            <input type="number" name="id" placeholder="Enter id to delete" required>
+            <button type="submit" class="delete_button">Delete</button>
+        </form>
 
-    <div id="wishlistModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Create Wishlist</h2>
-            <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishList}" method="post">
-                <label for="name">Wishlist name</label>
-                <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
+        <div class="wishlistForm" id="wishlistForm">
+            <h2>Create wishlist</h2>
+            <img src="/images/plus.jpg" alt="Add Wishlist">
 
-                <label for="description">Description</label>
-                <input type="text" id="description" name="description" placeholder="Enter description" required>
-
-                <label for="updatedAt">End Date</label>
-                <input type="date" id="updatedAt" name="updatedAt" required>
-
-                <label for="img">Image</label>
-                <input type="text" id="img" name="img" placeholder="Choose image" required>
-
-                <button type="submit">Create wishlist</button>
-            </form>
         </div>
-    </div>
 
-    <div class="wishlist-container">
-        <div th:each="wishlist :${wishlists}" class="wishlist-item">
-            <form th:action="@{/getWishlist}" method="get">
-                <input type="hidden" name="list_id" th:value="${wishlist.listId}">
-                <button type="submit" th:href="@{/show-my-wishes-page.html}">
-                    <div class="template-img">
-                        <img src="/images/gave.jpg" alt="Wishlist Image">
-                    </div>
-                    <label>Wishlist id:</label>
-                    <span th:text="${wishlist.listId}" id="list_id">ID</span>
+        <div id="wishlistModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create Wishlist</h2>
+                <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishList}" method="post">
+                    <label for="name">Wishlist name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
+
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" placeholder="Enter description" required>
+
+                    <label for="updatedAt">End Date</label>
+                    <input type="date" id="updatedAt" name="updatedAt" required>
+
+                    <button type="submit">Create wishlist</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Wishlist Items -->
+        <div class="wishlist-container">
+            <div th:each="wishlist :${wishlists}" class="wishlist-item">
+                <form th:action="@{/getWishlist}" method="get">
                     <input type="hidden" name="list_id" th:value="${wishlist.listId}">
-                    <div>
-                        <label>Wishlist name:</label>
-                        <span th:text="${wishlist.name}">Name</span>
-                    </div>
-                    <div>
-                        <label>Description:</label>
-                        <span th:text="${wishlist.description}">Description</span>
-                    </div>
-                    <div>
-                        <label>Last updated:</label>
-                        <span th:text="${wishlist.lastUpdated}">Last updated</span>
-                    </div>
-                </button>
-                <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
-                    Del ønskeliste
-                </button>
-            </form>
+                    <button type="submit" th:href="@{/show-my-wishes-page.html}">
+                        <div class="template-img">
+                            <img src="/images/gave.jpg" alt="Wishlist Image">
+                        </div>
+                        <label>Wishlist id:</label>
+                        <span th:text="${wishlist.listId}" id="list_id">ID</span>
+                        <input type="hidden" name="list_id" th:value="${wishlist.listId}">
+                        <div>
+                            <label>Wishlist name:</label>
+                            <span th:text="${wishlist.name}">Name</span>
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <span th:text="${wishlist.description}">Description</span>
+                        </div>
+                        <div>
+                            <label>Last updated:</label>
+                            <span th:text="${wishlist.lastUpdated}">Last updated</span>
+                        </div>
+                    </button>
+                    <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
+                        Del ønskeliste
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

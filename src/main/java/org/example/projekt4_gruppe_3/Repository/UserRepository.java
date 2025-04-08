@@ -17,31 +17,6 @@ public class UserRepository{
     @Autowired
     DataSource dataSource;
 
-    public ArrayList<User> getAllUsers() {
-        ArrayList<User> userList = new ArrayList<>();
-        String sql = "SELECT * FROM user";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery())  {
-
-            while (resultSet.next()) {
-                User user = new User(
-                        resultSet.getInt("id"),
-                        resultSet.getString("email"),
-                        resultSet.getString("full_name"),
-                        resultSet.getString("password"),
-                        resultSet.getString("profile_picture"));
-                userList.add(user);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return userList;
-    }
-
     public User getUserById (int id) {
         User user = new User();
         String sql = "SELECT * FROM user WHERE user_id = ?";

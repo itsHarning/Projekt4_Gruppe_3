@@ -73,7 +73,7 @@ public class WishlistController {
         }
 
         wishlistRepo.deleteWishlistById(id);
-        return "redirect:/";
+        return "redirect:/Profile";
     }
 
     @GetMapping("getUpdateWishlist")

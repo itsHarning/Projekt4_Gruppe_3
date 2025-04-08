@@ -16,7 +16,11 @@
 </h1>
 <div class="container">
   <div class="wishlist-description-container">
-    <img class="wishlist-image-container"  src="/images/gave.jpg" alt="Wishlist Image" />
+    <div>
+      <label></label>
+      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
+    </div>
+    <img class="wishlist-image-container"  th:src="@{'/images/' + ${wishList.getImage()}}" alt="Wishlist Image" />
   </div>
 
   <div class="create-wish-container">
