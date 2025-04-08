@@ -14,42 +14,60 @@
 <h1>
     <span th:text="${wishList.name}">Navn på ønskeliste</span>
 </h1>
-<div class="container">
-  <div class="wishlist-description-container">
-    <div>
-      <label></label>
-      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
-    </div>
-    <img class="wishlist-image-container"  th:src="@{'/images/' + ${wishList.getImage()}}" alt="Wishlist Image" />
+  <div class="wishForm" id="wishForm">
+    <h2>Create wish</h2>
+    <img src="/images/plus.jpg" alt="Add Wish">
+
   </div>
 
+  <div id="wishModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Create Wish</h2>
+      <form th:action="@{/saveUpdateMyWishes}" method="post">
+        <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
+
+        <label class="label-create"  for="wish_name">Navn:</label>
+        <input type="text" id="wish_name" name="wish_name" placeholder="Indtast produktnavn" required> <br> <br>
+
+        <label class="label-create"  for="price">Pris:</label>
+        <input type="text" id="price" name="price" placeholder="Indtast pris" required> <br> <br>
+
+        <label class="label-create" for="wish_description">Beskrivelse:</label>
+        <input type="text" id="wish_description" name="wish_description" placeholder="Indtast beskrivelse:"> <br> <br>
+
+        <label class="label-create" for="quantity">Mængde:</label>
+        <input type="text" id="quantity" name="quantity" placeholder="Indtast mængde:" th:value="1" required> <br> <br>
+
+        <label class="label-create" for="priority">Prioritet:</label>
+        <input type="text" id="priority" name="priority" placeholder="Indtast prioritet"> <br> <br>
+
+        <label class="label-create" for="wish_image">Billede:</label>
+        <input type="text" id="wish_image" name="wish_image" placeholder="Indsæt billede"> <br> <br>
+
+        <label class="label-create" for="link">Indsæt link:</label>
+        <input type="text" id="link" name="link" placeholder="Indtast link"> <br> <br>
+
+        <button type="submit">Gem ønske</button> <br>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="create-wish-container">
-    <form th:action="@{/saveUpdateMyWishes}" method="post">
-      <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
 
-      <label class="label-create"  for="wish_name">Navn:</label>
-      <input type="text" id="wish_name" name="wish_name" placeholder="Indtast produktnavn" required> <br> <br>
-
-      <label class="label-create"  for="price">Pris:</label>
-      <input type="text" id="price" name="price" placeholder="Indtast pris" required> <br> <br>
-
-      <label class="label-create" for="wish_description">Beskrivelse:</label>
-      <input type="text" id="wish_description" name="wish_description" placeholder="Indtast beskrivelse:"> <br> <br>
-
-      <label class="label-create" for="quantity">Mængde:</label>
-      <input type="text" id="quantity" name="quantity" placeholder="Indtast mængde:" th:value="1" required> <br> <br>
-
-      <label class="label-create" for="priority">Prioritet:</label>
-      <input type="text" id="priority" name="priority" placeholder="Indtast prioritet"> <br> <br>
-
-      <label class="label-create" for="wish_image">Billede:</label>
-      <input type="text" id="wish_image" name="wish_image" placeholder="Indsæt billede"> <br> <br>
-
-      <label class="label-create" for="link">Indsæt link:</label>
-      <input type="text" id="link" name="link" placeholder="Indtast link"> <br> <br>
-
-      <button type="submit">Gem ønske</button> <br>
-    </form>
   </div>
 
   <div class="wish-container">
@@ -91,6 +109,38 @@
 
 </div>
   <a th:href="@{/}">Tilbage</a>
-</div>
+
+<script th:inline="javascript">
+  function copyToClipboard(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+              .then(() => {
+                alert('Link kopieret til udklipsholder!');
+              });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const wishForm = document.getElementById('wishForm');
+    const wishModal = document.getElementById('wishModal');
+    const closeModal = document.getElementsByClassName('close')[0];
+
+    wishForm.addEventListener('click', function() {
+      wishModal.style.display = 'block';
+      console.log('Wish form clicked');
+    });
+
+    closeModal.addEventListener('click', function() {
+      wishModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target === wishModal) {
+        wishModal.style.display = 'none';
+      }
+    });
+  });
+</script>
 </body>
 </html>
+
