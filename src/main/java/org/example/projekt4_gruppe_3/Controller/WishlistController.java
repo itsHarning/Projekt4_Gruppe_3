@@ -88,7 +88,7 @@ public class WishlistController {
         return "updateWishlist";
     }
 
-    @PostMapping("/saveUpdateWishList")
+    @PostMapping("/saveUpdateWishlist")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
                                  //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)

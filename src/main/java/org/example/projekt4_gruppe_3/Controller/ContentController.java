@@ -28,9 +28,6 @@ public class ContentController {
     DataSource dataSource;
 
     @Autowired
-    UserRepository userRepo;
-
-    @Autowired
     WishRepository wishRepo;
 
     @Autowired

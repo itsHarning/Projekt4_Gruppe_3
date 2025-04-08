@@ -20,16 +20,14 @@
     <div class="profile_body">
         <h1>Mine ønskelister</h1>
         <br><br><br>
-
-        <form th:action="@{/deleteWishlist}" method="post" class="modify-forms">
-            <input type="number" name="id" placeholder="Enter id to delete" required>
-            <button type="submit" class="delete_button">Delete</button>
-        </form>
+            <form th:action="@{/deleteWishlist}" method="post" class="modify-forms">
+                <input type="number" name="id" placeholder="Enter id to delete" required>
+                <button type="submit" class="delete_button">Delete</button>
+            </form>
 
         <div class="wishlistForm" id="wishlistForm">
             <h2>Create wishlist</h2>
             <img src="/images/plus.jpg" alt="Add Wishlist">
-
         </div>
 
         <div id="wishlistModal" class="modal">
@@ -51,7 +49,7 @@
             </div>
         </div>
 
-        <!-- Wishlist Items -->
+
         <div class="wishlist-container">
             <div th:each="wishlist :${wishlists}" class="wishlist-item">
                 <form th:action="@{/getWishlist}" method="get">

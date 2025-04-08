@@ -2,9 +2,21 @@
     max-width: 100%;
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: space-between; /* Space between items */
+    justify-content: flex-start; /* Space between items */
     gap: 20px; /* Space between wishlist items */
     margin: 20px;
+}
+
+.square{
+    width: 100%;
+    max-width: 20%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .wish-image-container{

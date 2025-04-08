@@ -35,8 +35,6 @@ public class WishlistRepository {
                     wishlist.setName(resultSet.getString("list_name"));
                     wishlist.setDescription(resultSet.getString("list_description"));
                     wishlist.setLastUpdated(resultSet.getDate("last_updated"));
-                    wishlist.setImage(resultSet.getString("list_image"));
-                    //Line 74
                     wishlist.setUser(userRepo.getUserById(resultSet.getInt("user_id")));
                 }
             }
@@ -58,24 +56,7 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
-    /* Måske ikke nødvendig
-    public void updateWishlist (Wishlist wishlist) {
-        String sql = "UPDATE wishlist SET list_name = ?, list_description = ?, last_updated = ?, list_image = ? WHERE list_id = ?";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, wishlist.getName());
-            statement.setString(2, wishlist.getDescription());
-            statement.setDate(3, wishlist.getLastUpdated());
-            statement.setString(4, wishlist.getImage());
-            statement.setInt(5, wishlist.getListId());
-
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    */
     public void createWishlist (Wishlist wishlist) {
         String sql = "INSERT INTO wishlist (list_name, list_description, last_updated, user_id) VALUES (?,?,?,?)";
 
@@ -91,7 +72,6 @@ public class WishlistRepository {
             e.printStackTrace();
         }
     }
-
 
     public ArrayList<Wishlist> getWishlistsByUserId(int userId) throws SQLException {
         ArrayList<Wishlist> wishlists =new ArrayList<>();
