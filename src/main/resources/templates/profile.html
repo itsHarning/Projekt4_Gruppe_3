@@ -7,7 +7,9 @@
 </head>
 <body class="profile">
 
-<header th:replace="fragments.html :: headerLoggedIn"> </header>
+<div th:if="${session.loggedInUser}!=null">
+    <header th:replace="fragments.html :: headerLoggedIn"> </header>
+</div>
 
 <h1>Velkommen til din ønskeliste</h1>
 
