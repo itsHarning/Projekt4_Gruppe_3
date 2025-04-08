@@ -4,12 +4,13 @@ const formPopup = document.querySelector(".form-container")
 const hidePopupBtn = document.querySelector(".form-container .close-btn")
 const loginSignupLink = document.querySelectorAll(".form-box .bottom-link a")
 
-// show form popup
+// show login popup
 showPopupBtn.addEventListener("click", () => {
     formPopup.classList.remove("show-signup")
     document.body.classList.toggle("show-popup")
 });
 
+// show sign up popup
 showSignupBtn.addEventListener("click", () => {
     formPopup.classList.add("show-signup")
     document.body.classList.toggle("show-popup")

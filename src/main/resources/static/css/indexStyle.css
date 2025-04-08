@@ -3,13 +3,13 @@
     flex-direction: column;
     background: url("../images/banner.png") center;
     background-size: cover;
-    height: 576px;
+    height: 500px;
     color: white;
 }
 
 .banner-container h1 {
     color: white;
-    background-color: black;
+    margin-top: 75px;
     margin-bottom: 0;
 }
 
