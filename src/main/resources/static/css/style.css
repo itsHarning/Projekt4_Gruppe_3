@@ -41,6 +41,10 @@ h1, h2 {
     padding-right: 5%;
 }
 
+.navbar-blank-box{
+    padding-bottom: 70px;
+}
+
 #header-default, #header-logged-in {
     position: fixed;
     z-index: 100;

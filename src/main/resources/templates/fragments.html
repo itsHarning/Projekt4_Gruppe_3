@@ -9,37 +9,40 @@
 <!-- Filen bruges til at implementere header og footer vha. Thymeleaf -->
 
 <!-- Header for when not logged in -->
-<div id="header-default" th:fragment="headerNotLoggedIn">
-    <div class="navbar">
-        <div class="logo">
-        </div>
-        <div class="clickable">
-            <div class="link-container">
-                <a id="HomePage" th:href="@{/}">FORSIDE</a>
+<div id="navbar" th:fragment="navbar">
+    <div th:if="${session.loggedInUser}==null" id="header-default" th:fragment="headerNotLoggedIn">
+        <div class="navbar">
+            <div class="logo">
             </div>
-            <div class="button-container">
-                <button class="login-btn">LOG IND</button>
-                <button class="signup-btn">OPRET</button>
+            <div class="clickable">
+                <div class="link-container">
+                    <a id="HomePage" th:href="@{/}">FORSIDE</a>
+                </div>
+                <div class="button-container">
+                    <button class="login-btn">LOG IND</button>
+                    <button class="signup-btn">OPRET</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Header for when logged in -->
-<div id="header-logged-in" th:fragment="headerLoggedIn">
-    <div class="navbar">
-        <div class="logo">
-        </div>
-        <div class="clickable">
-            <div class="link-container">
-                <a id="Home Page" th:href="@{/}">FORSIDE</a>
-                <a id="Wishlists" th:href="@{/wishlist}">ØNSKELISTER</a>
+    <!-- Header for when logged in -->
+    <div th:if="${session.loggedInUser}!=null" id="header-logged-in" th:fragment="headerLoggedIn">
+        <div class="navbar">
+            <div class="logo">
             </div>
-            <div class="button-container">
-                <button class="profile-btn" th:href="@{/Profile}">PROFIL</button>
+            <div class="clickable">
+                <div class="link-container">
+                    <a id="Home Page" th:href="@{/}">FORSIDE</a>
+                    <a id="Wishlists" th:href="@{/wishlist}">ØNSKELISTER</a>
+                </div>
+                <div class="button-container">
+                    <button class="profile-btn" th:href="@{/Profile}">PROFIL</button>
+                </div>
             </div>
         </div>
     </div>
+    <div class="navbar-blank-box"></div>
 </div>
 
 <!-- Login popup -->

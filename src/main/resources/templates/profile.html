@@ -6,10 +6,7 @@
     <link rel="stylesheet" href="/css/wishlistStyle.css">
 </head>
 <body class="profile">
-
-<div th:if="${session.loggedInUser}!=null">
-    <header th:replace="fragments.html :: headerLoggedIn"> </header>
-</div>
+<header th:replace="~{fragments.html :: navbar}"> </header>
 
 <h1>Velkommen til din ønskeliste</h1>
 
