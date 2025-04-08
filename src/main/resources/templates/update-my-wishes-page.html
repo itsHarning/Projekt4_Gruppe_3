@@ -11,12 +11,11 @@
 <!-- Mangler styling og oprettelse af div klasser!-->
 
 <body>
+<h1>
+    <span th:text="${wishList.name}">Navn på ønskeliste</span>
+</h1>
 <div class="container">
   <div class="wishlist-description-container">
-    <div>
-      <label></label>
-      <span th:text="${wishList.getName()}">Navn på ønskeliste</span>
-    </div>
     <img class="wishlist-image-container"  src="/images/gave.jpg" alt="Wishlist Image" />
   </div>
 
@@ -24,28 +23,28 @@
     <form th:action="@{/saveUpdateMyWishes}" method="post">
       <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
 
-      <label for="wish_name">Navn:</label>
-      <input type="text" id="wish_name" name="wish_name" placeholder="Indtast produktnavn" required>
+      <label class="label-create"  for="wish_name">Navn:</label>
+      <input type="text" id="wish_name" name="wish_name" placeholder="Indtast produktnavn" required> <br> <br>
 
-      <label for="price">Pris:</label>
-      <input type="text" id="price" name="price" placeholder="Indtast pris" required>
+      <label class="label-create"  for="price">Pris:</label>
+      <input type="text" id="price" name="price" placeholder="Indtast pris" required> <br> <br>
 
-      <label for="wish_description">Beskrivelse:</label>
-      <input type="text" id="wish_description" name="wish_description" placeholder="Indtast beskrivelse:">
+      <label class="label-create" for="wish_description">Beskrivelse:</label>
+      <input type="text" id="wish_description" name="wish_description" placeholder="Indtast beskrivelse:"> <br> <br>
 
-      <label for="quantity">Mængde:</label>
-      <input type="text" id="quantity" name="quantity" placeholder="Indtast mængde:" th:value="1" required>
+      <label class="label-create" for="quantity">Mængde:</label>
+      <input type="text" id="quantity" name="quantity" placeholder="Indtast mængde:" th:value="1" required> <br> <br>
 
-      <label for="priority">Prioritet:</label>
-      <input type="text" id="priority" name="priority" placeholder="Indtast prioritet">
+      <label class="label-create" for="priority">Prioritet:</label>
+      <input type="text" id="priority" name="priority" placeholder="Indtast prioritet"> <br> <br>
 
-      <label for="wish_image">Billede:</label>
-      <input type="text" id="wish_image" name="wish_image" placeholder="Indsæt billede">
+      <label class="label-create" for="wish_image">Billede:</label>
+      <input type="text" id="wish_image" name="wish_image" placeholder="Indsæt billede"> <br> <br>
 
-      <label for="link">Indsæt link:</label>
-      <input type="text" id="link" name="link" placeholder="Indtast link">
+      <label class="label-create" for="link">Indsæt link:</label>
+      <input type="text" id="link" name="link" placeholder="Indtast link"> <br> <br>
 
-      <button type="submit">Gem ønske</button>
+      <button type="submit">Gem ønske</button> <br>
     </form>
   </div>
 
