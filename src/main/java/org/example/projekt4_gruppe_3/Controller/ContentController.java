@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpSession;
 import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
-import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +134,7 @@ public class ContentController {
         model.addAttribute("wishList", wishList);
         model.addAttribute("wishes", wishes);
 
-        return "update-my-wishes-page";
+        return "wishlist";
     }
 
     @PostMapping("/saveUpdateMyWishes")
