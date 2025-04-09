@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     DataSource dataSource;
 
-    @GetMapping("/get-delete-user")
+    @GetMapping("/getDeleteUser")
     public String getDeleteUser(Model model, int id) {
         userRepo.deleteUserById(id);
 
@@ -33,7 +33,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/get-create-user")
+    @PostMapping("/getCreateUser")
     public String getCreateUser(@RequestParam("create-email") String email,
                               @RequestParam("create-name") String name,
                               @RequestParam("create-password") String password,
@@ -66,16 +66,16 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/get-update-user")
+    @GetMapping("/getUpdateUser")
     public String getUpdateUser(@RequestParam ("id") int id, Model model) {
         User user = userRepo.getUserById(id);
         model.addAttribute("user", user);
 
-        return "update-user";
+        return "updateUser";
     }
 
 
-    @PostMapping("/save-update-my-wishes")
+    @PostMapping("/saveUpdateUser")
     public String saveUpdateUser(@RequestParam String email,
                                  @RequestParam String fullName,
                                  @RequestParam String password,
@@ -87,7 +87,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/get-full-name")
+    @GetMapping("/getFullName")
     public String getFullName(Model model) {
         User user = new User();
 

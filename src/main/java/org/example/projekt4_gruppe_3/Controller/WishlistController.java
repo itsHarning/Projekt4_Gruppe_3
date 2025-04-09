@@ -51,7 +51,7 @@ public class WishlistController {
         return session.getAttribute("loggedInUser") != null;
     }
 
-    @GetMapping("/get-wishlist")
+    @GetMapping("/getWishlist")
     public String getWishlist(@RequestParam("list_id") int id, Model model, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
@@ -65,7 +65,7 @@ public class WishlistController {
         return "redirect:/update-my-wishes-page?list_id="+id;
     }
 
-    @PostMapping("/delete-wishlist")
+    @PostMapping("/deleteWishlist")
     public String deleteWishlist(@RequestParam("id") int id, HttpSession session) {
 
         if (!isUserLoggedIn(session)){
@@ -77,7 +77,7 @@ public class WishlistController {
     }
 
 
-    @PostMapping("/save-update-my-wishes")
+    @PostMapping("/saveUpdateWishlist")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
                                  //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)

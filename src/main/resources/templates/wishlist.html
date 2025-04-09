@@ -21,7 +21,7 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Create Wish</h2>
-      <form th:action="@{/save-update-my-wishes}" method="post">
+      <form th:action="@{/saveUpdateMyWishes}" method="post">
         <input type="hidden" name="list_id" th:value="${wishList.getListId()}" />
 
         <label class="label-create"  for="wish_name">Navn:</label>
@@ -141,7 +141,7 @@
   </div>
 
 </div>
-  <a th:href="@{/profile}">Tilbage</a>
+  <a th:href="@{/Profile}">Tilbage</a>
 
 <script th:inline="javascript">
   function copyToClipboard(text) {

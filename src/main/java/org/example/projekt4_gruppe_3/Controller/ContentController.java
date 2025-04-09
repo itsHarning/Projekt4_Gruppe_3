@@ -137,7 +137,7 @@ public class ContentController {
         return "wishlist";
     }
 
-    @PostMapping("/save-update-my-wishes")
+    @PostMapping("/saveUpdateMyWishes")
     public String postUpdateMyWishes(
             @RequestParam("list_id") int listID,
             @RequestParam("wish_name") String wishName,
