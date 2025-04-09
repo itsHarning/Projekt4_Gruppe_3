@@ -25,14 +25,14 @@
             </form>
 
         <div class="wishlistForm" id="wishlistForm">
-            <h2>Create wishlist</h2>
+            <h2>Opret ønskeliste</h2>
             <img src="/images/plus.jpg" alt="Add Wishlist">
         </div>
 
         <div id="wishlistModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Create Wishlist</h2>
+                <h2>Opret ønskeliste</h2>
                 <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishlist}" method="post">
                     <label for="name">Wishlist name</label>
                     <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
@@ -57,20 +57,20 @@
                         <div class="template-img">
                             <img src="/images/gave.jpg" alt="Wishlist Image">
                         </div>
-                        <label>Wishlist id:</label>
+                        <label>Ønskeliste id:</label>
                         <span th:text="${wishlist.listId}" id="list_id">ID</span>
                         <input type="hidden" name="list_id" th:value="${wishlist.listId}">
                         <div>
-                            <label>Wishlist name:</label>
-                            <span th:text="${wishlist.name}">Name</span>
+                            <label>Ønskeliste navn:</label>
+                            <span th:text="${wishlist.name}">Navn</span>
                         </div>
                         <div>
-                            <label>Description:</label>
-                            <span th:text="${wishlist.description}">Description</span>
+                            <label>Beskrivelse:</label>
+                            <span th:text="${wishlist.description}">Beskrivelse</span>
                         </div>
                         <div>
-                            <label>Last updated:</label>
-                            <span th:text="${wishlist.lastUpdated}">Last updated</span>
+                            <label>Slut dato:</label>
+                            <span th:text="${wishlist.lastUpdated}">Slut dato</span>
                         </div>
                     </button>
                         <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
@@ -113,6 +113,6 @@
         });
     });
 </script>
-<div th:replace="~{fragments.html :: footer}"></div>
+<div th:replace="~{fragments.html :: footer}"></div>>
 </body>
 </html>
