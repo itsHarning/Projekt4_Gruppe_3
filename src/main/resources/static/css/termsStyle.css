@@ -1,0 +1,8 @@
+.big-container{
+    max-width: 100%;
+}
+
+.small-container li ul{
+    margin: 3%;
+}
+
