@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS wishify;
-CREATE DATABASE wishify;
-USE wishify;
+DROP DATABASE IF EXISTS wishify_db;
+CREATE DATABASE wishify_db;
+USE wishify_db;
 
 CREATE TABLE user(
     user_id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -50,5 +50,3 @@ INSERT INTO wish (wish_name, price, wish_description, quantity, priority, booked
         ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'Placeholder.jpg', 'www.bukser.com', 1),
         ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 1),
         ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 2);
-
-
