@@ -5,9 +5,11 @@
     <title>Brugervilkår</title>
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link th:href="@{/css.termsStyle.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/script.js}" defer></script>
 </head>
 <body>
-<header th:replace="~{fragments.html :: navbar}"> </header>
+<header th:replace="~{fragments.html :: navbar}"></header>
+<div th:replace="~{fragments.html :: form-popup}"></div>
 
 <div class="big-container">
     <div class="small-container">

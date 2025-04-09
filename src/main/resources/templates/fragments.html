@@ -94,7 +94,7 @@
                 <p>Lav venligt en ny bruger</p>
             </div>
             <div class="form-content">
-                <h2>Log ind</h2>
+                <h2>Opret dig</h2>
                 <form class="form-popup" th:action="@{/getCreateUser}" method="post">
 
                     <div th:if="${registrationError}">
@@ -117,7 +117,7 @@
                         <input type="checkbox" id="policy">
                         <label for="policy">
                             Jeg er enig med
-                            <a href="https://youtu.be/dQw4w9WgXcQ?si=pM8JZ_PQvq3KYev5">betingelsesvilkårene</a>
+                            <a th:href="@{/terms}">betingelsesvilkårene</a>
                         </label>
                     </div>
                     <button class="button" type="submit">Registrer bruger</button>
