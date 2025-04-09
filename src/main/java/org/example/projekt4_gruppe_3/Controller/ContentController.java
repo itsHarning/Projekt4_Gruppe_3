@@ -67,7 +67,7 @@ public class ContentController {
                          user.setProfilePicture(resultSet.getString("profile_picture"));
                          session.setAttribute("loggedInUser", user);
 
-                         return "redirect:/Profile";
+                         return "redirect:/profile";
                      } else { // Hvis ikke den kan validere loginet, bliver "error"-model displayet
                         redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
                         return "redirect:/";
@@ -83,7 +83,7 @@ public class ContentController {
                 e.printStackTrace();
                 redirectAttributes.addFlashAttribute("error", "Database fejl:" +e.getMessage());
             }
-            return "redirect:/Profile";
+            return "redirect:/profile";
         }
 
     @GetMapping("/logout")

@@ -25,7 +25,7 @@ public class WishlistController {
     @Autowired
     WishlistService wishlistService;
 
-    @GetMapping("/Profile")
+    @GetMapping("/profile")
     public String getAllWishlists(Model model, HttpSession session) throws SQLException {
 
         if (!isUserLoggedIn(session)){
@@ -73,7 +73,7 @@ public class WishlistController {
         }
 
         wishlistRepo.deleteWishlistById(id);
-        return "redirect:/Profile";
+        return "redirect:/profile";
     }
 
 
@@ -94,7 +94,7 @@ public class WishlistController {
 
         Wishlist wishlist = new Wishlist(name, description, sqlDate, (User) user);
         wishlistRepo.createWishlist(wishlist);
-        return "redirect:/Profile";
+        return "redirect:/profile";
     }
 
 
