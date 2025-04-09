@@ -1,5 +1,6 @@
 package org.example.projekt4_gruppe_3.Controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.projekt4_gruppe_3.Model.User;
 import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,50 @@ public class UserController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }
+
+    @PostMapping("/login")
+    public String processLogin(
+            @RequestParam("login-email") String email,
+            @RequestParam("login-password") String password,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        String sql = "SELECT * FROM `user` WHERE email = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()){ //Hvis denne kører, er brugeren fundet. Kodeord bliver valideret i de to næste linjer.
+                    String storedPassword = resultSet.getString("password");
+                    if (storedPassword.equals(password))
+                    {
+                        User user = new User();
+                        user.setUserId(resultSet.getInt("user_id"));
+                        user.setEmail(resultSet.getString("email"));
+                        user.setFullName(resultSet.getString("full_name"));
+                        user.setProfilePicture(resultSet.getString("profile_picture"));
+                        session.setAttribute("loggedInUser", user);
+
+                        return "redirect:/profile";
+                    } else { // Hvis ikke den kan validere loginet, bliver "error"-model displayet
+                        redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
+                        return "redirect:/";
+                    }
+                } else {
+                    redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode");
+                    return "redirect:/";
+                }
+            }
+        }
+
+        catch (SQLException e){
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Database fejl:" +e.getMessage());
+        }
+        return "redirect:/profile";
     }
 
     @GetMapping("/getUpdateUser")

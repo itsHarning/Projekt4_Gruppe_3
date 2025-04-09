@@ -37,55 +37,6 @@ public class ContentController {
     @Autowired
     WishlistRepository wishListRepo;
 
-    @GetMapping("/login")
-    public String loginPage(){
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String processLogin(
-            @RequestParam("login-email") String email,
-            @RequestParam("login-password") String password,
-            HttpSession session,
-            RedirectAttributes redirectAttributes) {
-
-        String sql = "SELECT * FROM `user` WHERE email = ?";
-
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)){
-             statement.setString(1, email);
-
-             try (ResultSet resultSet = statement.executeQuery()){
-                 if (resultSet.next()){ //Hvis denne kører, er brugeren fundet. Kodeord bliver valideret i de to næste linjer.
-                    String storedPassword = resultSet.getString("password");
-                    if (storedPassword.equals(password))
-                     {
-                         User user = new User();
-                         user.setUserId(resultSet.getInt("user_id"));
-                         user.setEmail(resultSet.getString("email"));
-                         user.setFullName(resultSet.getString("full_name"));
-                         user.setProfilePicture(resultSet.getString("profile_picture"));
-                         session.setAttribute("loggedInUser", user);
-
-                         return "redirect:/profile";
-                     } else { // Hvis ikke den kan validere loginet, bliver "error"-model displayet
-                        redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode"); //linje 66 i fragments
-                        return "redirect:/";
-                     }
-                 } else {
-                     redirectAttributes.addFlashAttribute("error", "Ugyldig email eller kode");
-                     return "redirect:/";
-                 }
-                 }
-             }
-
-            catch (SQLException e){
-                e.printStackTrace();
-                redirectAttributes.addFlashAttribute("error", "Database fejl:" +e.getMessage());
-            }
-            return "redirect:/profile";
-        }
-
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
@@ -96,10 +47,6 @@ public class ContentController {
     @GetMapping("/terms")
     public String terms(){
         return "terms-and-conditions";
-    }
-    @GetMapping("/register")
-    public String register(){
-        return "registration";
     }
 
     @GetMapping("/")
@@ -139,90 +86,6 @@ public class ContentController {
 
         return "wishlist";
     }
-
-    @PostMapping("/saveUpdateMyWishes")
-    public String postUpdateMyWishes(
-            @RequestParam("list_id") int listID,
-            @RequestParam("wish_name") String wishName,
-            @RequestParam("price") int price,
-            @RequestParam("wish_description") String description,
-            @RequestParam("quantity") int quantity,
-            @RequestParam("priority") int priority,
-            @RequestParam("wish_image") String image,
-            @RequestParam("link") String link) {
-
-
-        Wish wish = new Wish(wishName, description, price,
-         quantity,
-         image,
-         "null",
-         0,
-         priority,
-         link,
-         listID);
-        wishRepo.saveWish(wish);
-
-        return "redirect:/update-my-wishes-page?list_id="+listID;
-    }
-
-    @PostMapping("/deleteWish")
-    public String deleteWish(@RequestParam("wish_id") int wishID,
-                             @RequestParam("list_id") int listID,
-                             HttpSession session) throws SQLException {
-
-        wishRepo.deleteWishById(wishID);
-
-        return "redirect:/update-my-wishes-page?list_id="+listID;
-    }
-    //Response Entity is an extension of the HTTP class.
-    @GetMapping("/get-wish-details")
-    public ResponseEntity<Map<String, Object>> getWishDetails(@RequestParam("wish_id") int wishID,
-                                                              @RequestParam("list_id") int listID,
-                                                              HttpSession session) {
-        if (!isUserLoggedIn(session)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-        Wishlist wishList = wishListRepo.getWishlistById(listID);
-        Wish wish = wishRepo.getWishById(wishID);
-
-        //Had to create a map to retrieve the information, due to the information comming in via. a js.
-        //Notice the "fetch" in the js. line 190
-        Map<String, Object> wishDetails = new HashMap<>();
-        wishDetails.put("wishId", wish.getWishId());
-        wishDetails.put("wishName", wish.getWishName());
-        wishDetails.put("price", wish.getPrice());
-        wishDetails.put("description", wish.getDescription());
-        wishDetails.put("quantity", wish.getQuantity());
-        wishDetails.put("priority", wish.getPriority());
-        wishDetails.put("image", wish.getImage());
-        wishDetails.put("link", wish.getLink());
-
-        return ResponseEntity.ok(wishDetails);
-    }
-
-    @PostMapping("/saveEditWish")
-    public String postEditWish(
-            @RequestParam("list_id") int listID,
-            @RequestParam("wish_id") int wishID,
-            @RequestParam("wish_name") String wishName,
-            @RequestParam("price") int price,
-            @RequestParam("wish_description") String description,
-            @RequestParam("quantity") int quantity,
-            @RequestParam("priority") int priority,
-            @RequestParam("booked_by") String bookedBy,
-            @RequestParam("booked_status") int bookedStatus,
-            @RequestParam("wish_image") String image,
-            @RequestParam("link") String link) throws SQLException {
-
-        Wish wish = new Wish(wishID, wishName, description, price, quantity, image, bookedBy, bookedStatus, priority, link, listID);
-        wishRepo.updateWish(wish);
-        return "redirect:/update-my-wishes-page?list_id=" + listID;
-    }
-
-
-    @GetMapping("wishlists")
-    public String WishlistsPage(){return "WishlistsPage";}
 
     boolean isUserLoggedIn(HttpSession session) {
         return session.getAttribute("loggedInUser") != null;
