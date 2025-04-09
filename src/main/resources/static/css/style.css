@@ -51,6 +51,11 @@ h1, h2 {
     margin-left: 50px;
 }
 
+.navbar .logo a {
+    display: flex;
+    padding: 0;
+}
+
 .logo img {
     height: 50px;
 }

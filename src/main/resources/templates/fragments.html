@@ -11,10 +11,12 @@
 
 <!-- Header for when not logged in -->
 <div id="navbar" th:fragment="navbar">
-    <div th:if="${session.loggedInUser}==null" id="header-default" th:fragment="headerNotLoggedIn">
+    <div th:if="${session.loggedInUser} == null" id="header-default" th:fragment="headerNotLoggedIn">
         <div class="navbar">
             <div class="logo">
-                <img src="/images/wishify-text-logo.png" alt="wishify logo">
+                <a th:href="@{/}">
+                    <img src="/images/wishify-text-logo.png" alt="wishify logo">
+                </a>
             </div>
             <div class="clickable">
                 <div class="link-container">
@@ -29,10 +31,12 @@
     </div>
 
     <!-- Header for when logged in -->
-    <div th:if="${session.loggedInUser}!=null" id="header-logged-in" th:fragment="headerLoggedIn">
+    <div th:if="${session.loggedInUser}!= null" id="header-logged-in" th:fragment="headerLoggedIn">
         <div class="navbar">
             <div class="logo">
-                <img src="/images/wishify-text-logo.png" alt="wishify logo">
+                <a th:href="@{/}">
+                    <img src="/images/wishify-text-logo.png" alt="wishify logo">
+                </a>
             </div>
             <div class="clickable">
                 <div class="link-container">
