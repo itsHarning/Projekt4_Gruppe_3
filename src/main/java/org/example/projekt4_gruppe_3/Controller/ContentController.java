@@ -93,7 +93,10 @@ public class ContentController {
         return "redirect:/";
     }
 
-
+    @GetMapping("/terms")
+    public String terms(){
+        return "terms-and-conditions";
+    }
     @GetMapping("/register")
     public String register(){
         return "registration";
