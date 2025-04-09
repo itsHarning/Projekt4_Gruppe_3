@@ -100,7 +100,6 @@ public class WishlistRepository {
                             resultSet.getString("list_description"),
                             resultSet.getDate("last_updated"));
                             wishlists.add(wishlist);
-
                 }
             }
     }catch (SQLException e) {

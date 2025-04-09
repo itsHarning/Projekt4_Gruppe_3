@@ -15,10 +15,6 @@
         @Autowired
         DataSource dataSource;
 
-        @Autowired
-        WishlistRepository wishListRepo;
-
-
         public ArrayList<Wish> getAllWishes() {
             ArrayList<Wish> wishes = new ArrayList<>();
             String sql = "SELECT * FROM wish";
@@ -48,11 +44,9 @@
 
                     wishes.add(wish);
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
             return wishes;
         }
 
@@ -84,10 +78,8 @@
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
             return wishList;
         }
-
 
         public Wish getWishById(int id) {
             Wish wish = null;

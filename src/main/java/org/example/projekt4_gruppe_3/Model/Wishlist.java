@@ -1,7 +1,6 @@
 package org.example.projekt4_gruppe_3.Model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Wishlist {
@@ -38,9 +37,6 @@ public class Wishlist {
         this.image = image;
     }
 
-    public Wishlist() {
-    }
-
     public Wishlist(String listName, String listDescription, Date lastUpdated, String listImg) {
         this.name = listName;
         this.description = listDescription;
@@ -60,6 +56,9 @@ public class Wishlist {
         this.name = name;
         this.description = listDescription;
         this.lastUpdated = lastUpdated;
+    }
+
+    public Wishlist() {
     }
 
     public int getListId() {
@@ -110,11 +109,4 @@ public class Wishlist {
         this.image = image;
     }
 
-    public ArrayList<Wish> getWishes() {
-        return wishes;
-    }
-
-    public void setWishes(ArrayList<Wish> wishes) {
-        this.wishes = wishes;
-    }
 }
