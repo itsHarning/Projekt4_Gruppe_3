@@ -19,4 +19,6 @@ Derudover har vi et database script med 3 tables, som fortæller om vores users,
 For at bruge programmet kan i enten lave en ny bruger selv også logge ind, eller i kan bruge en af de brugere der allerede eksistere. 
 Herefter kan i oprette ønskelister, og oprette ønsker inde i de ønskerliste. I kan derefter dele ønselister med hinanden. 
 
+## Optimeringer
 
+Vi vil naturligvis gerne have gjort mere ud af styling, og derudover kan du godt provokere en whitelabel error ved at skrive alm tekst, når du skal lave et ønske.

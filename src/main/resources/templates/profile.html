@@ -19,11 +19,6 @@
     <div class="profile_body">
         <h1>Mine ønskelister</h1>
         <br><br><br>
-            <form th:action="@{/deleteWishlist}" method="post" class="modify-forms">
-                <input type="number" name="id" placeholder="Enter id to delete" required>
-                <button type="submit" class="delete_button">Delete</button>
-            </form>
-
         <div class="wishlistForm" id="wishlistForm">
             <h2>Opret ønskeliste</h2>
             <img src="/images/plus.jpg" alt="Add Wishlist">
@@ -77,7 +72,12 @@
                         Del ønskeliste
                     </button>
                 </form>
+                <form th:action="@{/deleteWishlist}" method="post" class="modify-form">
+                    <input type="hidden" name="id" th:value="${wishlist.listId}">
+                    <button type="submit" class="btn">Slet</button>
+                </form>
             </div>
+
         </div>
     </div>
 </div>
