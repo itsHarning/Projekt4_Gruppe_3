@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
-
-<!-- Mangler styling og oprettelse af div klasser!-->
-
 <body>
+<header th:replace="~{fragments.html :: navbar}"> </header>
 <h1>
     <span th:text="${wishList.name}">Navn på ønskeliste</span>
 </h1>
@@ -60,14 +58,9 @@
     </div>
   </div>
 
-
-  <div class="create-wish-container">
-
-  </div>
-
   <div class="wish-container">
   <div class="square" th:each="wish :${wishes}">
-    <img class="wish-image-container"  th:src="@{'/images/' + ${wish.image}}" alt="Wish Image" />
+    <img class="wish-image-container"  th:src="@{'/images/' + ${wish.image}}" alt="Wish Image">
     <div>
       <label>Produktnavn:</label>
       <span th:text="${wish.wishName}">Produktnavn</span>
@@ -88,11 +81,57 @@
       <span th:text="${wish.quantity}">Antal</span>
     </div>
 
-    <form th:action="@{/edit-wish}" method="get" class="modify-form">
+    <form class="modify-form">
       <input type="hidden" name="wish_id" th:value="${wish.getWishId()}">
       <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
-      <button type="submit" class="btn">Rediger</button>
+      <button type="button" class="btn edit-btn">Rediger</button>
     </form>
+
+    <div id="editWishModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Wish</h2>
+        <form id="editWishForm" th:action="@{/saveEditWish}" method="post">
+          <input type="hidden" name="wish_id" id="editWishId">
+          <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
+
+          <label class="label-create" for="editWishName">Navn:</label>
+          <input type="text" id="editWishName" name="wish_name" required> <br> <br>
+
+          <label class="label-create" for="editPrice">Pris:</label>
+          <input type="text" id="editPrice" name="price" required> <br> <br>
+
+          <label class="label-create" for="editWishDescription">Beskrivelse:</label>
+          <input type="text" id="editWishDescription" name="wish_description"> <br> <br>
+
+          <label class="label-create" for="editQuantity">Mængde:</label>
+          <input type="text" id="editQuantity" name="quantity" required> <br> <br>
+
+          <label class="label-create" for="editPriority">Prioritet:</label>
+          <input type="text" id="editPriority" name="priority"> <br> <br>
+
+          <label class="label-create" for="editWishImage">Billede:</label>
+          <select id="editWishImage" name="wish_image" required>
+            <option value="">Vælg et billede</option>
+            <option value="gave.jpg">Gave1</option>
+            <option value="Blågave.jpg">Gave2</option>
+            <option value="hund.webp">Gave3</option>
+            <option value="pony.jpg">Gave4</option>
+            <option value="stich lego.png">Gave5</option>
+          </select> <br> <br>
+
+          <label class="label-create" for="editLink">Indsæt link:</label>
+          <input type="text" id="editLink" name="link"> <br> <br>
+
+          <input type="hidden" name="booked_by" th:value="${wish.bookedBy}" />
+          <input type="hidden" name="booked_status" th:value="${wish.bookedStatus}" />
+
+          <button type="submit">Gem ønske</button> <br>
+        </form>
+      </div>
+    </div>
+
+
 
     <form th:action="@{/deleteWish}" method="post" class="modify-form">
       <input type="hidden" name="wish_id" th:value="${wish.getWishId()}">
@@ -135,7 +174,52 @@
       }
     });
   });
+  //This script is responsible for the editWish popup
+  document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.modify-form .edit-btn');
+    const editWishModal = document.getElementById('editWishModal');
+    const closeEditModal = editWishModal.getElementsByClassName('close')[0];
+
+    editButtons.forEach(button => {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const wishId = button.closest('.modify-form').querySelector('input[name="wish_id"]').value;
+        const listId = button.closest('.modify-form').querySelector('input[name="list_id"]').value;
+
+        // Fetch the wish details using wishId and populate the form fields
+        fetch(`/get-wish-details?wish_id=${wishId}&list_id=${listId}`)
+                .then(response => response.json())
+                .then(data => {
+                  document.getElementById('editWishId').value = data.wishId;
+                  document.getElementById('editWishName').value = data.wishName;
+                  document.getElementById('editPrice').value = data.price;
+                  document.getElementById('editWishDescription').value = data.description;
+                  document.getElementById('editQuantity').value = data.quantity;
+                  document.getElementById('editPriority').value = data.priority;
+                  document.getElementById('editWishImage').value = data.image;
+                  document.getElementById('editLink').value = data.link;
+
+                  editWishModal.style.display = 'block';
+                })
+                .catch(error => console.error('Error fetching wish details:', error));
+      });
+    });
+
+    closeEditModal.addEventListener('click', function() {
+      editWishModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target === editWishModal) {
+        editWishModal.style.display = 'none';
+      }
+    });
+  });
 </script>
+
+
+
 </body>
+<div th:replace="~{fragments.html :: footer}"></div>>
 </html>
 

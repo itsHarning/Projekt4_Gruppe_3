@@ -8,6 +8,8 @@ import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class ContentController {
@@ -168,25 +172,31 @@ public class ContentController {
 
         return "redirect:/update-my-wishes-page?list_id="+listID;
     }
-
-    @GetMapping("/edit-wish")
-    public String editWish(@RequestParam("wish_id") int wishID,
-                           @RequestParam("list_id") int listID,
-                           HttpSession session,
-                           Model model){
-
-        if (!isUserLoggedIn(session)){
-            return "redirect:/login";
+    //Response Entity is an extension of the HTTP class.
+    @GetMapping("/get-wish-details")
+    public ResponseEntity<Map<String, Object>> getWishDetails(@RequestParam("wish_id") int wishID,
+                                                              @RequestParam("list_id") int listID,
+                                                              HttpSession session) {
+        if (!isUserLoggedIn(session)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
         Wishlist wishList = wishListRepo.getWishlistById(listID);
         Wish wish = wishRepo.getWishById(wishID);
 
-        model.addAttribute("wish", wish);
-        model.addAttribute("wishList", wishList);
+        //Had to create a map to retrieve the information, due to the information comming in via. a js.
+        //Notice the "fetch" in the js. line 190
+        Map<String, Object> wishDetails = new HashMap<>();
+        wishDetails.put("wishId", wish.getWishId());
+        wishDetails.put("wishName", wish.getWishName());
+        wishDetails.put("price", wish.getPrice());
+        wishDetails.put("description", wish.getDescription());
+        wishDetails.put("quantity", wish.getQuantity());
+        wishDetails.put("priority", wish.getPriority());
+        wishDetails.put("image", wish.getImage());
+        wishDetails.put("link", wish.getLink());
 
-
-        return "edit-wish";
+        return ResponseEntity.ok(wishDetails);
     }
 
     @PostMapping("/saveEditWish")
@@ -203,15 +213,11 @@ public class ContentController {
             @RequestParam("wish_image") String image,
             @RequestParam("link") String link) throws SQLException {
 
-        Wish wish = new Wish( wishID,
-         wishName,  description,
-         price,  quantity,
-         image,  bookedBy,
-         bookedStatus,  priority,
-         link, listID);
+        Wish wish = new Wish(wishID, wishName, description, price, quantity, image, bookedBy, bookedStatus, priority, link, listID);
         wishRepo.updateWish(wish);
-        return "redirect:/update-my-wishes-page?list_id="+listID;
+        return "redirect:/update-my-wishes-page?list_id=" + listID;
     }
+
 
     @GetMapping("wishlists")
     public String WishlistsPage(){return "WishlistsPage";}

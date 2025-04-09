@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <title>My Wishes</title>
 </head>
-
-<!-- Mangler styling og oprettelse af div klasser!-->
-
 <body>
+<header th:replace="~{fragments.html :: navbar}"> </header>
 <div class="container">
   <div class="wishlist-description-container">
     <div>
@@ -63,4 +61,5 @@
   <a th:href="@{/}">Tilbage</a>
 </div>
 </body>
+<div th:replace="~{fragments.html :: footer}"></div>>
 </html>

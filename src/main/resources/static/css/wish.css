@@ -20,45 +20,9 @@
 }
 
 .wish-image-container{
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 5%;
-        float: left;
-        padding: 2%;
-}
-.wishlist-image-container{
-    width: 300px;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    float: left;
-    padding-left: 3%;
-    padding-right: 2%;
+    max-width: 100%;
 }
 
-.wishlist-title{
-    font-family: "Roboto Condensed", sans-serif;
-    font-weight: bold;
-    color: #233249; /* title font colour */
-    padding: 6%;
-    margin-left: 2%;
-    font-size: 40px;
-}
-.create-wish-container{
-    display: block;
-    color: #233249; /* title font colour */
-    font-family: "Roboto Condensed", sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-
-}
 .label-create{
     width: 200px;
     text-align: left;

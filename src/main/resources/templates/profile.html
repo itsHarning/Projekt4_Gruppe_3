@@ -34,7 +34,7 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Create Wishlist</h2>
-                <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishList}" method="post">
+                <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishlist}" method="post">
                     <label for="name">Wishlist name</label>
                     <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
 
@@ -115,4 +115,5 @@
     });
 </script>
 </body>
+<div th:replace="~{fragments.html :: footer}"></div>>
 </html>
