@@ -40,8 +40,8 @@
                     <a id="Wishlists" th:href="@{/wishlist}">ØNSKELISTER</a>
                 </div>
                 <div class="button-container">
-                    <a class="profile-btn" th:href="@{/Profile}">PROFIL</a>
-                    <a class="signup-btn" th:href="@{/logout}">LOG UD</a>
+                    <a class="navbar-link-btn" th:href="@{/Profile}">PROFIL</a>
+                    <a class="navbar-link-btn" th:href="@{/logout}">LOG UD</a>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
 <div th:fragment="form-popup">
     <div class="blur-bg-overlay"></div>
     <div class="form-container">
-    <span class="close-btn material-symbols-rounded">x</span>
+    <span class="close-btn material-symbols-rounded">&times;</span>
         <div class="form-box login">
             <div class="form-details">
                 <h2>Velkommen Tilbage</h2>

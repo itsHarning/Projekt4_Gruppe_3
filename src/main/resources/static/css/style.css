@@ -121,7 +121,7 @@ h1, h2 {
     background: #0097a7;
 }
 
-.navbar a.profile-btn {
+.navbar a.navbar-link-btn {
     height: 40px;
     font-size: 1rem;
     font-weight: lighter;
@@ -135,7 +135,7 @@ h1, h2 {
     margin-right: 5px;
 }
 
-.navbar a.profile-btn:hover {
+.navbar a.navbar-link-btn:hover {
     background-color: #0097a7;
 }
 
