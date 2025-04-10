@@ -99,6 +99,20 @@ body {
 
 }
 
+.delete_button{
+    margin-top: -100%;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.delete_button:hover{
+    background-color: #0056b3;
+}
 
 .modal {
     display: none;

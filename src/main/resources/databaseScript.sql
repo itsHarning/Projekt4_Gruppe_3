@@ -12,7 +12,7 @@ CREATE TABLE user(
 
 INSERT INTO user (email, full_name, password, profile_picture) VALUES
                                                    ('frmo@dong.dk', 'Frederik Morsing', 'blyat', 'rickroll-roll.gif'),
-                                                   ('julius@test.dk', 'Julius Test', '1234', 'Placeholder.jpg');
+                                                   ('julius@test.dk', 'Julius Test', '1234', 'Placeholder.webp');
 
 CREATE TABLE wishlist(
     list_id                 INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,9 +44,9 @@ CREATE TABLE wish(
 );
 
 INSERT INTO wish (wish_name, price, wish_description, quantity, priority, booked_status,booked_by, wish_image, link, list_id) VALUES
-        ('Lenovo', 1000, 'PC', 1, 1, true, 'lucas', 'Placeholder.jpg', 'www.lenovo.com', 1),
-        ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'Placeholder.jpg', 'www.Matas.dk', 1),
-        ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'Placeholder.jpg', 'www.supreme.com', 1),
-        ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'Placeholder.jpg', 'www.bukser.com', 1),
-        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 1),
-        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.jpg', 'www.kerakop.com', 2);
+        ('Lenovo', 1000, 'PC', 1, 1, true, 'lucas', 'Placeholder.webp', 'www.lenovo.com', 1),
+        ('Careve', 150, 'cream', 1, 3, true, 'Helle', 'Placeholder.webp', 'www.Matas.dk', 1),
+        ('T-shirt', 400, 'tshirt', 1, 3, true, 'Henrik', 'Placeholder.webp', 'www.supreme.com', 1),
+        ('Bukser', 700, 'jeans', 1, 3, true, 'Martin', 'Placeholder.webp', 'www.bukser.com', 1),
+        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.webp', 'www.kerakop.com', 1),
+        ('Kaffekop', 80, 'keramik', 5, 2, true, 'Astrid', 'Placeholder.webp', 'www.kerakop.com', 2);
