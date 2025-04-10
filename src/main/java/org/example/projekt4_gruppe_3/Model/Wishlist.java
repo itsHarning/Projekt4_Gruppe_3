@@ -1,7 +1,6 @@
 package org.example.projekt4_gruppe_3.Model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Wishlist {
     private int listId;

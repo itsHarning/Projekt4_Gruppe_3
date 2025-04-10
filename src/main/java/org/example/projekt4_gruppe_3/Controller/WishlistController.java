@@ -2,7 +2,6 @@ package org.example.projekt4_gruppe_3.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.example.projekt4_gruppe_3.Model.User;
-import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.example.projekt4_gruppe_3.Repository.UserRepository;
 import org.example.projekt4_gruppe_3.Repository.WishlistRepository;
@@ -19,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

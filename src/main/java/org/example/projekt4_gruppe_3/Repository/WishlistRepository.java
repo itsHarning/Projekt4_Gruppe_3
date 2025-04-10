@@ -1,7 +1,6 @@
 package org.example.projekt4_gruppe_3.Repository;
 
 import org.example.projekt4_gruppe_3.Model.User;
-import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
