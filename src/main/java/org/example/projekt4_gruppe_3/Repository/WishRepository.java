@@ -37,6 +37,7 @@
                         wish.setBookedBy(resultSet.getString("booked_by"));
                         wish.setBookedStatus(resultSet.getInt("booked_status"));
                         wish.setPriority(resultSet.getInt("priority"));
+                        wish.setLink(resultSet.getString("link"));
                         wishList.add(wish);
                     }
                 }
