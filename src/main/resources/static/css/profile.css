@@ -114,6 +114,7 @@
     font-size: 14px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    padding: 6%;
 }
 
 .share-button:hover {
