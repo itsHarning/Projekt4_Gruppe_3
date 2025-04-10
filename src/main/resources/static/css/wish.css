@@ -113,3 +113,7 @@ input .input-field {
     cursor: pointer;
     text-align: center;
 }
+
+.modify-form button {
+    margin: 2% 0;
+}
