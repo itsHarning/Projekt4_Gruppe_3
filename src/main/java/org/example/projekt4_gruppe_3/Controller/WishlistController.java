@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,10 +95,11 @@ public class WishlistController {
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
                                  //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)
-                                 @RequestParam("updatedAt") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) java.util.Date updatedAt,
                                  HttpSession session) {
 
-        java.util.Date convert=wishlistService.dateFormatter(updatedAt);
+        Date today = new Date(System.currentTimeMillis());
+
+        java.util.Date convert = wishlistService.dateFormatter(today);
 
         //Same with this line. We need to convert from java.util.date to java.sql.date
         java.sql.Date sqlDate=new java.sql.Date(convert.getTime());
