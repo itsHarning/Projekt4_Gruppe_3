@@ -1,6 +1,7 @@
 package org.example.projekt4_gruppe_3.Repository;
 
 import org.example.projekt4_gruppe_3.Model.User;
+import org.example.projekt4_gruppe_3.Model.Wish;
 import org.example.projekt4_gruppe_3.Model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -73,7 +74,7 @@ public class WishlistRepository {
         }
     }
 
-    public ArrayList<Wishlist> getWishlistsByUserId(int userId) throws SQLException {
+    public ArrayList<Wishlist> getWishlistsByUserId(int userId) {
         ArrayList<Wishlist> wishlists =new ArrayList<>();
         String sql = "SELECT w.list_id, w.list_name, w.list_description, w.last_updated, w.user_id AS u_user_id, u.email, u.full_name, u.password, u.profile_picture FROM wishlist w JOIN user u ON w.user_id = u.user_id WHERE w.user_id = ?";
 
@@ -105,5 +106,25 @@ public class WishlistRepository {
     }catch (SQLException e) {
         e.printStackTrace();}
     return wishlists;
+    }
+
+    public void updateWishList(Wishlist wishlist)  {
+        String sql ="UPDATE wishlist SET list_id = ?, list_name = ?, list_description = ?, last_updated = ?, " +
+                "list_image = ?, user_id = ? WHERE list_id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement statement =connection.prepareStatement(sql)){
+            statement.setInt(1, wishlist.getListId());
+            statement.setString(2, wishlist.getName());
+            statement.setString(3, wishlist.getDescription());
+            statement.setDate(4, wishlist.getLastUpdated());
+            statement.setString(5, wishlist.getImage());
+            statement.setInt(6, wishlist.getUser().getUserId());
+            statement.setInt(7, wishlist.getListId());
+
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

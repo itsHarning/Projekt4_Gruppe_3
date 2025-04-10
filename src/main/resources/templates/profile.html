@@ -55,17 +55,52 @@
                             <span th:text="${wishlist.description}">Beskrivelse</span>
                         </div>
                         <div>
-                            <label>Slut dato:</label>
-                            <span th:text="${wishlist.lastUpdated}">Slut dato</span>
+                            <label>Sidst opdateret:</label>
+                            <span th:text="${wishlist.lastUpdated}">Sidst opdateret</span>
                         </div>
                     </button>
-                        <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('http://localhost:8080/show-my-wishes-page?list_id=${wishlist.listId}')|">
+
+                    <form class="modify-form">
+                    <input type="hidden" name="list_id" th:value="${wishlist.listId}">
+                    <button type="button" class="btn edit-btn">Rediger</button>
+                    </form>
+
+                    <button type="button" class="share-button" th:attr="onclick=|copyToClipboard('https://wishify.azurewebsites.net?show-my-wishes-page?list_id=${wishlist.listId}')|">
                         Del ønskeliste
                     </button>
                 </form>
                 <form th:action="@{/deleteWishlist}" method="post" class="modify-form">
                     <input type="hidden" name="id" th:value="${wishlist.listId}">
                     <button type="submit" class="delete-button">Slet</button>
+                </form>
+            </div>
+        </div>
+        <div id="editWishListModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit WishList</h2>
+                <form id="editWishListForm" th:action="@{/saveEditWishList}" method="post">
+                    <input type="hidden" name="list_id">
+
+                    <label class="label-create" for="list_name">Navn:</label>
+                    <input type="text" id="list_name" name="list_name" required> <br> <br>
+
+                    <label class="label-create" for="list_description">Beskrivelse:</label>
+                    <input type="text" id="list_description" name="list_description" required> <br> <br>
+
+                    <label class="label-create" for="list_image">Billede:</label>
+                    <select id="list_image" name="list_image" required>
+                        <option value="">Vælg et billede</option>
+                        <option value="gave.jpg">Gave1</option>
+                        <option value="Blågave.jpg">Gave2</option>
+                        <option value="hund.webp">Gave3</option>
+                        <option value="pony.jpg">Gave4</option>
+                        <option value="stich lego.png">Gave5</option>
+                    </select> <br> <br>
+
+                    <input type="hidden" id="updated_at" name="updated_at"> <br> <br>
+
+                    <button type="submit">Gem liste</button> <br>
                 </form>
             </div>
 
@@ -80,38 +115,145 @@
     </div>
 </div>
 
-<script th:inline="javascript">
-    //Simple function to copy url directly
-    function copyToClipboard(text) {
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(text)
-                .then(() => {
-                    alert('Link kopieret til udklipsholder!');
-                });
-        }
-    }
 
+<script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Create wishlist modal functionality
         const wishlistForm = document.getElementById('wishlistForm');
         const wishlistModal = document.getElementById('wishlistModal');
         const closeModal = document.getElementsByClassName('close')[0];
 
-        //This displays the modal when clicked
         wishlistForm.addEventListener('click', function() {
             wishlistModal.style.display = 'block';
         });
-        //Closes modal when click outside modal
+
         closeModal.addEventListener('click', function() {
             wishlistModal.style.display = 'none';
         });
-        //Used for when you want to "close" the modal. when you click target "wishlistmodal"
+
         window.addEventListener('click', function(event) {
             if (event.target === wishlistModal) {
                 wishlistModal.style.display = 'none';
             }
         });
+
+        // Edit wishlist modal functionality
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const editWishListModal = document.getElementById('editWishListModal');
+        const editForm = document.getElementById('editWishListForm');
+
+        if (editWishListModal && editForm) {
+            const closeEditModal = editWishListModal.querySelector('.close');
+
+            editButtons.forEach((button) => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Find the parent div that contains both forms
+                    const wishlistItem = this.closest('.wishlist-item');
+
+                    // Get all list_id inputs in this wishlist item
+                    const listIdInputs = wishlistItem ? wishlistItem.querySelectorAll('input[name="list_id"]') : [];
+
+                    // Get the one closest to our button
+                    let listId = null;
+                    if (listIdInputs.length > 0) {
+                        // First try to get the one in the same form as the button
+                        const buttonForm = this.closest('form');
+                        const formInput = buttonForm ? buttonForm.querySelector('input[name="list_id"]') : null;
+
+                        if (formInput) {
+                            listId = formInput.value;
+                        } else {
+                            // Otherwise just use the first one
+                            listId = listIdInputs[0].value;
+                        }
+                    }
+
+                    // If we still don't have a list_id, try to get it from the span
+                    if (!listId) {
+                        const idSpan = wishlistItem ? wishlistItem.querySelector('#list_id') : null;
+                        if (idSpan) {
+                            listId = idSpan.textContent.trim();
+                        }
+                    }
+
+                    if (!listId) {
+                        return;
+                    }
+
+                    // Fetch the wishList details
+                    fetch(`/get-wishlist-details?list_id=${listId}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Network response was not ok: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Find and set form field values
+                            const listIdField = editForm.querySelector('input[name="list_id"]');
+                            if (listIdField) {
+                                listIdField.value = data.list_id;
+                            }
+
+                            const nameField = document.getElementById('list_name');
+                            if (nameField) {
+                                nameField.value = data.list_name;
+                            }
+
+                            const descField = document.getElementById('list_description');
+                            if (descField) {
+                                descField.value = data.list_description;
+                            }
+
+                            const imageField = document.getElementById('list_image');
+                            if (imageField && data.list_image) {
+                                imageField.value = data.list_image;
+                            }
+
+                            const dateField = document.getElementById('updated_at');
+                            if (dateField) {
+                                // Get current date in YYYY-MM-DD format
+                                const currentDate = new Date().toISOString().split('T')[0];
+                                dateField.value = currentDate;
+                            }
+
+                            // Show the modal
+                            editWishListModal.style.display = 'block';
+                        })
+                        .catch(error => {
+                            alert('Der opstod en fejl ved hentning af ønskelisten: ' + error.message);
+                        });
+                });
+            });
+
+            // Close modal handlers
+            if (closeEditModal) {
+                closeEditModal.addEventListener('click', function() {
+                    editWishListModal.style.display = 'none';
+                });
+            }
+
+            window.addEventListener('click', function(event) {
+                if (event.target === editWishListModal) {
+                    editWishListModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Copy to clipboard function
+        window.copyToClipboard = function(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        alert('Link kopieret til udklipsholder!');
+                    });
+            }
+        };
     });
 </script>
-<div th:replace="~{fragments.html :: footer}"></div>
+
+<div th:replace="~{fragments.html :: footer}"></div>>
 </body>
 </html>
