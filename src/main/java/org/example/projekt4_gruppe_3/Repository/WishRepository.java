@@ -15,41 +15,6 @@
         @Autowired
         DataSource dataSource;
 
-        public ArrayList<Wish> getAllWishes() {
-            ArrayList<Wish> wishes = new ArrayList<>();
-            String sql = "SELECT * FROM wish";
-
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement statement = connection.prepareStatement(sql);
-                 ResultSet resultSet = statement.executeQuery()) {
-
-                while (resultSet.next()) {
-                    int wishId = resultSet.getInt("wish_id");
-                    String wishName = resultSet.getString("wish_name");
-                    String description = resultSet.getString("wish_description");
-                    int price = resultSet.getInt("price");
-                    int quantity = resultSet.getInt("quantity");
-                    String image = resultSet.getString("wish_image");
-                    String bookedBy = resultSet.getString("booked_by");
-                    int bookedStatus = resultSet.getInt("booked_status");
-                    int priority = resultSet.getInt("priority");
-                    String link = resultSet.getString("link");
-                    int wishlistId = resultSet.getInt("wishlist_id");
-
-                    Wishlist wishlist = new WishlistRepository().getWishlistById(wishlistId);
-
-                    Wish wish = new Wish(
-                            wishName, description, price, quantity, image,
-                            bookedBy, bookedStatus, priority, link, wishlistId);
-
-                    wishes.add(wish);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return wishes;
-        }
-
         public ArrayList<Wish> getWishesByWishListID(int id){
             Wish wish;
             ArrayList<Wish> wishList = new ArrayList<>();
@@ -143,17 +108,6 @@
 
                 statement.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void deleteWishByName(String name) throws SQLException {
-            String sql = "DELETE FROM wish WHERE wish_name = ?";
-
-            try (Connection connection = dataSource.getConnection();
-                 Statement statement = connection.createStatement()) {
-                statement.executeUpdate(sql);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

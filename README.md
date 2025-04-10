@@ -22,6 +22,7 @@ Herefter kan i oprette ønskelister, og oprette ønsker inde i de ønskerliste. 
 ## Optimeringer
 
 Vi vil naturligvis gerne have gjort mere ud af styling, og derudover kan du godt provokere en whitelabel error ved at skrive alm tekst, når du skal lave et ønske.
+Vi kunne evt. lave flere funktioner en "wish-generator", som ønskeskyen har. 
 
 
 ## Test af programmet
