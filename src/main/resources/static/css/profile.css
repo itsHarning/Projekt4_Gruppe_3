@@ -9,11 +9,17 @@
     margin-left: 5%;
     float: left;
     padding: 2%;
-
 }
 
-.wishlist-item:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+.profile-body {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 50px;
 }
 
 

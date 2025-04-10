@@ -8,18 +8,18 @@
 <body class="profile">
 <header th:replace="~{fragments.html :: navbar}"> </header>
 
-<h1>Velkommen til din ønskeliste</h1>
-<div>
+<h2>Velkommen til din ønskeliste</h2>
+<div class="profile-header">
     <img class="image-container" th:src="@{'/images/' + ${profilePicture}}" alt="Profile Picture">
     <div class="username" th:text="${username}"></div>
 </div>
 
 <br>
 <div class="backGroundColor-div">
-    <div class="profile_body">
-        <h1>Mine ønskelister</h1>
+    <div class="profile-body">
+        <h2>Mine ønskelister</h2>
         <br><br><br>
-        <div class="wishlistForm" id="wishlistForm">
+        <div class="wishlist-form" id="wishlistForm">
             <h2>Opret ønskeliste</h2>
             <img src="/images/plus.jpg" alt="Add Wishlist">
         </div>
@@ -42,7 +42,6 @@
                 </form>
             </div>
         </div>
-
 
         <div class="wishlist-container">
             <div th:each="wishlist :${wishlists}" class="wishlist-item">
