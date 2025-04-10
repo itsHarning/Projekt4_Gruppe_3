@@ -169,7 +169,7 @@ public class WishController {
             @RequestParam("wish_image") String image,
             @RequestParam("link") String link) throws SQLException {
 
-        Wish wish = new Wish(wishID, wishName, description, price, quantity, image, bookedBy, bookedStatus, priority, link, listID);
+        Wish wish = new Wish(wishID, wishName, description, price, quantity, image, null, 0, priority, link, listID);
         wishRepo.updateWish(wish);
         return "redirect:/update-my-wishes-page?list_id=" + listID;
     }

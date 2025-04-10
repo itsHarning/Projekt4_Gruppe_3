@@ -55,7 +55,7 @@
   </div>
 
   <div class="wish-container">
-    <div class="square" th:each="wish :${wishes}">
+    <div th:each="wish :${wishes}" class="square">
       <a th:href="@{'https://' + ${wish.link}}">
       <img class="wish-image-container"  th:src="@{'/images/' + ${wish.image}}" alt="Wish Image">
       <div>
@@ -84,57 +84,54 @@
         <button type="button" class="btn edit-btn">Rediger</button>
       </form>
 
-      <div id="editWishModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Edit Wish</h2>
-          <form id="editWishForm" th:action="@{/saveEditWish}" method="post">
-            <input type="hidden" name="wish_id" id="editWishId">
-            <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
-
-            <label class="label-create" for="editWishName">Navn:</label>
-            <input type="text" id="editWishName" name="wish_name" required> <br> <br>
-
-            <label class="label-create" for="editPrice">Pris:</label>
-            <input type="text" id="editPrice" name="price" required> <br> <br>
-
-            <label class="label-create" for="editWishDescription">Beskrivelse:</label>
-            <input type="text" id="editWishDescription" name="wish_description"> <br> <br>
-
-            <label class="label-create" for="editQuantity">Mængde:</label>
-            <input type="text" id="editQuantity" name="quantity" required> <br> <br>
-
-            <label class="label-create" for="editPriority">Prioritet:</label>
-            <input type="text" id="editPriority" name="priority"> <br> <br>
-
-            <label class="label-create" for="editWishImage">Billede:</label>
-            <select id="editWishImage" name="wish_image" required>
-              <option value="">Vælg et billede</option>
-              <option value="gave.jpg">Gave1</option>
-              <option value="Blågave.jpg">Gave2</option>
-              <option value="hund.webp">Gave3</option>
-              <option value="pony.jpg">Gave4</option>
-              <option value="stich lego.png">Gave5</option>
-            </select> <br> <br>
-
-            <label class="label-create" for="editLink">Indsæt link:</label>
-            <input type="text" id="editLink" name="link"> <br> <br>
-
-            <input type="hidden" name="booked_by" th:value="${wish.bookedBy}" />
-            <input type="hidden" name="booked_status" th:value="${wish.bookedStatus}" />
-
-            <button type="submit">Gem ønske</button> <br>
-          </form>
-        </div>
-      </div>
-
-      <form th:action="@{/deleteWish}" method="post" class="modify-form">
-        <input type="hidden" name="wish_id" th:value="${wish.getWishId()}">
-        <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
-        <button type="submit" class="btn">Slet</button>
-      </form>
+        <form th:action="@{/deleteWish}" method="post" class="modify-form">
+          <input type="hidden" name="wish_id" th:value="${wish.getWishId()}">
+          <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
+          <button type="submit" class="btn">Slet</button>
+        </form>
       </a>
   </div>
+    <div id="editWishModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Wish</h2>
+        <form id="editWishForm" th:action="@{/saveEditWish}" method="post">
+          <input type="hidden" name="wish_id" id="editWishId">
+          <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
+
+          <label class="label-create" for="editWishName">Navn:</label>
+          <input type="text" id="editWishName" name="wish_name" required> <br> <br>
+
+          <label class="label-create" for="editPrice">Pris:</label>
+          <input type="text" id="editPrice" name="price" required> <br> <br>
+
+          <label class="label-create" for="editWishDescription">Beskrivelse:</label>
+          <input type="text" id="editWishDescription" name="wish_description"> <br> <br>
+
+          <label class="label-create" for="editQuantity">Mængde:</label>
+          <input type="text" id="editQuantity" name="quantity" required> <br> <br>
+
+          <label class="label-create" for="editPriority">Prioritet:</label>
+          <input type="text" id="editPriority" name="priority"> <br> <br>
+
+          <label class="label-create" for="editWishImage">Billede:</label>
+          <select id="editWishImage" name="wish_image" required>
+            <option value="">Vælg et billede</option>
+            <option value="gave.jpg">Gave1</option>
+            <option value="Blågave.jpg">Gave2</option>
+            <option value="hund.webp">Gave3</option>
+            <option value="pony.jpg">Gave4</option>
+            <option value="stich lego.png">Gave5</option>
+          </select> <br> <br>
+
+          <label class="label-create" for="editLink">Indsæt link:</label>
+          <input type="text" id="editLink" name="link"> <br> <br>
+          <button type="submit">Gem ønske</button> <br>
+        </form>
+      </div>
+    </div>
+
+
     <div class="square" id="wishForm">
       <div class="create-new-item">
         <h2>Create wish</h2>
