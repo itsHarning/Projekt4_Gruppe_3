@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Mine ønsker</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/wish.css}" rel="stylesheet">
 </head>
 <body>
 <header th:replace="~{fragments.html :: navbar}"> </header>
@@ -55,9 +57,8 @@
     </div>
   </div>
 </div>
-
   <a th:href="@{/}">Tilbage</a>
 </div>
-<div th:replace="~{fragments.html :: footer}"></div>>
+<div th:replace="~{fragments.html :: footer}"></div>
 </body>
 </html>
