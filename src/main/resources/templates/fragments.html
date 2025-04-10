@@ -67,7 +67,7 @@
                 <h2>Log ind</h2>
                 <form class="form-popup" th:action="@{/login}" method="post">
 
-                    <div th:if="${error}">
+                    <div class="error" th:if="${error}">
                         <p th:text="${error}"></p>
                     </div>
 
@@ -97,7 +97,7 @@
                 <h2>Opret dig</h2>
                 <form class="form-popup" th:action="@{/getCreateUser}" method="post">
 
-                    <div th:if="${registrationError}">
+                    <div class="error" th:if="${registrationError}">
                         <p th:text="${registrationError}"></p>
                     </div>
 

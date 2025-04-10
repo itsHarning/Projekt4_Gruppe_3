@@ -143,6 +143,7 @@ h1, h2 {
     background-color: #0097a7;
 }
 
+/*login/signup styling*/
 .blur-bg-overlay {
     position: fixed;
     top: 0;
@@ -160,6 +161,11 @@ h1, h2 {
     pointer-events: auto;
 }
 
+.error {
+    color: crimson;
+    text-align: center;
+}
+
 .form-container  {
     position: fixed;
     top: 50%;
@@ -169,7 +175,6 @@ h1, h2 {
     opacity: 0;
     pointer-events: none;
     background: #FFF;
-    /*border: 2px solid #FFF;*/
     transform: translate(-50%, -100%);
 }
 
@@ -239,7 +244,6 @@ form .input-field input {
     width: 100%;
     height: 100%;
     outline: none;
-    /*padding: 0 15px;*/
     font-size: 0.95rem;
     border-radius: 3px;
     border: 1px solid #717171;
