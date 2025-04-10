@@ -56,6 +56,7 @@
 
   <div class="wish-container">
     <div class="square" th:each="wish :${wishes}">
+      <a th:href="@{'https://' + ${wish.link}}">
       <img class="wish-image-container"  th:src="@{'/images/' + ${wish.image}}" alt="Wish Image">
       <div>
         <label>Produktnavn:</label>
@@ -132,6 +133,7 @@
         <input type="hidden" name="list_id" th:value="${wishList.getListId()}">
         <button type="submit" class="btn">Slet</button>
       </form>
+      </a>
   </div>
     <div class="square" id="wishForm">
       <div class="create-new-item">
