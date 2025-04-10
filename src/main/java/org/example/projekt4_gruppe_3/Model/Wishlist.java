@@ -10,7 +10,6 @@ public class Wishlist {
     private Date lastUpdated;
     private User user;
     private String image;
-    private ArrayList<Wish> wishes = new ArrayList<>();
 
     public Wishlist(int listId, String name, String description, Date lastUpdated, String image, User user) {
         this.listId = listId;

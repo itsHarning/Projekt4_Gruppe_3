@@ -144,6 +144,7 @@
   <a th:href="@{/profile}">Tilbage</a>
 
 <script th:inline="javascript">
+  //Simple function to copy url
   function copyToClipboard(text) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text)
@@ -158,15 +159,16 @@
     const wishModal = document.getElementById('wishModal');
     const closeModal = document.getElementsByClassName('close')[0];
 
+    //Shows modal/popup
     wishForm.addEventListener('click', function() {
       wishModal.style.display = 'block';
       console.log('Wish form clicked');
     });
-
+    //Close modal when you click outside content
     closeModal.addEventListener('click', function() {
       wishModal.style.display = 'none';
     });
-
+    //Close modal when you click the "wishModal" button
     window.addEventListener('click', function(event) {
       if (event.target === wishModal) {
         wishModal.style.display = 'none';
@@ -185,7 +187,7 @@
         const wishId = button.closest('.modify-form').querySelector('input[name="wish_id"]').value;
         const listId = button.closest('.modify-form').querySelector('input[name="list_id"]').value;
 
-        // Fetch the wish details using wishId and populate the form fields
+        //Fetch the wish details using wishId and populate the form fields
         fetch(`/get-wish-details?wish_id=${wishId}&list_id=${listId}`)
                 .then(response => response.json())
                 .then(data => {
