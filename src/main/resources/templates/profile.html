@@ -23,11 +23,22 @@
                 <span class="close">&times;</span>
                 <h2>Opret ønskeliste</h2>
                 <form id="wishlistDetailsForm" th:action="@{/saveUpdateWishlist}" method="post">
-                    <label for="name">Wishlist name</label>
+                    <label for="name">Ønskelistens navn</label>
                     <input type="text" id="name" name="name" placeholder="Enter wishlist name" required>
 
-                    <label for="description">Description</label>
+                    <label for="description">Beskrivelse</label>
                     <input type="text" id="description" name="description" placeholder="Enter description" required>
+
+                    <label for="list_image_create">Billede:</label>
+                    <select id="list_image_create" name="list_image" required>
+                        <option value="">Vælg et billede</option>
+                        <option value="gave.jpg">Gave1</option>
+                        <option value="Blågave.jpg">Gave2</option>
+                        <option value="hund.webp">Gave3</option>
+                        <option value="pony.jpg">Gave4</option>
+                        <option value="stitch lego.png">Gave5</option>
+                    </select>
+
 
                     <button type="submit">Create wishlist</button>
                 </form>
@@ -39,22 +50,17 @@
                 <form th:action="@{/getWishlist}" method="get">
                     <input type="hidden" name="list_id" th:value="${wishlist.listId}">
                     <button type="submit" th:href="@{/show-my-wishes-page.html}">
-                        <div class="template-img">
-                            <img src="/images/gave.jpg" alt="Wishlist Image">
-                        </div>
                         <input type="hidden" name="list_id" th:value="${wishlist.listId}">
-                        <div>
+                            <img class="template-img" th:src="@{'/images/' + ${wishlist.getImage()}}" alt="Wishlist Image">
+
                             <label>Ønskeliste navn:</label>
                             <span th:text="${wishlist.name}">Navn</span>
-                        </div>
-                        <div>
+
                             <label>Beskrivelse:</label>
                             <span th:text="${wishlist.description}">Beskrivelse</span>
-                        </div>
-                        <div>
+
                             <label>Sidst opdateret:</label>
                             <span th:text="${wishlist.lastUpdated}">Sidst opdateret</span>
-                        </div>
                     </button>
 
                     <form class="modify-form">
@@ -92,13 +98,13 @@
                     <input type="text" id="list_description" name="list_description" required> <br> <br>
 
                     <label class="label-create" for="list_image">Billede:</label>
-                    <select id="list_image" name="list_image" required>
+                    <select id="list_image-edit" name="list_image" required>
                         <option value="">Vælg et billede</option>
                         <option value="gave.jpg">Gave1</option>
                         <option value="Blågave.jpg">Gave2</option>
                         <option value="hund.webp">Gave3</option>
                         <option value="pony.jpg">Gave4</option>
-                        <option value="stich lego.png">Gave5</option>
+                        <option value="stitch lego.png">Gave5</option>
                     </select> <br> <br>
 
                     <input type="hidden" id="updated_at" name="updated_at"> <br> <br>

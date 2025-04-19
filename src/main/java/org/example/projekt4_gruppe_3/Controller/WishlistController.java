@@ -90,6 +90,7 @@ public class WishlistController {
     @PostMapping("/saveUpdateWishlist")
     public String updateWishlist(@RequestParam("name") String name,
                                  @RequestParam("description") String description,
+                                 @RequestParam("list_image") String image,
                                  //Line 93 is used because the Data.java.util is different from the Date.java.sql (which is used in database)
                                  HttpSession session) {
 
@@ -103,7 +104,7 @@ public class WishlistController {
 
         Object user = session.getAttribute("loggedInUser");
 
-        Wishlist wishlist = new Wishlist(name, description, sqlDate, (User) user);
+        Wishlist wishlist = new Wishlist(name, description, sqlDate, image, (User) user);
         wishlistRepo.createWishlist(wishlist);
         return "redirect:/profile";
     }

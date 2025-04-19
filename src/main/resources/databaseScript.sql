@@ -24,9 +24,9 @@ CREATE TABLE wishlist(
     FOREIGN KEY (user_id)   REFERENCES user(user_id)
 );
 
-INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, user_id) VALUES
-                                                    ('fødselsdags', 'mine fødselsdags gaver', '2012-06-22', 1),
-                                                    ('juleønsker', 'mine juleaftens ønsker', '2000-12-30', 2);
+INSERT INTO wishlist (list_name, wishlist.list_description, last_updated, list_image, user_id) VALUES
+                                                    ('fødselsdags', 'mine fødselsdags gaver', '2012-06-22', 'Placeholder.webp', 1),
+                                                    ('juleønsker', 'mine juleaftens ønsker','2000-12-30', 'Placeholder.webp', 2);
 
 CREATE TABLE wish(
     wish_id                INT AUTO_INCREMENT PRIMARY KEY,
